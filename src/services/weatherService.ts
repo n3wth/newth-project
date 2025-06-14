@@ -34,47 +34,6 @@ async function getCoordinates(cityName: string): Promise<{ lat: number; lon: num
   return null;
 }
 
-// Use OpenWeatherMap with Google Geocoding for accurate weather data
-async function fetchWeatherFromOpenWeather(lat: number, lon: number, cityName: string): Promise<WeatherData> {
-  // Note: You'll need to get a free API key from OpenWeatherMap
-  const openWeatherKey = 'demo_key'; // Replace with actual OpenWeatherMap API key
-  const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${openWeatherKey}&units=metric&cnt=40`;
-  
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    
-    // Process 5-day forecast data into 10-day format (OpenWeatherMap free tier is 5 days)
-    const dailyData: WeatherDay[] = [];
-    const processedDates = new Set();
-    
-    data.list?.forEach((item: any) => {
-      const date = item.dt_txt.split(' ')[0];
-      if (!processedDates.has(date) && dailyData.length < 10) {
-        processedDates.add(date);
-        dailyData.push({
-          date,
-          tempMin: Math.round(item.main.temp_min),
-          tempMax: Math.round(item.main.temp_max),
-          precipitation: item.rain?.['3h'] || 0,
-          condition: item.weather[0].description,
-          humidity: item.main.humidity,
-          windSpeed: item.wind.speed,
-        });
-      }
-    });
-    
-    return {
-      city: cityName,
-      daily: dailyData,
-      source: 'OpenWeatherMap via Google Geocoding'
-    };
-  } catch (error) {
-    console.error('OpenWeatherMap API failed:', error);
-    throw error;
-  }
-}
-
 // Generate realistic mock data for Vietnam cities
 function generateRealisticWeatherData(cityName: string): WeatherData {
   const now = new Date();
