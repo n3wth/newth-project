@@ -1,0 +1,16 @@
+name = "newth-ai-embed"
+compatibility_date = "2025-06-14"
+
+[build]
+command = "npm run build"
+cwd = "."
+
+[build.upload]
+format = "modules"
+
+[[build.upload.rules]]
+type = "ESModule"
+globs = ["**/*.js"]
+
+[assets]
+directory = "./dist"
