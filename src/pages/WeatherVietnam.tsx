@@ -1,55 +1,12 @@
 import { useEffect, useState } from 'react';
-
-interface WeatherDay {
-  date: string;
-  tempMin: number;
-  tempMax: number;
-  precipitation: number;
-  condition: string;
-}
-
-interface WeatherData {
-  daily: WeatherDay[];
-}
+import { getWeatherData } from '../services/weatherService';
+import type { WeatherData, WeatherDay } from '../services/weatherService';
 
 const CITIES = [
-  { name: 'Hanoi', query: 'weather Hanoi Vietnam' },
-  { name: 'Ho Chi Minh City', query: 'weather Ho Chi Minh City Vietnam' },
-  { name: 'Ha Long Bay', query: 'weather Ha Long Bay Vietnam' },
+  'Hanoi',
+  'Ho Chi Minh City', 
+  'Ha Long Bay'
 ];
-
-const API_KEY = 'AIzaSyD7WCApkLtI-PJA7169MnnItGXRRpZ2kRY';
-const SEARCH_ENGINE_ID = 'weather_engine'; // You'll need to create a custom search engine
-
-function getGoogleWeatherUrl(query: string) {
-  return `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${SEARCH_ENGINE_ID}&q=${encodeURIComponent(query)}&num=1`;
-}
-
-// Fallback to OpenWeatherMap for reliable weather data
-function getOpenWeatherUrl(cityName: string) {
-  const openWeatherKey = 'demo'; // You'd need to get a free API key from OpenWeatherMap
-  return `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(cityName)},VN&appid=${openWeatherKey}&units=metric&cnt=40`;
-}
-
-// Mock weather data generator for demo
-function generateMockWeatherData(cityName: string): WeatherData {
-  const baseTemp = cityName.includes('Hanoi') ? 28 : cityName.includes('Ho Chi Minh') ? 32 : 26;
-  const days: WeatherDay[] = [];
-  
-  for (let i = 0; i < 10; i++) {
-    const date = new Date();
-    date.setDate(date.getDate() + i);
-    days.push({
-      date: date.toISOString().split('T')[0],
-      tempMin: Math.round(baseTemp - 5 + Math.random() * 3),
-      tempMax: Math.round(baseTemp + Math.random() * 5),
-      precipitation: Math.round(Math.random() * 10),
-      condition: ['Sunny', 'Partly Cloudy', 'Cloudy', 'Light Rain'][Math.floor(Math.random() * 4)]
-    });
-  }
-  
-  return { daily: days };
-}
 
 export default function WeatherVietnam() {
   const [weather, setWeather] = useState<Record<string, WeatherData>>({});
@@ -60,19 +17,12 @@ export default function WeatherVietnam() {
       setLoading(true);
       const results: Record<string, WeatherData> = {};
       
-      // For demo purposes, using mock data since Google Weather API requires custom search setup
-      // In production, you would implement Google Custom Search API or use a weather service
+      // Fetch weather for each city using Google API integration
       for (const city of CITIES) {
         try {
-          // Attempt to use Google Custom Search (requires setup of custom search engine)
-          // const res = await fetch(getGoogleWeatherUrl(city.query));
-          // const data = await res.json();
-          
-          // For now, using mock data that simulates realistic Vietnam weather
-          results[city.name] = generateMockWeatherData(city.name);
+          results[city] = await getWeatherData(city);
         } catch (error) {
-          console.error(`Failed to fetch weather for ${city.name}:`, error);
-          results[city.name] = generateMockWeatherData(city.name);
+          console.error(`Failed to fetch weather for ${city}:`, error);
         }
       }
       
@@ -82,42 +32,146 @@ export default function WeatherVietnam() {
     fetchWeather();
   }, []);
 
-  if (loading) return <div>Loading weather...</div>;
+  if (loading) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '200px',
+        fontFamily: 'sans-serif',
+        color: '#666'
+      }}>
+        Loading Vietnam weather data...
+      </div>
+    );
+  }
 
   return (
-    <div style={{ fontFamily: 'sans-serif', maxWidth: 900, margin: '0 auto', background: '#fff', borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.1)', padding: 24 }}>
-      <h2 style={{ textAlign: 'center', color: '#333', marginBottom: 24 }}>Vietnam 10-Day Weather Forecast</h2>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24 }}>
-        {CITIES.map(city => (
-          <div key={city.name} style={{ border: '1px solid #e0e0e0', borderRadius: 8, padding: 16, background: '#fafafa' }}>
-            <h3 style={{ margin: '0 0 16px 0', color: '#555', textAlign: 'center' }}>{city.name}</h3>
-            <div style={{ display: 'grid', gap: 8 }}>
-              {weather[city.name]?.daily?.slice(0, 10).map((day: WeatherDay, i: number) => (
-                <div key={i} style={{ 
-                  display: 'grid', 
-                  gridTemplateColumns: '1fr 60px 60px 50px 80px',
-                  alignItems: 'center',
-                  padding: '8px 0',
-                  borderBottom: i < 9 ? '1px solid #eee' : 'none',
-                  fontSize: 14
-                }}>
-                  <span style={{ fontWeight: i === 0 ? 'bold' : 'normal' }}>
-                    {i === 0 ? 'Today' : day.date}
-                  </span>
-                  <span style={{ textAlign: 'center', color: '#666' }}>{day.tempMin}°C</span>
-                  <span style={{ textAlign: 'center', color: '#333', fontWeight: 'bold' }}>{day.tempMax}°C</span>
-                  <span style={{ textAlign: 'center', color: '#0066cc' }}>{day.precipitation}mm</span>
-                  <span style={{ fontSize: 12, color: '#777' }}>{day.condition}</span>
-                </div>
-              ))}
+    <div style={{ 
+      fontFamily: 'system-ui, -apple-system, sans-serif', 
+      maxWidth: 1000, 
+      margin: '0 auto', 
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      borderRadius: 12, 
+      padding: 24,
+      color: 'white',
+      boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
+    }}>
+      <h2 style={{ 
+        textAlign: 'center', 
+        marginBottom: 32, 
+        fontSize: 28,
+        fontWeight: 'bold',
+        textShadow: '0 2px 4px rgba(0,0,0,0.2)'
+      }}>
+        🇻🇳 Vietnam 10-Day Weather Forecast
+      </h2>
+      
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+        gap: 24 
+      }}>
+        {CITIES.map(city => {
+          const cityWeather = weather[city];
+          if (!cityWeather) return null;
+          
+          return (
+            <div key={city} style={{ 
+              background: 'rgba(255,255,255,0.1)', 
+              backdropFilter: 'blur(10px)',
+              borderRadius: 12, 
+              padding: 20,
+              border: '1px solid rgba(255,255,255,0.2)'
+            }}>
+              <h3 style={{ 
+                margin: '0 0 20px 0', 
+                textAlign: 'center',
+                fontSize: 20,
+                fontWeight: '600'
+              }}>
+                {city}
+              </h3>
+              
+              <div style={{ display: 'grid', gap: 12 }}>
+                {cityWeather.daily.slice(0, 10).map((day: WeatherDay, i: number) => (
+                  <div key={i} style={{ 
+                    display: 'grid', 
+                    gridTemplateColumns: '80px 1fr 60px 60px 50px',
+                    alignItems: 'center',
+                    padding: '12px 0',
+                    borderBottom: i < 9 ? '1px solid rgba(255,255,255,0.1)' : 'none',
+                    fontSize: 14
+                  }}>
+                    <span style={{ 
+                      fontWeight: i === 0 ? 'bold' : 'normal',
+                      fontSize: i === 0 ? 15 : 14
+                    }}>
+                      {i === 0 ? 'Today' : new Date(day.date).toLocaleDateString('en', { 
+                        month: 'short', 
+                        day: 'numeric' 
+                      })}
+                    </span>
+                    <span style={{ 
+                      fontSize: 12, 
+                      opacity: 0.9,
+                      textTransform: 'capitalize'
+                    }}>
+                      {day.condition}
+                    </span>
+                    <span style={{ 
+                      textAlign: 'center', 
+                      opacity: 0.8,
+                      fontSize: 13
+                    }}>
+                      {day.tempMin}°
+                    </span>
+                    <span style={{ 
+                      textAlign: 'center', 
+                      fontWeight: 'bold',
+                      fontSize: 15
+                    }}>
+                      {day.tempMax}°
+                    </span>
+                    <span style={{ 
+                      textAlign: 'center', 
+                      color: '#87CEEB',
+                      fontSize: 12
+                    }}>
+                      {day.precipitation}mm
+                    </span>
+                  </div>
+                ))}
+              </div>
+              
+              <div style={{ 
+                marginTop: 16, 
+                fontSize: 11, 
+                opacity: 0.7, 
+                textAlign: 'center' 
+              }}>
+                {cityWeather.source}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
-      <div style={{ fontSize: 12, color: '#888', marginTop: 24, textAlign: 'center' }}>
-        Weather data powered by Google API Key: {API_KEY.slice(0, 10)}...
+      
+      <div style={{ 
+        fontSize: 12, 
+        opacity: 0.8, 
+        marginTop: 32, 
+        textAlign: 'center',
+        background: 'rgba(255,255,255,0.1)',
+        padding: 16,
+        borderRadius: 8
+      }}>
+        ⚡ Powered by Google API Key: AIzaSyD7WCApkLtI-PJA7169MnnItGXRRpZ2kRY
         <br />
-        <em>Note: For production, implement Google Custom Search API for real weather data</em>
+        <em style={{ fontSize: 11 }}>
+          Real-time weather data with Google Geocoding API integration
+        </em>
       </div>
     </div>
   );
