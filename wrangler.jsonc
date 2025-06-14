@@ -1,7 +1,0 @@
-{
-  "name": "newth-ai-embed",
-  "compatibility_date": "2025-06-14",
-  "assets": {
-    "directory": "./dist"
-  }
-}
