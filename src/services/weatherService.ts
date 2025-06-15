@@ -120,54 +120,66 @@ async function fetchWeatherFromAPI(city: string): Promise<WeatherData> {
   }
 }
 
-// Fallback mock data in case API fails
-const mockWeatherData: Record<string, WeatherData> = {
-  'Hanoi': {
-    city: 'Hanoi',
-    daily: [
-      { date: '2024-01-01', tempMin: 18, tempMax: 25, condition: 'Partly cloudy', precipitation: 0 },
-      { date: '2024-01-02', tempMin: 20, tempMax: 27, condition: 'Sunny', precipitation: 0 },
-      { date: '2024-01-03', tempMin: 19, tempMax: 24, condition: 'Light rain', precipitation: 2 },
-      { date: '2024-01-04', tempMin: 17, tempMax: 22, condition: 'Cloudy', precipitation: 0 },
-      { date: '2024-01-05', tempMin: 21, tempMax: 28, condition: 'Sunny', precipitation: 0 },
-      { date: '2024-01-06', tempMin: 22, tempMax: 29, condition: 'Partly cloudy', precipitation: 0 },
-      { date: '2024-01-07', tempMin: 20, tempMax: 26, condition: 'Light rain', precipitation: 3 },
-      { date: '2024-01-08', tempMin: 18, tempMax: 23, condition: 'Cloudy', precipitation: 1 },
-      { date: '2024-01-09', tempMin: 19, tempMax: 25, condition: 'Sunny', precipitation: 0 },
-      { date: '2024-01-10', tempMin: 21, tempMax: 27, condition: 'Partly cloudy', precipitation: 0 },
-    ]
-  },
-  'Ho Chi Minh City': {
-    city: 'Ho Chi Minh City',
-    daily: [
-      { date: '2024-01-01', tempMin: 24, tempMax: 32, condition: 'Sunny', precipitation: 0 },
-      { date: '2024-01-02', tempMin: 25, tempMax: 33, condition: 'Partly cloudy', precipitation: 0 },
-      { date: '2024-01-03', tempMin: 23, tempMax: 30, condition: 'Thunderstorms', precipitation: 15 },
-      { date: '2024-01-04', tempMin: 22, tempMax: 29, condition: 'Heavy rain', precipitation: 25 },
-      { date: '2024-01-05', tempMin: 26, tempMax: 34, condition: 'Sunny', precipitation: 0 },
-      { date: '2024-01-06', tempMin: 27, tempMax: 35, condition: 'Hot', precipitation: 0 },
-      { date: '2024-01-07', tempMin: 25, tempMax: 32, condition: 'Partly cloudy', precipitation: 2 },
-      { date: '2024-01-08', tempMin: 24, tempMax: 31, condition: 'Light rain', precipitation: 5 },
-      { date: '2024-01-09', tempMin: 26, tempMax: 33, condition: 'Sunny', precipitation: 0 },
-      { date: '2024-01-10', tempMin: 25, tempMax: 32, condition: 'Partly cloudy', precipitation: 0 },
-    ]
-  },
-  'Ha Long Bay': {
-    city: 'Ha Long Bay',
-    daily: [
-      { date: '2024-01-01', tempMin: 16, tempMax: 22, condition: 'Foggy', precipitation: 0 },
-      { date: '2024-01-02', tempMin: 18, tempMax: 24, condition: 'Partly cloudy', precipitation: 0 },
-      { date: '2024-01-03', tempMin: 17, tempMax: 21, condition: 'Light rain', precipitation: 8 },
-      { date: '2024-01-04', tempMin: 15, tempMax: 20, condition: 'Cloudy', precipitation: 3 },
-      { date: '2024-01-05', tempMin: 19, tempMax: 25, condition: 'Sunny', precipitation: 0 },
-      { date: '2024-01-06', tempMin: 20, tempMax: 26, condition: 'Partly cloudy', precipitation: 0 },
-      { date: '2024-01-07', tempMin: 18, tempMax: 23, condition: 'Foggy', precipitation: 1 },
-      { date: '2024-01-08', tempMin: 16, tempMax: 21, condition: 'Light rain', precipitation: 6 },
-      { date: '2024-01-09', tempMin: 17, tempMax: 22, condition: 'Cloudy', precipitation: 2 },
-      { date: '2024-01-10', tempMin: 19, tempMax: 24, condition: 'Partly cloudy', precipitation: 0 },
-    ]
+// Fallback mock data in case API fails - generates current dates
+function generateMockWeatherData(city: string): WeatherData {
+  const today = new Date();
+  const daily: WeatherDay[] = [];
+  
+  // Base weather patterns for each city
+  const cityPatterns = {
+    'Hanoi': {
+      tempBase: 25,
+      tempVariation: 8,
+      conditions: ['Partly cloudy', 'Sunny', 'Light rain', 'Cloudy', 'Overcast clouds']
+    },
+    'Ho Chi Minh City': {
+      tempBase: 30,
+      tempVariation: 6,
+      conditions: ['Sunny', 'Partly cloudy', 'Thunderstorms', 'Heavy rain', 'Clear sky']
+    },
+    'Ha Long Bay': {
+      tempBase: 22,
+      tempVariation: 7,
+      conditions: ['Foggy', 'Partly cloudy', 'Light rain', 'Cloudy', 'Mist']
+    }
+  };
+  
+  const pattern = cityPatterns[city as keyof typeof cityPatterns] || cityPatterns['Hanoi'];
+  
+  for (let i = 0; i < 10; i++) {
+    const date = new Date(today);
+    date.setDate(today.getDate() + i);
+    
+    // Generate realistic temperatures with some variation
+    const tempVariation = (Math.random() - 0.5) * pattern.tempVariation;
+    const tempMax = Math.round(pattern.tempBase + tempVariation + Math.random() * 5);
+    const tempMin = Math.round(tempMax - 5 - Math.random() * 3);
+    
+    // Pick a random condition
+    const condition = pattern.conditions[Math.floor(Math.random() * pattern.conditions.length)];
+    
+    // Generate precipitation based on condition
+    let precipitation = 0;
+    if (condition.toLowerCase().includes('rain')) {
+      precipitation = Math.round(Math.random() * 15 + 2);
+    } else if (condition.toLowerCase().includes('thunder')) {
+      precipitation = Math.round(Math.random() * 25 + 10);
+    }
+    
+    daily.push({
+      date: date.toISOString().split('T')[0],
+      tempMin,
+      tempMax,
+      condition,
+      precipitation
+    });
   }
-};
+  
+  return {
+    city,
+    daily
+  };
+}
 
 export async function getWeatherData(city: string): Promise<WeatherData> {
   try {
@@ -177,10 +189,7 @@ export async function getWeatherData(city: string): Promise<WeatherData> {
     console.warn(`API fetch failed for ${city}, falling back to mock data:`, error);
     
     // Fall back to mock data if API fails
-    const mockData = mockWeatherData[city];
-    if (!mockData) {
-      throw new Error(`No weather data available for ${city}`);
-    }
+    const mockData = generateMockWeatherData(city);
     
     // Add a small delay to simulate API call
     await new Promise(resolve => setTimeout(resolve, 300));
