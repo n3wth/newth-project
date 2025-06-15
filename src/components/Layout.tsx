@@ -29,8 +29,8 @@ const Layout = ({ children }: LayoutProps) => {
           </NavigationMenu>
         </nav>
       </header>
-      <main className="flex-1 flex flex-col items-center justify-center px-4">
-        <div className="w-full max-w-3xl mx-auto py-12">{children}</div>
+      <main className="flex-1">
+        {children}
       </main>
     </div>
   );
