@@ -17,6 +17,15 @@ push_dist = false
 #
 # Project: Newth.ai Widgets - AI-Powered Embeddable Components
 # Domain: https://widgets.newth.ai
+# Owner: Oliver Newth (newth.ai)
+#
+# Personal Context:
+# - Oliver Newth, 33, lives in San Francisco, married
+# - Product Manager for GenAI at Google
+# - Main website: newth.ai
+# - Interests: travel, organization, DIY projects, gardening
+# - Tech setup: Home Assistant, Unifi network, Synology NAS, Beelink mini PC with Plex
+# - This widget collection reflects personal projects and travel planning needs
 #
 # Architecture & Features:
 # - Clean, refactored codebase with TypeScript
@@ -33,6 +42,8 @@ push_dist = false
 #   to maintain clean embedding appearance and avoid redundant information when embedded
 # - SINGLE-PURPOSE WIDGETS: Each widget should serve one specific function (map, itinerary, flights, weather)
 #   rather than combining multiple features into one widget for better modularity and reusability
+# - WIDGET CATEGORIZATION: 100% of widgets MUST have a valid category filter to ensure proper organization
+#   and discoverability. Every widget must belong to one of: Vietnam, Productivity, Utilities, Personal
 # - Content should be self-contained and immediately useful without context
 # - Focus on data presentation rather than page structure
 #
@@ -50,9 +61,10 @@ push_dist = false
 # Widget System:
 # - All widgets defined in src/constants/widgets.ts
 # - Easy to add new widgets via constants + pages + routes
-# - Categories: All, Vietnam (extensible)
-# - Embeddable URLs: /vietnam/hanoi, /vietnam/hochiminh, /vietnam/halongbay, /vietnam/flights, /vietnam/map, /vietnam/itinerary
-# - Main gallery: / with All/Vietnam tabs
+# - Categories: All, Vietnam, Productivity, Utilities, Personal (extensible)
+# - REQUIREMENT: Every widget MUST have a valid category that appears in Home page tabs
+# - Embeddable URLs: /vietnam/*, /productivity/*, /utilities/*, /personal/*
+# - Main gallery: / with category-based tab navigation
 #
 # Testing:
 # - Comprehensive UX tests covering user interactions
@@ -62,6 +74,7 @@ push_dist = false
 # - Performance and layout stability tests
 # - TypeScript build validation with test:build
 # - Comprehensive testing with test:all (build + lint + tests)
+# - Widget category validation: Ensure all widgets have proper filters
 # - Run with: npm run test, npm run test:run, npm run test:coverage, npm run test:all
 #
 # Development:
