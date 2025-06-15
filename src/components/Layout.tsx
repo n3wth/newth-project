@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import '../styles/Layout.css';
 
 interface LayoutProps {
   children: ReactNode;
@@ -7,8 +6,8 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="layout">
-      <main className="main-content">
+    <div className="min-h-screen bg-muted py-4">
+      <main className="max-w-3xl mx-auto px-2">
         {children}
       </main>
     </div>

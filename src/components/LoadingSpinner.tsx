@@ -1,9 +1,7 @@
-import '../styles/LoadingSpinner.css';
-
 const LoadingSpinner = () => {
   return (
-    <div className="loading-spinner-container">
-      <div className="loading-spinner"></div>
+    <div className="flex justify-center items-center min-h-[200px]">
+      <div className="w-10 h-10 border-4 border-muted-foreground border-t-primary rounded-full animate-spin"></div>
     </div>
   );
 };

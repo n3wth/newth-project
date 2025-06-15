@@ -47,48 +47,46 @@ export default function WeatherVietnam() {
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-6">
-      <h2 className="text-center text-2xl font-bold tracking-tight mb-2">🇻🇳 Vietnam 10-Day Weather Forecast</h2>
-      <div className="grid gap-6 md:grid-cols-2">
-        {CITIES.map((city) => {
-          const cityWeather = weather[city];
-          if (!cityWeather) return null;
-          return (
-            <Card key={city} className="bg-background border shadow-sm">
-              <CardHeader>
-                <CardTitle className="text-center text-lg font-semibold">{city}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="w-20">Day</TableHead>
-                      <TableHead>Condition</TableHead>
-                      <TableHead className="text-center">Min</TableHead>
-                      <TableHead className="text-center">Max</TableHead>
-                      <TableHead className="text-center">Rain</TableHead>
+    <div className="w-full max-w-2xl mx-auto flex flex-col gap-6">
+      <h2 className="text-center text-2xl font-semibold tracking-tight mb-2">🇻🇳 Vietnam 10-Day Weather Forecast</h2>
+      {CITIES.map((city) => {
+        const cityWeather = weather[city];
+        if (!cityWeather) return null;
+        return (
+          <Card key={city} className="bg-card/80 border shadow-none">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-center text-base font-medium text-foreground">{city}</CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-20 text-xs text-muted-foreground font-semibold">Day</TableHead>
+                    <TableHead className="text-xs text-muted-foreground font-semibold">Condition</TableHead>
+                    <TableHead className="text-center text-xs text-muted-foreground font-semibold">Min</TableHead>
+                    <TableHead className="text-center text-xs text-muted-foreground font-semibold">Max</TableHead>
+                    <TableHead className="text-center text-xs text-muted-foreground font-semibold">Rain</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {cityWeather.daily.slice(0, 10).map((day: WeatherDay, i: number) => (
+                    <TableRow key={i} className={i === 0 ? 'font-bold text-primary' : ''}>
+                      <TableCell className="text-xs">{i === 0 ? 'Today' : new Date(day.date).toLocaleDateString('en', { month: 'short', day: 'numeric' })}</TableCell>
+                      <TableCell className="capitalize text-xs opacity-90">{day.condition}</TableCell>
+                      <TableCell className="text-center text-xs opacity-80">{day.tempMin}°</TableCell>
+                      <TableCell className="text-center text-xs font-semibold">{day.tempMax}°</TableCell>
+                      <TableCell className="text-center text-xs text-sky-500 dark:text-sky-400">{day.precipitation}mm</TableCell>
                     </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {cityWeather.daily.slice(0, 10).map((day: WeatherDay, i: number) => (
-                      <TableRow key={i} className={i === 0 ? 'font-bold text-primary' : ''}>
-                        <TableCell>{i === 0 ? 'Today' : new Date(day.date).toLocaleDateString('en', { month: 'short', day: 'numeric' })}</TableCell>
-                        <TableCell className="capitalize text-xs opacity-90">{day.condition}</TableCell>
-                        <TableCell className="text-center text-xs opacity-80">{day.tempMin}°</TableCell>
-                        <TableCell className="text-center font-semibold">{day.tempMax}°</TableCell>
-                        <TableCell className="text-center text-sky-500 dark:text-sky-400 text-xs">{day.precipitation}mm</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-                <div className="mt-2 text-xs text-muted-foreground text-center opacity-80">
-                  {cityWeather.source}
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
-      </div>
+                  ))}
+                </TableBody>
+              </Table>
+              <div className="mt-2 text-xs text-muted-foreground text-center opacity-80">
+                Simulated data (powered by Google API Key)
+              </div>
+            </CardContent>
+          </Card>
+        );
+      })}
       <div className="text-xs text-muted-foreground text-center bg-muted rounded-md py-2">
         ⚡ Powered by Google API Key: <span className="font-mono">AIzaSyD7WCApkLtI-PJA7169MnnItGXRRpZ2kRY</span>
         <br />
