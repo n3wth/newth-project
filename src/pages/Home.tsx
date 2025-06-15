@@ -33,27 +33,29 @@ const widgets = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-background py-16 px-4">
-      <h1 className="text-4xl font-extrabold mb-4 text-center tracking-tight">Widget Hub</h1>
-      <p className="text-muted-foreground mb-10 text-center max-w-lg text-lg">Discover, preview, and embed widgets for any project. Add your own widgets by creating a new page and adding it here!</p>
-      <div className="flex flex-col gap-8 w-full max-w-lg">
-        {widgets.map((widget, i) => (
-          <Card key={i} className="p-0">
-            <CardHeader className="flex flex-row items-center gap-4 pb-1">
-              {widget.icon}
-              <div>
-                <CardTitle className="text-xl font-semibold">{widget.title}</CardTitle>
-                <CardDescription className="text-base">{widget.description}</CardDescription>
-              </div>
-            </CardHeader>
-            <CardContent className="pt-0 flex flex-col gap-2">
-              <Button asChild variant="default" className="w-fit">
-                <Link to={widget.path}>View Widget</Link>
-              </Button>
-            </CardContent>
-          </Card>
-        ))}
+    <section className="flex flex-col items-center justify-center w-full min-h-[80vh]">
+      <div className="w-full max-w-2xl mx-auto flex flex-col items-center">
+        <h1 className="text-5xl font-extrabold tracking-tight text-center mb-4">Widget Hub</h1>
+        <p className="text-lg text-muted-foreground text-center mb-12 max-w-xl">Discover, preview, and embed widgets for any project. Add your own widgets by creating a new page and adding it here!</p>
+        <div className="flex flex-col gap-8 w-full">
+          {widgets.map((widget, i) => (
+            <Card key={i} className="p-6 border border-border/60 shadow-sm rounded-2xl">
+              <CardHeader className="flex flex-row items-center gap-4 pb-1">
+                {widget.icon}
+                <div>
+                  <CardTitle className="text-xl font-semibold leading-tight mb-1">{widget.title}</CardTitle>
+                  <CardDescription className="text-base leading-snug">{widget.description}</CardDescription>
+                </div>
+              </CardHeader>
+              <CardContent className="pt-0 flex flex-col gap-2">
+                <Button asChild variant="default" className="w-fit">
+                  <Link to={widget.path}>View Widget</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 } 
