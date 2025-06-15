@@ -68,40 +68,47 @@ function LocationCard({ location }: { location: ItineraryLocation }) {
 
   return (
     <Card className="h-full">
-      <CardHeader className="pb-3">
-        <div className="flex items-start justify-between">
-          <CardTitle className="flex items-center gap-2 text-base">
-            <MapPin className="h-4 w-4 text-muted-foreground" />
+      <CardHeader className="pb-4">
+        <div className="flex items-start justify-between mb-3">
+          <CardTitle className="flex items-center gap-2 text-lg">
+            <MapPin className="h-5 w-5 text-muted-foreground" />
             {location.name}
           </CardTitle>
           <Badge className={getTypeColor(location.type)}>
             {getTypeIcon(location.type)} {location.type}
           </Badge>
         </div>
-      </CardHeader>
-      
-      <CardContent className="space-y-3">
-        <div className="space-y-2">
-          <div className="flex items-center gap-2 text-sm">
-            <Calendar className="h-3 w-3 text-muted-foreground" />
-            <span className="font-medium">{location.dates}</span>
+        
+        <div className="grid grid-cols-3 gap-4">
+          <div className="flex items-center gap-2">
+            <Calendar className="h-4 w-4 text-muted-foreground" />
+            <div>
+              <p className="text-xs text-muted-foreground">Dates</p>
+              <p className="text-sm font-medium">{location.dates}</p>
+            </div>
           </div>
-          <div className="flex items-center gap-2 text-sm">
-            <Clock className="h-3 w-3 text-muted-foreground" />
-            <span className="text-muted-foreground">
-              {location.nights} night{location.nights !== 1 ? 's' : ''}
-            </span>
+          <div className="flex items-center gap-2">
+            <Clock className="h-4 w-4 text-muted-foreground" />
+            <div>
+              <p className="text-xs text-muted-foreground">Duration</p>
+              <p className="text-sm font-medium">
+                {location.nights} night{location.nights !== 1 ? 's' : ''}
+              </p>
+            </div>
           </div>
-          <div className="flex items-center gap-2 text-sm">
-            <DollarSign className="h-3 w-3 text-muted-foreground" />
-            <span className="font-medium text-green-600 dark:text-green-400">
-              ${location.cost}
-            </span>
+          <div className="flex items-center gap-2">
+            <DollarSign className="h-4 w-4 text-green-600 dark:text-green-400" />
+            <div>
+              <p className="text-xs text-muted-foreground">Cost</p>
+              <p className="text-sm font-bold text-green-600 dark:text-green-400">
+                ${location.cost}
+              </p>
+            </div>
           </div>
         </div>
-        
-        <Separator />
-        
+      </CardHeader>
+      
+      <CardContent className="pt-0">
         <p className="text-sm text-muted-foreground leading-relaxed">
           {location.description}
         </p>
@@ -144,7 +151,7 @@ export default function VietnamItinerary() {
           </Card>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {ITINERARY_LOCATIONS.map((location) => (
             <LocationCard key={location.name} location={location} />
           ))}
