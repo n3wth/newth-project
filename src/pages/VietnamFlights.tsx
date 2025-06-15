@@ -178,7 +178,7 @@ function FlightCard({ flight, className }: FlightCardProps) {
 export default function VietnamFlights() {
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto p-6 space-y-6">
+      <div className="container mx-auto p-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {FLIGHT_DATA.map((flight) => (
             <FlightCard 
@@ -187,29 +187,6 @@ export default function VietnamFlights() {
             />
           ))}
         </div>
-
-        {/* Trip Summary */}
-        <Card className="max-w-2xl mx-auto">
-          <CardHeader>
-            <CardTitle className="text-center">Trip Summary</CardTitle>
-          </CardHeader>
-          <CardContent className="text-center space-y-2">
-            <div className="flex items-center justify-center gap-4 text-sm">
-              <div className="flex items-center gap-1">
-                <Calendar className="h-4 w-4 text-muted-foreground" />
-                <span>June 26 – July 6, 2025</span>
-              </div>
-              <Separator orientation="vertical" className="h-4" />
-              <div className="flex items-center gap-1">
-                <Clock className="h-4 w-4 text-muted-foreground" />
-                <span>11 days total</span>
-              </div>
-            </div>
-            <p className="text-xs text-muted-foreground">
-              Round trip flights with Vietnam Airlines
-            </p>
-          </CardContent>
-        </Card>
       </div>
     </div>
   );

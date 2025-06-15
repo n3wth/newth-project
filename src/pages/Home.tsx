@@ -82,9 +82,6 @@ export default function Home() {
                     </Badge>
                   </TabsTrigger>
                 </TabsList>
-                <p className="text-sm text-muted-foreground">
-                  Browse by category or use case
-                </p>
               </div>
               
               <div className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground">

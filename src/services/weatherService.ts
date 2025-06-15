@@ -1,7 +1,16 @@
-import type { WeatherData, WeatherDay } from '@/types/widget';
+// Weather data types
+export interface WeatherData {
+  city: string;
+  daily: WeatherDay[];
+}
 
-// Export types for backward compatibility
-export type { WeatherData, WeatherDay };
+export interface WeatherDay {
+  date: string;
+  condition: string;
+  tempMin: number;
+  tempMax: number;
+  precipitation: number;
+}
 
 const OPENWEATHER_API_KEY = '3eb6328a959ba7abef565bbe4be7b982';
 const OPENWEATHER_BASE_URL = 'https://api.openweathermap.org/data/2.5';

@@ -21,7 +21,7 @@ push_dist = false
 # Architecture & Features:
 # - Clean, refactored codebase with TypeScript
 # - Modular component architecture (WidgetCard, WidgetGrid)
-# - Comprehensive UX testing with Vitest (37 tests)
+# - Comprehensive UX testing with Vitest (41 tests)
 # - Embeddable widget platform (React + TypeScript + shadcn/ui)
 # - Individual widgets embeddable without navigation
 # - Responsive design with Tailwind CSS
@@ -31,6 +31,8 @@ push_dist = false
 # Design Principles:
 # - NO HEADERS IN WIDGETS: Widgets should never include page headers, titles, or descriptions
 #   to maintain clean embedding appearance and avoid redundant information when embedded
+# - SINGLE-PURPOSE WIDGETS: Each widget should serve one specific function (map, itinerary, flights, weather)
+#   rather than combining multiple features into one widget for better modularity and reusability
 # - Content should be self-contained and immediately useful without context
 # - Focus on data presentation rather than page structure
 #
@@ -49,7 +51,7 @@ push_dist = false
 # - All widgets defined in src/constants/widgets.ts
 # - Easy to add new widgets via constants + pages + routes
 # - Categories: All, Vietnam (extensible)
-# - Embeddable URLs: /vietnam/hanoi, /vietnam/hochiminh, /vietnam/halongbay
+# - Embeddable URLs: /vietnam/hanoi, /vietnam/hochiminh, /vietnam/halongbay, /vietnam/flights, /vietnam/map, /vietnam/itinerary
 # - Main gallery: / with All/Vietnam tabs
 #
 # Testing:

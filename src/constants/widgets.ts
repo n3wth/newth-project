@@ -17,18 +17,26 @@ export const WIDGETS: Widget[] = [
   {
     id: 'vietnam-flights',
     title: 'Vietnam Trip Flights',
-    description: 'Flight details for my Vietnam trip - outbound and return flights with Vietnam Airlines including times and duration',
+    description: 'Flight details for my Vietnam trip - outbound and return flights with Vietnam Airlines',
     path: '/vietnam/flights',
     category: WIDGET_CATEGORIES.VIETNAM,
     tags: ['flights', 'vietnam', 'travel', 'airlines']
   },
   {
-    id: 'vietnam-itinerary-map',
-    title: 'Vietnam Itinerary Map',
-    description: 'Interactive map showing all the locations from my Vietnam trip itinerary - Ho Chi Minh City, Hanoi, Ha Long Bay, and Ninh Binh',
+    id: 'vietnam-map',
+    title: 'Vietnam Trip Map',
+    description: 'Interactive map showing all the locations from my Vietnam trip itinerary',
     path: '/vietnam/map',
     category: WIDGET_CATEGORIES.VIETNAM,
-    tags: ['map', 'itinerary', 'vietnam', 'locations']
+    tags: ['map', 'vietnam', 'locations', 'interactive']
+  },
+  {
+    id: 'vietnam-itinerary',
+    title: 'Vietnam Trip Itinerary',
+    description: 'Detailed itinerary cards for each location - Ho Chi Minh City, Hanoi, Ha Long Bay, and Ninh Binh',
+    path: '/vietnam/itinerary',
+    category: WIDGET_CATEGORIES.VIETNAM,
+    tags: ['itinerary', 'vietnam', 'locations', 'planning']
   },
   {
     id: 'hanoi-weather',
