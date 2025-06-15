@@ -178,13 +178,7 @@ function FlightCard({ flight, className }: FlightCardProps) {
 export default function VietnamFlights() {
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto p-6 space-y-8">
-        <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight">✈️ Vietnam Trip Flights</h1>
-          <p className="text-muted-foreground">Flight details for June 26 – July 6, 2025</p>
-          <Separator className="max-w-xs mx-auto" />
-        </div>
-        
+      <div className="container mx-auto p-6 space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {FLIGHT_DATA.map((flight) => (
             <FlightCard 

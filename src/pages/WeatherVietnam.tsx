@@ -154,13 +154,7 @@ function CityWeatherTable({ city, maxHeight, showHeader = true }: CityWeatherTab
 export default function WeatherVietnam() {
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto p-6 space-y-8">
-        <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight">🇻🇳 Vietnam Weather Forecast</h1>
-          <p className="text-muted-foreground">10-day weather forecasts for major Vietnamese cities</p>
-          <Separator className="max-w-xs mx-auto" />
-        </div>
-        
+      <div className="container mx-auto p-6 space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <CityWeatherTable city="Hanoi" />
           <CityWeatherTable city="Ho Chi Minh City" />
@@ -175,7 +169,7 @@ export default function WeatherVietnam() {
 export function HanoiWidget() {
   return (
     <div className="p-4 bg-background min-h-screen">
-      <CityWeatherTable city="Hanoi" maxHeight={500} showHeader={true} />
+      <CityWeatherTable city="Hanoi" maxHeight={500} showHeader={false} />
     </div>
   );
 }
@@ -183,7 +177,7 @@ export function HanoiWidget() {
 export function HoChiMinhWidget() {
   return (
     <div className="p-4 bg-background min-h-screen">
-      <CityWeatherTable city="Ho Chi Minh City" maxHeight={500} showHeader={true} />
+      <CityWeatherTable city="Ho Chi Minh City" maxHeight={500} showHeader={false} />
     </div>
   );
 }
@@ -191,7 +185,7 @@ export function HoChiMinhWidget() {
 export function HaLongBayWidget() {
   return (
     <div className="p-4 bg-background min-h-screen">
-      <CityWeatherTable city="Ha Long Bay" maxHeight={500} showHeader={true} />
+      <CityWeatherTable city="Ha Long Bay" maxHeight={500} showHeader={false} />
     </div>
   );
 }

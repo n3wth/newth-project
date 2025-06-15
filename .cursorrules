@@ -28,6 +28,12 @@ push_dist = false
 # - Accessibility-first with ARIA attributes and keyboard navigation
 # - PWA support with web manifest and favicons
 #
+# Design Principles:
+# - NO HEADERS IN WIDGETS: Widgets should never include page headers, titles, or descriptions
+#   to maintain clean embedding appearance and avoid redundant information when embedded
+# - Content should be self-contained and immediately useful without context
+# - Focus on data presentation rather than page structure
+#
 # Project Structure:
 # - src/components/ - Reusable UI components (WidgetCard, WidgetGrid, Layout)
 # - src/components/ui/ - shadcn/ui components (Button, Tabs, Card, Table)

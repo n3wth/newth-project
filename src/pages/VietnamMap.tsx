@@ -102,13 +102,7 @@ function LocationCard({ location }: { location: ItineraryLocation }) {
 export default function VietnamMap() {
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto p-6 space-y-8">
-        <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight">🗺️ Vietnam Itinerary Map</h1>
-          <p className="text-muted-foreground">Interactive map with all locations from my Vietnam trip</p>
-          <Separator className="max-w-xs mx-auto" />
-        </div>
-
+      <div className="container mx-auto p-6 space-y-6">
         {/* Embedded Google Map */}
         <Card className="overflow-hidden">
           <CardHeader>
