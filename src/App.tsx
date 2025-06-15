@@ -6,6 +6,9 @@ import LoadingSpinner from './components/LoadingSpinner';
 // Lazy load pages
 const WeatherVietnam = lazy(() => import('./pages/WeatherVietnam'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const HanoiWidget = lazy(() => import('./pages/WeatherVietnam').then(m => ({ default: m.HanoiWidget })));
+const HoChiMinhWidget = lazy(() => import('./pages/WeatherVietnam').then(m => ({ default: m.HoChiMinhWidget })));
+const HaLongBayWidget = lazy(() => import('./pages/WeatherVietnam').then(m => ({ default: m.HaLongBayWidget })));
 
 function App() {
   return (
@@ -14,6 +17,9 @@ function App() {
         <Routes>
           <Route path="/" element={<WeatherVietnam />} />
           <Route path="/weather-vietnam" element={<WeatherVietnam />} />
+          <Route path="/vietnam/hanoi" element={<HanoiWidget />} />
+          <Route path="/vietnam/hochiminh" element={<HoChiMinhWidget />} />
+          <Route path="/vietnam/halongbay" element={<HaLongBayWidget />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
