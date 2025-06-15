@@ -2,7 +2,7 @@
 
 A modern, embeddable weather widget site built with React + Vite + TypeScript that displays beautiful 10-day weather forecasts for Vietnamese cities.
 
-Published using Cloudflare Pages - manage them here: https://dash.cloudflare.com/ac23513945eb49f73a89faf1be12384e/workers/services/view/embed/
+Published using Vercel - manage deployments at https://vercel.com/dashboard
 
 ## Features
 
@@ -54,8 +54,8 @@ npm run preview
 To deploy to `embed.newth.ai`:
 
 1. Build the project: `npm run build`
-2. Deploy the `dist` folder to your hosting service
-3. Configure routing to handle `/weather-vietnam` paths
+2. Deploy the `dist` folder to Vercel (auto-deploys on git push)
+3. Routing and static asset handling are managed by `vercel.json`
 
 ## Adding New Widgets
 
