@@ -2,6 +2,8 @@
 
 A collection of beautifully-designed, embeddable widgets powered by AI. Easy to integrate, customize, and deploy for modern web applications.
 
+**Live Site**: [widgets.newth.ai](https://widgets.newth.ai)
+
 ## 🚀 Features
 
 - **Clean Architecture**: Well-organized, modular codebase with TypeScript
@@ -10,6 +12,7 @@ A collection of beautifully-designed, embeddable widgets powered by AI. Easy to 
 - **Accessibility First**: WCAG compliant with proper ARIA attributes
 - **Comprehensive Testing**: High-level UX tests ensuring quality user experience
 - **Modern Stack**: React 18, TypeScript, Tailwind CSS, shadcn/ui
+- **PWA Support**: Web app manifest and comprehensive favicon support
 
 ## 📁 Project Structure
 
@@ -150,6 +153,7 @@ The project is configured for Vercel deployment with:
 - SPA routing via `vercel.json`
 - Automatic builds on git push
 - Environment-specific configurations
+- Custom domain: `widgets.newth.ai`
 
 ### Build Process
 ```bash
@@ -180,10 +184,41 @@ Widgets are designed to be embedded in other applications:
 ```html
 <!-- Embed individual widget -->
 <iframe 
-  src="https://your-domain.com/vietnam/hanoi" 
+  src="https://widgets.newth.ai/vietnam/hanoi" 
   width="400" 
   height="500"
   frameborder="0">
+</iframe>
+```
+
+### Embedding Examples
+
+```html
+<!-- Hanoi Weather Widget -->
+<iframe 
+  src="https://widgets.newth.ai/vietnam/hanoi" 
+  width="400" 
+  height="500"
+  frameborder="0"
+  title="Hanoi Weather Widget">
+</iframe>
+
+<!-- Ho Chi Minh City Weather Widget -->
+<iframe 
+  src="https://widgets.newth.ai/vietnam/hochiminh" 
+  width="400" 
+  height="500"
+  frameborder="0"
+  title="Ho Chi Minh City Weather Widget">
+</iframe>
+
+<!-- Combined Vietnam Weather View -->
+<iframe 
+  src="https://widgets.newth.ai/weather-vietnam" 
+  width="100%" 
+  height="600"
+  frameborder="0"
+  title="Vietnam Weather Forecast">
 </iframe>
 ```
 
@@ -192,6 +227,7 @@ Embedded widgets:
 - ✅ Clean, minimal styling
 - ✅ Responsive design
 - ✅ Proper error handling
+- ✅ PWA support
 
 ## 🤝 Contributing
 
