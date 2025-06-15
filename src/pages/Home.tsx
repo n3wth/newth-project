@@ -38,11 +38,11 @@ export default function Home() {
           Works with your favorite frameworks. Open Source. Open Code.
         </p>
         <div className="flex justify-center gap-4">
-          <Button asChild className="bg-black text-white hover:bg-gray-800">
+          <Button asChild>
             <Link to="/weather-vietnam">Get Started</Link>
           </Button>
-          <Button variant="outline" className="border-gray-300 text-black hover:bg-gray-50">
-            Browse Widgets
+          <Button variant="outline" asChild>
+            <Link to="#">Browse Widgets</Link>
           </Button>
         </div>
       </div>
@@ -51,10 +51,10 @@ export default function Home() {
       <div className="max-w-6xl mx-auto">
         <Tabs defaultValue="examples" className="w-full">
           <div className="flex items-center justify-between mb-8">
-            <TabsList className="bg-gray-100">
-              <TabsTrigger value="examples" className="data-[state=active]:bg-white">Examples</TabsTrigger>
-              <TabsTrigger value="weather" className="data-[state=active]:bg-white">Weather</TabsTrigger>
-              <TabsTrigger value="dashboard" className="data-[state=active]:bg-white">Dashboard</TabsTrigger>
+            <TabsList>
+              <TabsTrigger value="examples">Examples</TabsTrigger>
+              <TabsTrigger value="weather">Weather</TabsTrigger>
+              <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
             </TabsList>
             <div className="text-sm text-gray-500">
               Theme: <span className="text-black">Default</span>
