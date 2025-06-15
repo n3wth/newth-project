@@ -10,6 +10,7 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 const HanoiWidget = lazy(() => import('./pages/WeatherVietnam').then(m => ({ default: m.HanoiWidget })));
 const HoChiMinhWidget = lazy(() => import('./pages/WeatherVietnam').then(m => ({ default: m.HoChiMinhWidget })));
 const HaLongBayWidget = lazy(() => import('./pages/WeatherVietnam').then(m => ({ default: m.HaLongBayWidget })));
+// Example: const StatsWidget = lazy(() => import('./pages/StatsWidget'));
 
 function App() {
   return (
@@ -17,10 +18,12 @@ function App() {
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
           <Route path="/" element={<Home />} />
+          {/* Add new widget routes below */}
           <Route path="/weather-vietnam" element={<WeatherVietnam />} />
           <Route path="/vietnam/hanoi" element={<HanoiWidget />} />
           <Route path="/vietnam/hochiminh" element={<HoChiMinhWidget />} />
           <Route path="/vietnam/halongbay" element={<HaLongBayWidget />} />
+          {/* Example: <Route path="/stats" element={<StatsWidget />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

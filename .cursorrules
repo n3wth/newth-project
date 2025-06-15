@@ -16,12 +16,10 @@ push_dist = false
 # - Think a few steps ahead and avoid unnecessary interruptions
 #
 # Project structure & features:
-# - Component-driven architecture (React + TypeScript)
+# - Generic, embeddable widget platform (React + TypeScript)
+# - Easily add new widget types (weather, stats, dashboards, etc.)
 # - Custom UI primitives (Card, Table, etc.) in src/components/ui
-# - Responsive, modern design with Tailwind CSS and glassmorphism
-# - Weather widgets for Vietnamese cities, embeddable via iframe
-# - Google Geocoding API integration for city coordinates
-# - Weather data is simulated/mock but can be extended to real APIs
+# - Responsive, modern design with Tailwind CSS and shadcn/ui
 # - Loading and error states handled with dedicated components
 # - Custom 404/NotFound page with available routes
 # - Utility functions (e.g., cn) for class merging
