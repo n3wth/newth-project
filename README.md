@@ -2,6 +2,8 @@
 
 A modern, embeddable weather widget site built with React + Vite + TypeScript that displays beautiful 10-day weather forecasts for Vietnamese cities.
 
+Published using Cloudflare Pages - manage them here: https://dash.cloudflare.com/ac23513945eb49f73a89faf1be12384e/workers/services/view/embed/
+
 ## Features
 
 - 🌤️ **Weather Vietnam Widget** (`/weather-vietnam`) - 10-day forecast for Hanoi, Ho Chi Minh City, and Ha Long Bay
