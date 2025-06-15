@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
-import { ExternalLinkIcon, CopyIcon, CheckIcon } from 'lucide-react';
+import { ExternalLinkIcon, CopyIcon, CheckIcon, LoaderIcon } from 'lucide-react';
 import type { Widget } from '@/types/widget';
 import { BASE_URL } from '@/constants/config';
 import { cn } from '@/lib/utils';
@@ -15,6 +15,30 @@ interface WidgetCardProps {
   className?: string;
   variant?: 'default' | 'compact';
 }
+
+// Dynamic imports for widget components
+const getWidgetComponent = (path: string) => {
+  const componentMap: Record<string, () => Promise<{ default: React.ComponentType }>> = {
+    '/weather-vietnam': () => import('../pages/WeatherVietnam'),
+    '/vietnam/flights': () => import('../pages/VietnamFlights'),
+    '/vietnam/map': () => import('../pages/VietnamMap'),
+    '/vietnam/itinerary': () => import('../pages/VietnamItinerary'),
+    '/vietnam/hanoi': () => import('../pages/WeatherVietnam').then(module => ({ default: module.HanoiWidget })),
+    '/vietnam/hochiminh': () => import('../pages/WeatherVietnam').then(module => ({ default: module.HoChiMinhWidget })),
+    '/vietnam/halongbay': () => import('../pages/WeatherVietnam').then(module => ({ default: module.HaLongBayWidget })),
+    '/productivity/pomodoro': () => import('../pages/PomodoroTimer'),
+    '/productivity/notes': () => import('../pages/QuickNotes'),
+    '/productivity/habits': () => import('../pages/HabitTracker'),
+    '/utilities/world-clock': () => import('../pages/WorldClock'),
+    '/utilities/colors': () => import('../pages/ColorPalette'),
+    '/utilities/qr-code': () => import('../pages/QRCodeGenerator'),
+    '/personal/sf-weather': () => import('../pages/SanFranciscoWeather'),
+    '/personal/reading': () => import('../pages/ReadingList'),
+    '/personal/workout': () => import('../pages/WorkoutLog'),
+  };
+
+  return componentMap[path];
+};
 
 export const WidgetCard = ({ widget, className = '', variant = 'default' }: WidgetCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,6 +69,11 @@ export const WidgetCard = ({ widget, className = '', variant = 'default' }: Widg
   const handleLinkClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
+
+  // Create lazy component for the widget
+  const WidgetComponent = getWidgetComponent(widget.path) 
+    ? lazy(getWidgetComponent(widget.path)!)
+    : null;
 
   return (
     <>
@@ -101,8 +130,8 @@ export const WidgetCard = ({ widget, className = '', variant = 'default' }: Widg
       </Card>
 
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
+        <DialogContent className="max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+          <DialogHeader className="flex-shrink-0">
             <DialogTitle className="flex items-center gap-2">
               {widget.title}
             </DialogTitle>
@@ -111,63 +140,91 @@ export const WidgetCard = ({ widget, className = '', variant = 'default' }: Widg
             </DialogDescription>
           </DialogHeader>
           
-          <div className="space-y-4">
-            {/* Widget Metadata */}
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium">Category:</span>
-                <Badge variant="outline">{widget.category}</Badge>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-sm font-medium">Tags:</span>
-                <div className="flex flex-wrap gap-1">
-                  {widget.tags?.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="text-xs">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* URL Section */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Widget URL:</label>
-              <div className="flex gap-2">
-                <Input
-                  value={fullUrl}
-                  readOnly
-                  className="font-mono text-sm"
-                />
-                <Button
-                  onClick={handleCopyUrl}
-                  variant="outline"
-                  size="icon"
-                  className="flex-shrink-0"
+          <div className="flex-1 overflow-auto space-y-6">
+            {/* Widget Content */}
+            <div className="border rounded-lg overflow-hidden bg-background">
+              {WidgetComponent ? (
+                <Suspense 
+                  fallback={
+                    <div className="flex items-center justify-center p-12">
+                      <LoaderIcon className="h-8 w-8 animate-spin text-muted-foreground" />
+                      <span className="ml-2 text-muted-foreground">Loading widget...</span>
+                    </div>
+                  }
                 >
-                  {copied ? (
-                    <CheckIcon className="h-4 w-4 text-green-600" />
-                  ) : (
-                    <CopyIcon className="h-4 w-4" />
-                  )}
-                </Button>
-              </div>
-              {copied && (
-                <p className="text-sm text-green-600">URL copied to clipboard!</p>
+                  <div className="p-4">
+                    <WidgetComponent />
+                  </div>
+                </Suspense>
+              ) : (
+                <div className="flex items-center justify-center p-12 text-muted-foreground">
+                  <div className="text-center">
+                    <ExternalLinkIcon className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                    <p>Widget preview not available</p>
+                    <p className="text-sm">Click "Open Widget" to view in a new tab</p>
+                  </div>
+                </div>
               )}
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex gap-2 pt-2">
-              <Button onClick={handleVisitWidget} className="flex-1 gap-2">
-                <ExternalLinkIcon className="h-4 w-4" />
-                Open Widget
-              </Button>
-              <Link to={widget.path} className="flex-1">
-                <Button variant="outline" className="w-full">
-                  View in App
+            {/* Widget Metadata */}
+            <div className="space-y-4 flex-shrink-0">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-medium">Category:</span>
+                  <Badge variant="outline">{widget.category}</Badge>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-sm font-medium">Tags:</span>
+                  <div className="flex flex-wrap gap-1">
+                    {widget.tags?.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* URL Section */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Widget URL:</label>
+                <div className="flex gap-2">
+                  <Input
+                    value={fullUrl}
+                    readOnly
+                    className="font-mono text-sm"
+                  />
+                  <Button
+                    onClick={handleCopyUrl}
+                    variant="outline"
+                    size="icon"
+                    className="flex-shrink-0"
+                  >
+                    {copied ? (
+                      <CheckIcon className="h-4 w-4 text-green-600" />
+                    ) : (
+                      <CopyIcon className="h-4 w-4" />
+                    )}
+                  </Button>
+                </div>
+                {copied && (
+                  <p className="text-sm text-green-600">URL copied to clipboard!</p>
+                )}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 pt-2">
+                <Button onClick={handleVisitWidget} className="flex-1 gap-2">
+                  <ExternalLinkIcon className="h-4 w-4" />
+                  Open Widget
                 </Button>
-              </Link>
+                <Link to={widget.path} className="flex-1">
+                  <Button variant="outline" className="w-full">
+                    View in App
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </DialogContent>
