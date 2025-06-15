@@ -112,7 +112,7 @@ describe('Home Page UX Tests', () => {
     it('should have clickable widget links', () => {
       renderWithRouter(<Home />);
       
-      const widgetLinks = screen.getAllByText('View Widget');
+      const widgetLinks = screen.getAllByText('View in app →');
       expect(widgetLinks.length).toBeGreaterThan(0);
       
       // Check that links have proper href attributes

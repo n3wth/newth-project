@@ -14,6 +14,7 @@ push_dist = false
 # - SPA routing and static asset handling via vercel.json
 # - Prefer autonomous, multi-step workflows without repeated confirmation
 # - Think a few steps ahead and avoid unnecessary interruptions
+# - ALWAYS commit and push changes after completing tasks
 #
 # Project: Newth.ai Widgets - AI-Powered Embeddable Components
 # Domain: https://widgets.newth.ai
@@ -30,7 +31,7 @@ push_dist = false
 # Architecture & Features:
 # - Clean, refactored codebase with TypeScript
 # - Modular component architecture (WidgetCard, WidgetGrid)
-# - Comprehensive UX testing with Vitest (41 tests)
+# - Comprehensive UX testing with Vitest (54 tests)
 # - Embeddable widget platform (React + TypeScript + shadcn/ui)
 # - Individual widgets embeddable without navigation
 # - Responsive design with Tailwind CSS
@@ -91,4 +92,7 @@ push_dist = false
 # - Auto-formatting and linting on save
 # - Hot module replacement for fast development
 # - NEVER leave widgets partially implemented - always complete the full cycle:
-#   constants → component → route → tests 
+#   constants → component → route → tests
+# - ALWAYS commit and push changes after completing tasks or major features
+# - Use descriptive commit messages following conventional commits format
+# - Auto-deploy happens via Vercel on every push to main branch 
