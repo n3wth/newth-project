@@ -14,20 +14,20 @@ interface ItineraryLocation {
 
 const ITINERARY_LOCATIONS: ItineraryLocation[] = [
   {
-    name: 'Ho Chi Minh City',
+    name: 'Hanoi',
     dates: 'Jun 28-30',
     nights: 2,
-    description: 'Arrival city, Can Gio Mangrove, Cu Chi Tunnels, then flight to Hanoi',
-    type: 'city',
-    cost: 300
-  },
-  {
-    name: 'Hanoi',
-    dates: 'Jun 30 - Jul 2',
-    nights: 2,
-    description: 'Old Quarter, Hoàn Kiếm Lake, Water Puppet Show',
+    description: 'Arrival city, Old Quarter, Hoàn Kiếm Lake, Water Puppet Show',
     type: 'city',
     cost: 320
+  },
+  {
+    name: 'Ninh Binh (TOKI Retreat)',
+    dates: 'Jun 30 - Jul 2',
+    nights: 2,
+    description: 'Vân Long wetlands, sunrise boat safari, spa retreat',
+    type: 'retreat',
+    cost: 560
   },
   {
     name: 'Ha Long Bay',
@@ -38,12 +38,12 @@ const ITINERARY_LOCATIONS: ItineraryLocation[] = [
     cost: 1400
   },
   {
-    name: 'Ninh Binh (TOKI Retreat)',
+    name: 'Ho Chi Minh City',
     dates: 'Jul 4-6',
     nights: 2,
-    description: 'Vân Long wetlands, sunrise boat safari, spa retreat, final departure',
-    type: 'retreat',
-    cost: 560
+    description: 'Can Gio Mangrove, Cu Chi Tunnels, final departure',
+    type: 'city',
+    cost: 300
   }
 ];
 
