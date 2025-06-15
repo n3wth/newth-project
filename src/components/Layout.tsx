@@ -1,37 +1,41 @@
 import type { ReactNode } from 'react';
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuLink,
-} from '@/components/ui/navigation-menu';
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  const location = useLocation();
+  
+  // Hide navigation for embedded widget pages
+  const isEmbeddedWidget = location.pathname.startsWith('/vietnam/') || 
+                          location.pathname === '/weather-vietnam';
+
+  if (isEmbeddedWidget) {
+    return <div className="min-h-screen bg-white">{children}</div>;
+  }
+
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <header className="border-b bg-background/95 sticky top-0 z-30 w-full">
-        <nav className="mx-auto max-w-6xl flex items-center justify-between px-6 py-3">
-          <Link to="/" className="font-bold text-2xl tracking-tight text-primary">↗ WidgetHub</Link>
-          <NavigationMenu className="flex-1 justify-end">
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link to="/weather-vietnam" className="px-4 py-2 text-muted-foreground hover:text-primary transition">Weather Vietnam</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              {/* Add more nav links here as you add widgets */}
-            </NavigationMenuList>
-          </NavigationMenu>
+    <div className="min-h-screen bg-white">
+      <header className="border-b border-gray-200">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <Link to="/" className="text-xl font-semibold text-black">
+              WidgetHub
+            </Link>
+            <div className="flex space-x-8">
+              <Link 
+                to="/weather-vietnam" 
+                className="text-gray-600 hover:text-black transition-colors"
+              >
+                Weather Vietnam
+              </Link>
+            </div>
+          </div>
         </nav>
       </header>
-      <main className="flex-1">
-        {children}
-      </main>
+      <main>{children}</main>
     </div>
   );
 };
