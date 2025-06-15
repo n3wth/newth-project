@@ -1,0 +1,19 @@
+# Cursor Rules for newth-ai-embed
+
+[preferences]
+auto_format = true
+commit_on_every_change = true
+push_dist = false
+keep_redirects_and_routes_updated = true
+prefer_cloudflare_spa_best_practices = true
+
+[notes]
+# - Hosted on Cloudflare (Pages/Workers)
+# - Auto-deploys on every git push
+# - Always auto-format code on save
+# - Commit every change automatically
+# - Never push dist/ to git
+# - Always keep _redirects and _routes.json in sync with Cloudflare SPA best practices
+# - Use Cloudflare's official SPA/static asset guidance for routing
+# - Prefer autonomous, multi-step workflows without repeated confirmation
+# - Think a few steps ahead and avoid unnecessary interruptions 
