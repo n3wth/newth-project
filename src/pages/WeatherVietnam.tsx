@@ -84,9 +84,6 @@ function CityWeatherTable({ city, maxHeight }: CityWeatherTableProps) {
             </TableBody>
           </Table>
         </div>
-        <div className="mt-3 text-xs text-gray-500 text-center">
-          Simulated data (powered by Google API Key)
-        </div>
       </CardContent>
     </Card>
   );
@@ -96,16 +93,10 @@ function CityWeatherTable({ city, maxHeight }: CityWeatherTableProps) {
 export default function WeatherVietnam() {
   return (
     <div className="w-full max-w-6xl mx-auto p-6">
-      <h2 className="text-center text-2xl font-semibold text-black mb-8">🇻🇳 Vietnam 10-Day Weather Forecast</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <CityWeatherTable city="Hanoi" />
         <CityWeatherTable city="Ho Chi Minh City" />
         <CityWeatherTable city="Ha Long Bay" />
-      </div>
-      <div className="text-xs text-gray-500 text-center mt-8 p-4 bg-gray-50 rounded-lg">
-        ⚡ Powered by Google API Key: <span className="font-mono">AIzaSyD7WCApkLtI-PJA7169MnnItGXRRpZ2kRY</span>
-        <br />
-        <em className="text-xs">Real-time weather data with Google Geocoding API integration</em>
       </div>
     </div>
   );
