@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "type": "rich",
+  "title": "Vietnam Weather Forecast",
+  "author_name": "embed.newth.ai",
+  "author_url": "https://embed.newth.ai",
+  "provider_name": "Vietnam Weather Widget",
+  "provider_url": "https://embed.newth.ai",
+  "width": 900,
+  "height": 600,
+  "html": "<iframe src=\"https://embed.newth.ai/weather-vietnam\" width=\"900\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+}
