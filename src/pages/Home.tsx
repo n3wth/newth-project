@@ -1,67 +1,55 @@
 import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Lego } from '@phosphor-icons/react';
 
 const widgets = [
   {
     title: 'Vietnam 10-Day Weather Forecast',
     description: 'Hanoi, Ho Chi Minh City, Ha Long Bay',
     path: '/weather-vietnam',
+    category: 'vietnam',
   },
   {
     title: 'Hanoi Weather Widget',
     description: '10-day forecast',
     path: '/vietnam/hanoi',
+    category: 'vietnam',
   },
   {
     title: 'Ho Chi Minh City Weather Widget',
     description: '10-day forecast',
     path: '/vietnam/hochiminh',
+    category: 'vietnam',
   },
   {
     title: 'Ha Long Bay Weather Widget',
     description: '10-day forecast',
     path: '/vietnam/halongbay',
+    category: 'vietnam',
   },
 ];
 
+const vietnamWidgets = widgets.filter(w => w.category === 'vietnam');
+
 export default function Home() {
   return (
-    <div className="container mx-auto px-4 py-16">
-      {/* Hero Section */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold text-black mb-4 sm:text-6xl">
-          Build your Widget Library
-        </h1>
-        <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-          A set of beautifully-designed, embeddable widgets and a code distribution platform. 
-          Works with your favorite frameworks. Open Source. Open Code.
-        </p>
-        <div className="flex justify-center gap-4">
-          <Button asChild>
-            <Link to="/weather-vietnam">Get Started</Link>
-          </Button>
-          <Button variant="outline" asChild>
-            <Link to="#">Browse Widgets</Link>
-          </Button>
-        </div>
+    <div className="container mx-auto px-4 py-8">
+      {/* Logo */}
+      <div className="flex items-center justify-center gap-2 mb-8">
+        <Lego size={32} weight="fill" />
+        <h1 className="text-2xl font-semibold text-black">Newth.ai Widgets</h1>
       </div>
 
-      {/* Tabs Section */}
       <div className="max-w-6xl mx-auto">
-        <Tabs defaultValue="examples" className="w-full">
-          <div className="flex items-center justify-between mb-8">
+        <Tabs defaultValue="all" className="w-full">
+          <div className="mb-8">
             <TabsList>
-              <TabsTrigger value="examples">Examples</TabsTrigger>
-              <TabsTrigger value="weather">Weather</TabsTrigger>
-              <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+              <TabsTrigger value="all">All</TabsTrigger>
+              <TabsTrigger value="vietnam">Vietnam</TabsTrigger>
             </TabsList>
-            <div className="text-sm text-gray-500">
-              Theme: <span className="text-black">Default</span>
-            </div>
           </div>
 
-          <TabsContent value="examples">
+          <TabsContent value="all">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {widgets.map((widget, i) => (
                 <div key={i} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow bg-white">
@@ -78,9 +66,9 @@ export default function Home() {
             </div>
           </TabsContent>
 
-          <TabsContent value="weather">
+          <TabsContent value="vietnam">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {widgets.map((widget, i) => (
+              {vietnamWidgets.map((widget, i) => (
                 <div key={i} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow bg-white">
                   <h3 className="font-semibold text-black mb-2">{widget.title}</h3>
                   <p className="text-gray-600 text-sm mb-4">{widget.description}</p>
@@ -92,15 +80,6 @@ export default function Home() {
                   </Link>
                 </div>
               ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="dashboard">
-            <div className="text-center py-12">
-              <h3 className="text-lg font-semibold text-black mb-2">Dashboard Widgets Coming Soon</h3>
-              <p className="text-gray-600">
-                Add your own dashboard widgets by creating new components and adding them here.
-              </p>
             </div>
           </TabsContent>
         </Tabs>
