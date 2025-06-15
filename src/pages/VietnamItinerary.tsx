@@ -32,7 +32,7 @@ const ITINERARY_LOCATIONS: ItineraryLocation[] = [
     name: 'Ha Long Bay',
     dates: 'Jul 2-4',
     nights: 2,
-    description: 'Private cruise: $1200 • Premium meals: $120 • Activities: $80\nPrivate cruise, kayaking, cave visits, floating village',
+    description: 'All-inclusive private cruise: $1400\nPrivate cruise, kayaking, cave visits, floating village',
     type: 'cruise',
     cost: 1400
   },
@@ -40,7 +40,7 @@ const ITINERARY_LOCATIONS: ItineraryLocation[] = [
     name: 'Ho Chi Minh City',
     dates: 'Jul 4-6',
     nights: 2,
-    description: 'Hotel: $100 • Meals: $70 • Activities: $80 • Transport: $350 (includes return flight to Hanoi)\nCan Gio Mangrove, Cu Chi Tunnels, final departure',
+    description: 'Airbnb: $100 • Meals: $70 • Activities: $80 • Transport: $350 (includes return flight to Hanoi)\nCan Gio Mangrove, Cu Chi Tunnels, final departure',
     type: 'city',
     cost: 600
   }
