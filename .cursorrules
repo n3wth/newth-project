@@ -6,7 +6,7 @@ commit_on_every_change = true
 push_dist = false
 
 [notes]
-# - Hosted on Vercel
+# - Hosted on Vercel at widgets.newth.ai
 # - Auto-deploys on every git push
 # - Always auto-format code on save
 # - Commit every change automatically
@@ -15,15 +15,48 @@ push_dist = false
 # - Prefer autonomous, multi-step workflows without repeated confirmation
 # - Think a few steps ahead and avoid unnecessary interruptions
 #
-# Project structure & features:
-# - Generic, embeddable widget platform (React + TypeScript)
-# - Easily add new widget types (weather, stats, dashboards, etc.)
-# - Custom UI primitives (Card, Table, etc.) in src/components/ui
-# - Responsive, modern design with Tailwind CSS and shadcn/ui
-# - Loading and error states handled with dedicated components
-# - Custom 404/NotFound page with available routes
-# - Utility functions (e.g., cn) for class merging
-# - Vite config with path alias (@ -> src)
-# - TypeScript strictness and path aliasing in tsconfig
-# - Easy to add new widgets/pages via src/pages and App.tsx
-# - All business logic and API calls separated in src/services 
+# Project: Newth.ai Widgets - AI-Powered Embeddable Components
+# Domain: https://widgets.newth.ai
+#
+# Architecture & Features:
+# - Clean, refactored codebase with TypeScript
+# - Modular component architecture (WidgetCard, WidgetGrid)
+# - Comprehensive UX testing with Vitest (37 tests)
+# - Embeddable widget platform (React + TypeScript + shadcn/ui)
+# - Individual widgets embeddable without navigation
+# - Responsive design with Tailwind CSS
+# - Accessibility-first with ARIA attributes and keyboard navigation
+# - PWA support with web manifest and favicons
+#
+# Project Structure:
+# - src/components/ - Reusable UI components (WidgetCard, WidgetGrid, Layout)
+# - src/components/ui/ - shadcn/ui components (Button, Tabs, Card, Table)
+# - src/pages/ - Page components (Home, WeatherVietnam, NotFound)
+# - src/types/ - TypeScript type definitions
+# - src/constants/ - Widget data and configuration
+# - src/utils/ - Utility functions for filtering and management
+# - src/services/ - API services (weatherService)
+# - src/test/ - Test configuration and setup
+# - public/ - Static assets, favicons, and PWA manifest
+#
+# Widget System:
+# - All widgets defined in src/constants/widgets.ts
+# - Easy to add new widgets via constants + pages + routes
+# - Categories: All, Vietnam (extensible)
+# - Embeddable URLs: /vietnam/hanoi, /vietnam/hochiminh, /vietnam/halongbay
+# - Main gallery: / with All/Vietnam tabs
+#
+# Testing:
+# - Comprehensive UX tests covering user interactions
+# - Component tests for WidgetCard and WidgetGrid
+# - Unit tests for utility functions
+# - Accessibility and keyboard navigation tests
+# - Performance and layout stability tests
+# - Run with: npm run test, npm run test:run, npm run test:coverage
+#
+# Development:
+# - Vite config with path alias (@ -> src) and test support
+# - TypeScript strictness with proper type definitions
+# - ESLint configuration for code quality
+# - Auto-formatting and linting on save
+# - Hot module replacement for fast development 
