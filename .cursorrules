@@ -44,12 +44,17 @@ push_dist = false
 #   rather than combining multiple features into one widget for better modularity and reusability
 # - WIDGET CATEGORIZATION: 100% of widgets MUST have a valid category filter to ensure proper organization
 #   and discoverability. Every widget must belong to one of: Vietnam, Productivity, Utilities, Personal
+# - COMPLETE IMPLEMENTATION: Every widget defined in src/constants/widgets.ts MUST have:
+#   1. A corresponding React component in src/pages/
+#   2. A route defined in src/App.tsx
+#   3. Proper TypeScript types and error handling
+#   4. Tests that verify the widget loads and functions correctly
 # - Content should be self-contained and immediately useful without context
 # - Focus on data presentation rather than page structure
 #
 # Project Structure:
 # - src/components/ - Reusable UI components (WidgetCard, WidgetGrid, Layout)
-# - src/components/ui/ - shadcn/ui components (Button, Tabs, Card, Table)
+# - src/components/ui/ - shadcn/ui components (Button, Tabs, Card, Table, Input, Textarea)
 # - src/pages/ - Page components (Home, WeatherVietnam, NotFound)
 # - src/types/ - TypeScript type definitions
 # - src/constants/ - Widget data and configuration
@@ -63,6 +68,7 @@ push_dist = false
 # - Easy to add new widgets via constants + pages + routes
 # - Categories: All, Vietnam, Productivity, Utilities, Personal (extensible)
 # - REQUIREMENT: Every widget MUST have a valid category that appears in Home page tabs
+# - REQUIREMENT: Every widget MUST be fully implemented (component + route + tests)
 # - Embeddable URLs: /vietnam/*, /productivity/*, /utilities/*, /personal/*
 # - Main gallery: / with category-based tab navigation
 #
@@ -75,6 +81,7 @@ push_dist = false
 # - TypeScript build validation with test:build
 # - Comprehensive testing with test:all (build + lint + tests)
 # - Widget category validation: Ensure all widgets have proper filters
+# - Widget implementation validation: Ensure all widgets are fully implemented
 # - Run with: npm run test, npm run test:run, npm run test:coverage, npm run test:all
 #
 # Development:
@@ -82,4 +89,6 @@ push_dist = false
 # - TypeScript strictness with proper type definitions
 # - ESLint configuration for code quality
 # - Auto-formatting and linting on save
-# - Hot module replacement for fast development 
+# - Hot module replacement for fast development
+# - NEVER leave widgets partially implemented - always complete the full cycle:
+#   constants → component → route → tests 

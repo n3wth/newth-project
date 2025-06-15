@@ -151,4 +151,54 @@ describe('Widget Utilities', () => {
       expect(personalWidgets.length).toBeGreaterThan(0);
     });
   });
+
+  describe('Widget Implementation Validation', () => {
+    it('should ensure all widgets have valid paths', () => {
+      WIDGETS.forEach(widget => {
+        expect(widget.path).toBeDefined();
+        expect(widget.path).toMatch(/^\/[a-z-]+\/[a-z-]+$|^\/[a-z-]+$/);
+      });
+    });
+
+    it('should ensure all widgets have required properties', () => {
+      WIDGETS.forEach(widget => {
+        expect(widget.id).toBeDefined();
+        expect(widget.title).toBeDefined();
+        expect(widget.description).toBeDefined();
+        expect(widget.path).toBeDefined();
+        expect(widget.category).toBeDefined();
+        expect(widget.tags).toBeDefined();
+        expect(Array.isArray(widget.tags)).toBe(true);
+        expect(widget.tags?.length).toBeGreaterThan(0);
+      });
+    });
+
+    it('should ensure widget IDs are unique', () => {
+      const ids = WIDGETS.map(widget => widget.id);
+      const uniqueIds = new Set(ids);
+      expect(uniqueIds.size).toBe(ids.length);
+    });
+
+    it('should ensure widget paths are unique', () => {
+      const paths = WIDGETS.map(widget => widget.path);
+      const uniquePaths = new Set(paths);
+      expect(uniquePaths.size).toBe(paths.length);
+    });
+
+    it('should ensure all widgets follow naming conventions', () => {
+      WIDGETS.forEach(widget => {
+        // ID should be kebab-case
+        expect(widget.id).toMatch(/^[a-z0-9-]+$/);
+        
+        // Path should start with /
+        expect(widget.path).toMatch(/^\//);
+        
+        // Title should not be empty
+        expect(widget.title.trim().length).toBeGreaterThan(0);
+        
+        // Description should not be empty
+        expect(widget.description.trim().length).toBeGreaterThan(0);
+      });
+    });
+  });
 }); 
