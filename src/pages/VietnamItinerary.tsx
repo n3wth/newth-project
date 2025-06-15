@@ -17,7 +17,7 @@ const ITINERARY_LOCATIONS: ItineraryLocation[] = [
     name: 'Hanoi',
     dates: 'Jun 28-30',
     nights: 2,
-    description: 'Arrival city, Old Quarter, Hoàn Kiếm Lake, Water Puppet Show',
+    description: 'Hotel: $120 • Meals: $80 • Activities: $60 • Transport: $60\nOld Quarter, Hoàn Kiếm Lake, Water Puppet Show',
     type: 'city',
     cost: 320
   },
@@ -25,7 +25,7 @@ const ITINERARY_LOCATIONS: ItineraryLocation[] = [
     name: 'Ninh Binh (TOKI Retreat)',
     dates: 'Jun 30 - Jul 2',
     nights: 2,
-    description: 'Vân Long wetlands, sunrise boat safari, spa retreat',
+    description: 'Retreat: $400 • Meals: $80 • Activities: $50 • Transport: $30\nVân Long wetlands, sunrise boat safari, spa retreat',
     type: 'retreat',
     cost: 560
   },
@@ -33,7 +33,7 @@ const ITINERARY_LOCATIONS: ItineraryLocation[] = [
     name: 'Ha Long Bay',
     dates: 'Jul 2-4',
     nights: 2,
-    description: 'Private cruise, kayaking, cave visits, floating village',
+    description: 'Private cruise: $1200 • Premium meals: $120 • Activities: $80\nPrivate cruise, kayaking, cave visits, floating village',
     type: 'cruise',
     cost: 1400
   },
@@ -41,7 +41,7 @@ const ITINERARY_LOCATIONS: ItineraryLocation[] = [
     name: 'Ho Chi Minh City',
     dates: 'Jul 4-6',
     nights: 2,
-    description: 'Can Gio Mangrove, Cu Chi Tunnels, final departure',
+    description: 'Hotel: $100 • Meals: $70 • Activities: $80 • Transport: $50\nCan Gio Mangrove, Cu Chi Tunnels, final departure',
     type: 'city',
     cost: 300
   }
