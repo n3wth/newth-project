@@ -130,7 +130,7 @@ export const WidgetCard = ({ widget, className = '', variant = 'default' }: Widg
       </Card>
 
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-hidden flex flex-col">
           <DialogHeader className="flex-shrink-0">
             <DialogTitle className="flex items-center gap-2">
               {widget.title}
@@ -140,35 +140,9 @@ export const WidgetCard = ({ widget, className = '', variant = 'default' }: Widg
             </DialogDescription>
           </DialogHeader>
           
-          <div className="flex-1 overflow-auto space-y-6">
-            {/* Widget Content */}
-            <div className="border rounded-lg overflow-hidden bg-background">
-              {WidgetComponent ? (
-                <Suspense 
-                  fallback={
-                    <div className="flex items-center justify-center p-12">
-                      <LoaderIcon className="h-8 w-8 animate-spin text-muted-foreground" />
-                      <span className="ml-2 text-muted-foreground">Loading widget...</span>
-                    </div>
-                  }
-                >
-                  <div className="p-4">
-                    <WidgetComponent />
-                  </div>
-                </Suspense>
-              ) : (
-                <div className="flex items-center justify-center p-12 text-muted-foreground">
-                  <div className="text-center">
-                    <ExternalLinkIcon className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                    <p>Widget preview not available</p>
-                    <p className="text-sm">Click "Open Widget" to view in a new tab</p>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Widget Metadata */}
-            <div className="space-y-4 flex-shrink-0">
+          <div className="flex-1 overflow-auto space-y-4">
+            {/* Embedding Info */}
+            <div className="space-y-3 flex-shrink-0 bg-muted/30 p-4 rounded-lg">
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-medium">Category:</span>
@@ -188,12 +162,13 @@ export const WidgetCard = ({ widget, className = '', variant = 'default' }: Widg
 
               {/* URL Section */}
               <div className="space-y-2">
-                <label className="text-sm font-medium">Widget URL:</label>
+                <label className="text-sm font-medium">Embed URL:</label>
                 <div className="flex gap-2">
                   <Input
                     value={fullUrl}
                     readOnly
                     className="font-mono text-sm"
+                    onClick={(e) => e.currentTarget.select()}
                   />
                   <Button
                     onClick={handleCopyUrl}
@@ -214,7 +189,7 @@ export const WidgetCard = ({ widget, className = '', variant = 'default' }: Widg
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-2 pt-2">
+              <div className="flex gap-2">
                 <Button onClick={handleVisitWidget} className="flex-1 gap-2">
                   <ExternalLinkIcon className="h-4 w-4" />
                   Open Widget
@@ -225,6 +200,32 @@ export const WidgetCard = ({ widget, className = '', variant = 'default' }: Widg
                   </Button>
                 </Link>
               </div>
+            </div>
+
+            {/* Widget Content */}
+            <div className="border rounded-lg overflow-hidden bg-background">
+              {WidgetComponent ? (
+                <Suspense 
+                  fallback={
+                    <div className="flex items-center justify-center p-8">
+                      <LoaderIcon className="h-6 w-6 animate-spin text-muted-foreground" />
+                      <span className="ml-2 text-muted-foreground">Loading widget...</span>
+                    </div>
+                  }
+                >
+                  <div className="p-4">
+                    <WidgetComponent />
+                  </div>
+                </Suspense>
+              ) : (
+                <div className="flex items-center justify-center p-8 text-muted-foreground">
+                  <div className="text-center">
+                    <ExternalLinkIcon className="h-8 w-8 mx-auto mb-3 opacity-50" />
+                    <p>Widget preview not available</p>
+                    <p className="text-sm">Click "Open Widget" to view in a new tab</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </DialogContent>
