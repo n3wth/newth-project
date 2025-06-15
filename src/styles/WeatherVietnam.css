@@ -1,0 +1,123 @@
+.weather-embed-container {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 0;
+  color: #222;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  border: 1px solid #e5e7eb;
+}
+
+.weather-embed-header {
+  text-align: center;
+  margin: 0;
+  padding: 24px 0 12px 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: #222;
+}
+
+.weather-embed-cities {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 0 16px 16px 16px;
+}
+
+@media (min-width: 600px) {
+  .weather-embed-cities {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+.weather-embed-city {
+  background: #f7f8fa;
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid #ececec;
+}
+
+.weather-embed-city h3 {
+  margin: 0 0 12px 0;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.weather-embed-days {
+  display: grid;
+  gap: 8px;
+}
+
+.weather-embed-day {
+  display: grid;
+  grid-template-columns: 80px 1fr 50px 50px 50px;
+  align-items: center;
+  font-size: 0.98rem;
+  border-bottom: 1px solid #ececec;
+  padding: 8px 0;
+}
+.weather-embed-day:last-child {
+  border-bottom: none;
+}
+.weather-embed-today {
+  font-weight: bold;
+  color: #2d7ff9;
+}
+.weather-embed-precip {
+  color: #2d7ff9;
+  font-size: 0.95em;
+}
+.weather-embed-source {
+  margin-top: 10px;
+  font-size: 0.85em;
+  opacity: 0.7;
+  text-align: center;
+}
+.weather-embed-footer {
+  font-size: 0.95em;
+  opacity: 0.8;
+  margin: 0;
+  text-align: center;
+  background: #f7f8fa;
+  padding: 12px 0 16px 0;
+  border-radius: 0 0 12px 12px;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .weather-embed-container {
+    background: #23272b;
+    color: #f3f3f3;
+    border: 1px solid #333a40;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  }
+  .weather-embed-header {
+    color: #f3f3f3;
+  }
+  .weather-embed-city {
+    background: #23272b;
+    border: 1px solid #333a40;
+  }
+  .weather-embed-city h3 {
+    color: #e3e3e3;
+  }
+  .weather-embed-day {
+    border-bottom: 1px solid #333a40;
+  }
+  .weather-embed-footer {
+    background: #23272b;
+    color: #bbb;
+  }
+  .weather-embed-precip {
+    color: #6ec6ff;
+  }
+  .weather-embed-today {
+    color: #6ec6ff;
+  }
+} 
