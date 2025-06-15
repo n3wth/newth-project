@@ -69,8 +69,8 @@ function LocationCard({ location }: { location: ItineraryLocation }) {
   return (
     <Card className="h-full">
       <CardHeader className="pb-4">
-        <div className="flex items-start justify-between mb-3">
-          <CardTitle className="flex items-center gap-2 text-lg">
+        <div className="flex items-start justify-between mb-4">
+          <CardTitle className="flex items-center gap-2 text-xl">
             <MapPin className="h-5 w-5 text-muted-foreground" />
             {location.name}
           </CardTitle>
@@ -79,31 +79,28 @@ function LocationCard({ location }: { location: ItineraryLocation }) {
           </Badge>
         </div>
         
-        <div className="grid grid-cols-3 gap-4">
-          <div className="flex items-center gap-2">
-            <Calendar className="h-4 w-4 text-muted-foreground" />
-            <div>
-              <p className="text-xs text-muted-foreground">Dates</p>
-              <p className="text-sm font-medium">{location.dates}</p>
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Calendar className="h-4 w-4 text-muted-foreground" />
+              <span className="text-sm font-medium">{location.dates}</span>
             </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <Clock className="h-4 w-4 text-muted-foreground" />
-            <div>
-              <p className="text-xs text-muted-foreground">Duration</p>
-              <p className="text-sm font-medium">
+            <div className="flex items-center gap-2">
+              <Clock className="h-4 w-4 text-muted-foreground" />
+              <span className="text-sm text-muted-foreground">
                 {location.nights} night{location.nights !== 1 ? 's' : ''}
-              </p>
+              </span>
             </div>
           </div>
+          
           <div className="flex items-center gap-2">
             <DollarSign className="h-4 w-4 text-green-600 dark:text-green-400" />
-            <div>
-              <p className="text-xs text-muted-foreground">Cost</p>
-              <p className="text-sm font-bold text-green-600 dark:text-green-400">
-                ${location.cost}
-              </p>
-            </div>
+            <span className="text-lg font-bold text-green-600 dark:text-green-400">
+              ${location.cost}
+            </span>
+            <span className="text-sm text-muted-foreground ml-auto">
+              estimated cost
+            </span>
           </div>
         </div>
       </CardHeader>
@@ -121,37 +118,35 @@ export default function VietnamItinerary() {
   const totalCost = ITINERARY_LOCATIONS.reduce((sum, location) => sum + location.cost, 0);
   
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto p-6">
-        <div className="mb-6">
-          <Card className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-950 dark:to-blue-950 border-green-200 dark:border-green-800">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h2 className="text-lg font-semibold text-green-800 dark:text-green-200">
-                    Vietnam Trip Itinerary
-                  </h2>
-                  <p className="text-sm text-green-600 dark:text-green-400">
-                    8 days across 4 destinations
-                  </p>
-                </div>
-                <div className="text-right">
-                  <div className="flex items-center gap-2">
-                    <DollarSign className="h-5 w-5 text-green-600 dark:text-green-400" />
-                    <span className="text-2xl font-bold text-green-700 dark:text-green-300">
-                      ${totalCost}
-                    </span>
-                  </div>
-                  <p className="text-xs text-green-600 dark:text-green-400">
-                    Total estimated cost
-                  </p>
-                </div>
+    <div className="w-full bg-background p-6">
+      <div className="max-w-6xl mx-auto space-y-6">
+        <Card className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-950 dark:to-blue-950 border-green-200 dark:border-green-800">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-semibold text-green-800 dark:text-green-200">
+                  Vietnam Trip Itinerary
+                </h2>
+                <p className="text-sm text-green-600 dark:text-green-400">
+                  8 days across 4 destinations
+                </p>
               </div>
-            </CardContent>
-          </Card>
-        </div>
+              <div className="text-right">
+                <div className="flex items-center gap-2">
+                  <DollarSign className="h-6 w-6 text-green-600 dark:text-green-400" />
+                  <span className="text-3xl font-bold text-green-700 dark:text-green-300">
+                    ${totalCost}
+                  </span>
+                </div>
+                <p className="text-sm text-green-600 dark:text-green-400">
+                  Total estimated cost
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {ITINERARY_LOCATIONS.map((location) => (
             <LocationCard key={location.name} location={location} />
           ))}
