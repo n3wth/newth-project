@@ -98,25 +98,36 @@ function LocationCard({ location }: { location: ItineraryLocation }) {
           </div>
         </div>
         
-        <div className="bg-green-50 dark:bg-green-950/30 rounded-lg p-3 mb-4">
-          <div className="flex items-center gap-2 mb-2">
-            <DollarSign className="h-4 w-4 text-green-600 dark:text-green-400" />
-            <span className="text-lg font-bold text-green-600 dark:text-green-400">
+        <div className="bg-green-50 dark:bg-green-950/30 rounded-lg p-4">
+          <div className="flex items-center gap-2 mb-3">
+            <DollarSign className="h-5 w-5 text-green-600 dark:text-green-400" />
+            <span className="text-xl font-bold text-green-600 dark:text-green-400">
               ${location.cost}
             </span>
-            <span className="text-xs text-green-600 dark:text-green-400 ml-auto">
+            <span className="text-sm text-green-600 dark:text-green-400 ml-auto">
               total cost
             </span>
           </div>
-          <div className="text-xs text-green-700 dark:text-green-300 leading-relaxed">
-            {location.description.split('\n')[0]}
+          
+          <div className="space-y-2">
+            <div className="text-xs font-medium text-green-700 dark:text-green-300 uppercase tracking-wide">
+              Cost Breakdown
+            </div>
+            <div className="text-sm text-green-700 dark:text-green-300">
+              {location.description.split('\n')[0]}
+            </div>
           </div>
         </div>
       </CardHeader>
       
       <CardContent className="pt-0">
-        <div className="text-sm text-muted-foreground leading-relaxed">
-          <strong>Includes:</strong> {location.description.split('\n')[1]}
+        <div className="space-y-2">
+          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+            Includes
+          </div>
+          <div className="text-sm text-muted-foreground leading-relaxed">
+            {location.description.split('\n')[1]}
+          </div>
         </div>
       </CardContent>
     </Card>
