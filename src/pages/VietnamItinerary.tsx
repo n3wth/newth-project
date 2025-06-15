@@ -14,20 +14,20 @@ interface ItineraryLocation {
 
 const ITINERARY_LOCATIONS: ItineraryLocation[] = [
   {
-    name: 'Hanoi',
-    dates: 'Jun 28-30',
-    nights: 2,
-    description: 'Hotel: $120 • Meals: $80 • Activities: $60 • Transport: $60\nOld Quarter, Hoàn Kiếm Lake, Water Puppet Show',
-    type: 'city',
-    cost: 320
-  },
-  {
     name: 'Ninh Binh (TOKI Retreat)',
-    dates: 'Jun 30 - Jul 2',
+    dates: 'Jun 28-30',
     nights: 2,
     description: 'Retreat: $400 • Meals: $80 • Activities: $50 • Transport: $30\nVân Long wetlands, sunrise boat safari, spa retreat',
     type: 'retreat',
     cost: 560
+  },
+  {
+    name: 'Hanoi',
+    dates: 'Jun 30 - Jul 2',
+    nights: 2,
+    description: 'Hotel: $120 • Meals: $80 • Activities: $60 • Transport: $60\nOld Quarter, Hoàn Kiếm Lake, Water Puppet Show',
+    type: 'city',
+    cost: 320
   },
   {
     name: 'Ha Long Bay',
@@ -130,9 +130,6 @@ function LocationCard({ location }: { location: ItineraryLocation }) {
           </div>
         </div>
       </CardHeader>
-      
-      <CardContent className="pt-0">
-      </CardContent>
     </Card>
   );
 }
