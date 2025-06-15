@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import LoadingSpinner from './components/LoadingSpinner';
 
 // Lazy load pages
+const Home = lazy(() => import('./pages/Home'));
 const WeatherVietnam = lazy(() => import('./pages/WeatherVietnam'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const HanoiWidget = lazy(() => import('./pages/WeatherVietnam').then(m => ({ default: m.HanoiWidget })));
@@ -15,7 +16,7 @@ function App() {
     <Layout>
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
-          <Route path="/" element={<WeatherVietnam />} />
+          <Route path="/" element={<Home />} />
           <Route path="/weather-vietnam" element={<WeatherVietnam />} />
           <Route path="/vietnam/hanoi" element={<HanoiWidget />} />
           <Route path="/vietnam/hochiminh" element={<HoChiMinhWidget />} />
