@@ -146,7 +146,7 @@ describe('Home Page UX Tests', () => {
       expect(mainHeading).toHaveTextContent('Newth.ai Widgets');
       
       const secondaryHeading = screen.getByRole('heading', { level: 2 });
-      expect(secondaryHeading).toHaveTextContent('Build your Widget Library');
+      expect(secondaryHeading).toHaveTextContent('My Personal Widget Collection');
     });
 
     it('should have accessible tab navigation', () => {
