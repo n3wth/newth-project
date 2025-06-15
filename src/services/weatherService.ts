@@ -3,82 +3,63 @@ import type { WeatherData, WeatherDay } from '@/types/widget';
 // Export types for backward compatibility
 export type { WeatherData, WeatherDay };
 
-// Weather service that uses Google APIs where possible
-const GOOGLE_API_KEY = 'AIzaSyD7WCApkLtI-PJA7169MnnItGXRRpZ2kRY';
-
-// Google Geocoding API to get precise coordinates
-async function getCoordinates(cityName: string): Promise<{ lat: number; lon: number } | null> {
-  try {
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(cityName + ', Vietnam')}&key=${GOOGLE_API_KEY}`;
-    console.log('Attempting to fetch coordinates for:', cityName);
-    const response = await fetch(url);
-    
-    if (!response.ok) {
-      console.error('Geocoding API response not ok:', response.status, response.statusText);
-      return null;
-    }
-    
-    const data = await response.json();
-    console.log('Geocoding API response:', data);
-    
-    if (data.status === 'OK' && data.results.length > 0) {
-      const location = data.results[0].geometry.location;
-      return { lat: location.lat, lon: location.lng };
-    } else {
-      console.error('Geocoding API error:', data.status, data.error_message);
-    }
-  } catch (error) {
-    console.error('Geocoding failed:', error);
+// Mock weather data for demonstration
+const mockWeatherData: Record<string, WeatherData> = {
+  'Hanoi': {
+    city: 'Hanoi',
+    daily: [
+      { date: '2024-01-01', tempMin: 18, tempMax: 25, condition: 'Partly cloudy', precipitation: 0 },
+      { date: '2024-01-02', tempMin: 20, tempMax: 27, condition: 'Sunny', precipitation: 0 },
+      { date: '2024-01-03', tempMin: 19, tempMax: 24, condition: 'Light rain', precipitation: 2 },
+      { date: '2024-01-04', tempMin: 17, tempMax: 22, condition: 'Cloudy', precipitation: 0 },
+      { date: '2024-01-05', tempMin: 21, tempMax: 28, condition: 'Sunny', precipitation: 0 },
+      { date: '2024-01-06', tempMin: 22, tempMax: 29, condition: 'Partly cloudy', precipitation: 0 },
+      { date: '2024-01-07', tempMin: 20, tempMax: 26, condition: 'Light rain', precipitation: 3 },
+      { date: '2024-01-08', tempMin: 18, tempMax: 23, condition: 'Cloudy', precipitation: 1 },
+      { date: '2024-01-09', tempMin: 19, tempMax: 25, condition: 'Sunny', precipitation: 0 },
+      { date: '2024-01-10', tempMin: 21, tempMax: 27, condition: 'Partly cloudy', precipitation: 0 },
+    ]
+  },
+  'Ho Chi Minh City': {
+    city: 'Ho Chi Minh City',
+    daily: [
+      { date: '2024-01-01', tempMin: 24, tempMax: 32, condition: 'Sunny', precipitation: 0 },
+      { date: '2024-01-02', tempMin: 25, tempMax: 33, condition: 'Partly cloudy', precipitation: 0 },
+      { date: '2024-01-03', tempMin: 23, tempMax: 30, condition: 'Thunderstorms', precipitation: 15 },
+      { date: '2024-01-04', tempMin: 22, tempMax: 29, condition: 'Heavy rain', precipitation: 25 },
+      { date: '2024-01-05', tempMin: 26, tempMax: 34, condition: 'Sunny', precipitation: 0 },
+      { date: '2024-01-06', tempMin: 27, tempMax: 35, condition: 'Hot', precipitation: 0 },
+      { date: '2024-01-07', tempMin: 25, tempMax: 32, condition: 'Partly cloudy', precipitation: 2 },
+      { date: '2024-01-08', tempMin: 24, tempMax: 31, condition: 'Light rain', precipitation: 5 },
+      { date: '2024-01-09', tempMin: 26, tempMax: 33, condition: 'Sunny', precipitation: 0 },
+      { date: '2024-01-10', tempMin: 25, tempMax: 32, condition: 'Partly cloudy', precipitation: 0 },
+    ]
+  },
+  'Ha Long Bay': {
+    city: 'Ha Long Bay',
+    daily: [
+      { date: '2024-01-01', tempMin: 16, tempMax: 22, condition: 'Foggy', precipitation: 0 },
+      { date: '2024-01-02', tempMin: 18, tempMax: 24, condition: 'Partly cloudy', precipitation: 0 },
+      { date: '2024-01-03', tempMin: 17, tempMax: 21, condition: 'Light rain', precipitation: 8 },
+      { date: '2024-01-04', tempMin: 15, tempMax: 20, condition: 'Cloudy', precipitation: 3 },
+      { date: '2024-01-05', tempMin: 19, tempMax: 25, condition: 'Sunny', precipitation: 0 },
+      { date: '2024-01-06', tempMin: 20, tempMax: 26, condition: 'Partly cloudy', precipitation: 0 },
+      { date: '2024-07', tempMin: 18, tempMax: 23, condition: 'Foggy', precipitation: 1 },
+      { date: '2024-01-08', tempMin: 16, tempMax: 21, condition: 'Light rain', precipitation: 6 },
+      { date: '2024-01-09', tempMin: 17, tempMax: 22, condition: 'Cloudy', precipitation: 2 },
+      { date: '2024-01-10', tempMin: 19, tempMax: 24, condition: 'Partly cloudy', precipitation: 0 },
+    ]
   }
-  return null;
+};
+
+export async function getWeatherData(city: string): Promise<WeatherData> {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 500));
+  
+  const data = mockWeatherData[city];
+  if (!data) {
+    throw new Error(`Weather data not available for ${city}`);
+  }
+  
+  return data;
 }
-
-// Simulated weather data generator
-const generateWeatherData = (city: string): WeatherData => {
-  const conditions = [
-    'sunny', 'partly cloudy', 'cloudy', 'light rain', 
-    'heavy rain', 'thunderstorm', 'fog', 'clear'
-  ];
-  
-  const daily: WeatherDay[] = [];
-  const baseDate = new Date();
-  
-  for (let i = 0; i < 10; i++) {
-    const date = new Date(baseDate);
-    date.setDate(baseDate.getDate() + i);
-    
-    // Generate realistic temperature ranges for Vietnam
-    const baseTemp = city.toLowerCase().includes('hanoi') ? 25 : 28;
-    const tempVariation = Math.random() * 8 - 4; // ±4 degrees
-    const tempMax = Math.round(baseTemp + tempVariation + Math.random() * 5);
-    const tempMin = Math.round(tempMax - 5 - Math.random() * 3);
-    
-    daily.push({
-      date: date.toISOString().split('T')[0],
-      condition: conditions[Math.floor(Math.random() * conditions.length)],
-      tempMin,
-      tempMax,
-      precipitation: Math.round(Math.random() * 15), // 0-15mm
-    });
-  }
-  
-  return {
-    city,
-    daily,
-  };
-};
-
-// Simulate API delay
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
-export const getWeatherData = async (city: string): Promise<WeatherData> => {
-  // Simulate network delay
-  await delay(300 + Math.random() * 200);
-  
-  // Simulate occasional API failures (5% chance)
-  if (Math.random() < 0.05) {
-    throw new Error(`Failed to fetch weather data for ${city}`);
-  }
-  
-  return generateWeatherData(city);
-};

@@ -7,35 +7,35 @@ export const WIDGET_CATEGORIES = {
 
 export const WIDGETS: Widget[] = [
   {
-    id: 'vietnam-weather-forecast',
-    title: 'Vietnam 10-Day Weather Forecast',
-    description: 'Hanoi, Ho Chi Minh City, Ha Long Bay',
+    id: 'vietnam-weather-overview',
+    title: 'Vietnam Trip Weather Overview',
+    description: 'Complete weather dashboard for my Vietnam trip planning - Hanoi, Ho Chi Minh City, and Ha Long Bay forecasts in one view',
     path: '/weather-vietnam',
     category: WIDGET_CATEGORIES.VIETNAM,
-    tags: ['weather', 'forecast', 'vietnam'],
+    tags: ['weather', 'vietnam', 'travel', 'planning']
   },
   {
     id: 'hanoi-weather',
     title: 'Hanoi Weather Widget',
-    description: '10-day forecast',
+    description: 'Dedicated weather forecast for Hanoi - perfect for planning my northern Vietnam itinerary',
     path: '/vietnam/hanoi',
     category: WIDGET_CATEGORIES.VIETNAM,
-    tags: ['weather', 'hanoi', 'vietnam'],
+    tags: ['weather', 'hanoi', 'vietnam', 'forecast']
   },
   {
     id: 'hochiminh-weather',
-    title: 'Ho Chi Minh City Weather Widget',
-    description: '10-day forecast',
+    title: 'Ho Chi Minh City Weather',
+    description: 'Weather tracking for Ho Chi Minh City (Saigon) - essential for my southern Vietnam adventures',
     path: '/vietnam/hochiminh',
     category: WIDGET_CATEGORIES.VIETNAM,
-    tags: ['weather', 'ho-chi-minh', 'vietnam'],
+    tags: ['weather', 'saigon', 'vietnam', 'forecast']
   },
   {
     id: 'halongbay-weather',
-    title: 'Ha Long Bay Weather Widget',
-    description: '10-day forecast',
+    title: 'Ha Long Bay Weather',
+    description: 'Weather conditions for Ha Long Bay - crucial for planning the perfect boat trip and photography',
     path: '/vietnam/halongbay',
     category: WIDGET_CATEGORIES.VIETNAM,
-    tags: ['weather', 'ha-long-bay', 'vietnam'],
-  },
+    tags: ['weather', 'halongbay', 'vietnam', 'cruise']
+  }
 ]; 

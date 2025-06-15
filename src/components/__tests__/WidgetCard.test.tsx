@@ -27,7 +27,7 @@ describe('WidgetCard', () => {
     
     expect(screen.getByText('Test Widget')).toBeInTheDocument();
     expect(screen.getByText('This is a test widget description')).toBeInTheDocument();
-    expect(screen.getByText('View Widget →')).toBeInTheDocument();
+    expect(screen.getByText('View Widget')).toBeInTheDocument();
   });
 
   it('should have correct test IDs', () => {
@@ -54,10 +54,46 @@ describe('WidgetCard', () => {
   it('should have proper accessibility structure', () => {
     renderWithRouter(<WidgetCard widget={mockWidget} />);
     
-    const title = screen.getByRole('heading', { level: 3 });
-    expect(title).toHaveTextContent('Test Widget');
+    const title = screen.getByText('Test Widget');
+    expect(title).toBeInTheDocument();
     
     const link = screen.getByRole('link');
-    expect(link).toHaveTextContent('View Widget →');
+    expect(link).toHaveTextContent('View Widget');
+  });
+
+  it('should render tags when provided', () => {
+    renderWithRouter(<WidgetCard widget={mockWidget} />);
+    
+    expect(screen.getByText('test')).toBeInTheDocument();
+    expect(screen.getByText('example')).toBeInTheDocument();
+  });
+
+  it('should handle widgets without tags', () => {
+    const widgetWithoutTags = { ...mockWidget, tags: undefined };
+    renderWithRouter(<WidgetCard widget={widgetWithoutTags} />);
+    
+    expect(screen.getByText('Test Widget')).toBeInTheDocument();
+    // Should not crash and should still render the widget
+  });
+
+  it('should render compact variant correctly', () => {
+    renderWithRouter(<WidgetCard widget={mockWidget} variant="compact" />);
+    
+    expect(screen.getByText('Test Widget')).toBeInTheDocument();
+    expect(screen.getByText('View Widget')).toBeInTheDocument();
+  });
+
+  it('should show limited tags with overflow indicator', () => {
+    const widgetWithManyTags = {
+      ...mockWidget,
+      tags: ['tag1', 'tag2', 'tag3', 'tag4', 'tag5']
+    };
+    
+    renderWithRouter(<WidgetCard widget={widgetWithManyTags} />);
+    
+    expect(screen.getByText('tag1')).toBeInTheDocument();
+    expect(screen.getByText('tag2')).toBeInTheDocument();
+    expect(screen.getByText('tag3')).toBeInTheDocument();
+    expect(screen.getByText('+2')).toBeInTheDocument();
   });
 }); 

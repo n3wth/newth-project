@@ -8,19 +8,16 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
   
-  // Hide navigation for embedded widget pages
+  // Hide any wrapper for embedded widget pages
   const isEmbeddedWidget = location.pathname.startsWith('/vietnam/') || 
                           location.pathname === '/weather-vietnam';
 
   if (isEmbeddedWidget) {
-    return <div className="min-h-screen bg-white">{children}</div>;
+    return <div className="min-h-screen bg-background">{children}</div>;
   }
 
-  return (
-    <div className="min-h-screen bg-white">
-      <main>{children}</main>
-    </div>
-  );
+  // For main pages, just return children (Home page handles its own layout)
+  return <>{children}</>;
 };
 
 export default Layout; 
