@@ -21,12 +21,22 @@ export interface WeatherData {
 async function getCoordinates(cityName: string): Promise<{ lat: number; lon: number } | null> {
   try {
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(cityName + ', Vietnam')}&key=${GOOGLE_API_KEY}`;
+    console.log('Attempting to fetch coordinates for:', cityName);
     const response = await fetch(url);
+    
+    if (!response.ok) {
+      console.error('Geocoding API response not ok:', response.status, response.statusText);
+      return null;
+    }
+    
     const data = await response.json();
+    console.log('Geocoding API response:', data);
     
     if (data.status === 'OK' && data.results.length > 0) {
       const location = data.results[0].geometry.location;
       return { lat: location.lat, lon: location.lng };
+    } else {
+      console.error('Geocoding API error:', data.status, data.error_message);
     }
   } catch (error) {
     console.error('Geocoding failed:', error);
@@ -72,6 +82,8 @@ function generateRealisticWeatherData(cityName: string): WeatherData {
 }
 
 export async function getWeatherData(cityName: string): Promise<WeatherData> {
+  console.log('Getting weather data for:', cityName);
+  
   try {
     // First, try to get coordinates using Google Geocoding API
     const coords = await getCoordinates(cityName);
@@ -83,6 +95,7 @@ export async function getWeatherData(cityName: string): Promise<WeatherData> {
       return generateRealisticWeatherData(cityName);
     }
     
+    console.log('Using fallback mock data for:', cityName);
     // Fallback to mock data
     return generateRealisticWeatherData(cityName);
   } catch (error) {
