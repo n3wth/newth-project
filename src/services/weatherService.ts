@@ -50,7 +50,7 @@ function formatCondition(weather: { main: string; description: string }): string
   return weather.description.charAt(0).toUpperCase() + weather.description.slice(1);
 }
 
-function getPrecipitation(item: any): number {
+function getPrecipitation(item: { rain?: { '3h': number }; snow?: { '3h': number } }): number {
   const rain = item.rain?.['3h'] || 0;
   const snow = item.snow?.['3h'] || 0;
   return Math.round(rain + snow);

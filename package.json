@@ -12,6 +12,8 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
+    "test:build": "tsc -b --noEmit",
+    "test:all": "npm run test:build && npm run lint && npm run test:run",
     "tailwind:init": "tailwindcss init -p"
   },
   "dependencies": {

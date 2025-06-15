@@ -60,7 +60,9 @@ push_dist = false
 # - Unit tests for utility functions
 # - Accessibility and keyboard navigation tests
 # - Performance and layout stability tests
-# - Run with: npm run test, npm run test:run, npm run test:coverage
+# - TypeScript build validation with test:build
+# - Comprehensive testing with test:all (build + lint + tests)
+# - Run with: npm run test, npm run test:run, npm run test:coverage, npm run test:all
 #
 # Development:
 # - Vite config with path alias (@ -> src) and test support

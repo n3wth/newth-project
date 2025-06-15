@@ -3,7 +3,6 @@ import { getWeatherData } from '../services/weatherService';
 import type { WeatherData, WeatherDay } from '../services/weatherService';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 import {
   Table,
   TableBody,
@@ -45,7 +44,7 @@ function CityWeatherTable({ city, maxHeight, showHeader = true }: CityWeatherTab
       setLoading(true);
       try {
         setWeather(await getWeatherData(city));
-      } catch (error) {
+      } catch {
         setWeather(null);
       }
       setLoading(false);
