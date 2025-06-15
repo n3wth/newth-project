@@ -8,6 +8,8 @@ const rootElement = document.getElementById('root')
 if (rootElement) {
   rootElement.classList.add('w-full')
 }
+// Add dark mode class to <html> for shadcn/ui theme support
+document.documentElement.classList.add('dark');
 
 ReactDOM.createRoot(rootElement!).render(
   <React.StrictMode>
