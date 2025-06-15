@@ -15,6 +15,7 @@ import SanFranciscoWeather from './pages/SanFranciscoWeather';
 import ReadingList from './pages/ReadingList';
 import WorkoutLog from './pages/WorkoutLog';
 import NotFound from './pages/NotFound';
+import VietnamDashboard from './pages/VietnamDashboard';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/vietnam/hanoi" element={<HanoiWidget />} />
         <Route path="/vietnam/hochiminh" element={<HoChiMinhWidget />} />
         <Route path="/vietnam/halongbay" element={<HaLongBayWidget />} />
+        <Route path="/vietnam/dashboard" element={<VietnamDashboard />} />
         <Route path="/productivity/pomodoro" element={<PomodoroTimer />} />
         <Route path="/productivity/notes" element={<QuickNotes />} />
         <Route path="/productivity/habits" element={<HabitTracker />} />
