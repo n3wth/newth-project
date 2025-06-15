@@ -23,6 +23,7 @@ interface FlightDetails {
   duration: string;
   aircraft: string;
   class: string;
+  cost?: number;
 }
 
 const FLIGHT_DATA: FlightDetails[] = [
@@ -64,7 +65,8 @@ const FLIGHT_DATA: FlightDetails[] = [
     },
     duration: '13 hours 55 minutes',
     aircraft: 'Boeing 787',
-    class: 'Economy'
+    class: 'Economy',
+    cost: 300
   }
 ];
 
@@ -170,6 +172,13 @@ function FlightCard({ flight, className }: FlightCardProps) {
             {flight.class}
           </Badge>
         </div>
+        {flight.direction === 'return' && flight.cost && (
+          <div className="pt-2 text-right">
+            <span className="text-sm font-semibold text-green-700 dark:text-green-300">
+              Cost: ${flight.cost}
+            </span>
+          </div>
+        )}
       </CardContent>
     </Card>
   );
