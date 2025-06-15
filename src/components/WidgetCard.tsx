@@ -203,30 +203,26 @@ export const WidgetCard = ({ widget, className = '', variant = 'default' }: Widg
             </div>
 
             {/* Widget Content */}
-            <div className="border rounded-lg bg-background">
-              {WidgetComponent ? (
-                <Suspense 
-                  fallback={
-                    <div className="flex items-center justify-center p-8">
-                      <LoaderIcon className="h-6 w-6 animate-spin text-muted-foreground" />
-                      <span className="ml-2 text-muted-foreground">Loading widget...</span>
-                    </div>
-                  }
-                >
-                  <div className="p-4">
-                    <WidgetComponent />
+            {WidgetComponent ? (
+              <Suspense 
+                fallback={
+                  <div className="flex items-center justify-center p-8 border rounded-lg bg-background">
+                    <LoaderIcon className="h-6 w-6 animate-spin text-muted-foreground" />
+                    <span className="ml-2 text-muted-foreground">Loading widget...</span>
                   </div>
-                </Suspense>
-              ) : (
-                <div className="flex items-center justify-center p-8 text-muted-foreground">
-                  <div className="text-center">
-                    <ExternalLinkIcon className="h-8 w-8 mx-auto mb-3 opacity-50" />
-                    <p>Widget preview not available</p>
-                    <p className="text-sm">Click "Open Widget" to view in a new tab</p>
-                  </div>
+                }
+              >
+                <WidgetComponent />
+              </Suspense>
+            ) : (
+              <div className="flex items-center justify-center p-8 text-muted-foreground border rounded-lg bg-background">
+                <div className="text-center">
+                  <ExternalLinkIcon className="h-8 w-8 mx-auto mb-3 opacity-50" />
+                  <p>Widget preview not available</p>
+                  <p className="text-sm">Click "Open Widget" to view in a new tab</p>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </DialogContent>
       </Dialog>
