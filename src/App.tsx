@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import WeatherVietnam, { HanoiWidget, HoChiMinhWidget, HaLongBayWidget } from './pages/WeatherVietnam';
@@ -8,20 +8,18 @@ import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/weather-vietnam" element={<WeatherVietnam />} />
-          <Route path="/vietnam/flights" element={<VietnamFlights />} />
-          <Route path="/vietnam/map" element={<VietnamMap />} />
-          <Route path="/vietnam/hanoi" element={<HanoiWidget />} />
-          <Route path="/vietnam/hochiminh" element={<HoChiMinhWidget />} />
-          <Route path="/vietnam/halongbay" element={<HaLongBayWidget />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Layout>
-    </Router>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/weather-vietnam" element={<WeatherVietnam />} />
+        <Route path="/vietnam/flights" element={<VietnamFlights />} />
+        <Route path="/vietnam/map" element={<VietnamMap />} />
+        <Route path="/vietnam/hanoi" element={<HanoiWidget />} />
+        <Route path="/vietnam/hochiminh" element={<HoChiMinhWidget />} />
+        <Route path="/vietnam/halongbay" element={<HaLongBayWidget />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Layout>
   );
 }
 
