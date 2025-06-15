@@ -40,9 +40,9 @@ const ITINERARY_LOCATIONS: ItineraryLocation[] = [
     name: 'Ho Chi Minh City',
     dates: 'Jul 4-6',
     nights: 2,
-    description: 'Hotel: $100 • Meals: $70 • Activities: $80 • Transport: $50\nCan Gio Mangrove, Cu Chi Tunnels, final departure',
+    description: 'Hotel: $100 • Meals: $70 • Activities: $80 • Transport: $350 (includes return flight to Hanoi)\nCan Gio Mangrove, Cu Chi Tunnels, final departure',
     type: 'city',
-    cost: 300
+    cost: 600
   }
 ];
 
