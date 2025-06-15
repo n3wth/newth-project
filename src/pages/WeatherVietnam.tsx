@@ -1,12 +1,20 @@
 import { useEffect, useState } from 'react';
 import { getWeatherData } from '../services/weatherService';
 import type { WeatherData, WeatherDay } from '../services/weatherService';
-import '../styles/WeatherVietnam.css';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 
 const CITIES = [
   'Hanoi',
-  'Ho Chi Minh City', 
-  'Ha Long Bay'
+  'Ho Chi Minh City',
+  'Ha Long Bay',
 ];
 
 export default function WeatherVietnam() {
@@ -17,8 +25,6 @@ export default function WeatherVietnam() {
     async function fetchWeather() {
       setLoading(true);
       const results: Record<string, WeatherData> = {};
-      
-      // Fetch weather for each city using Google API integration
       for (const city of CITIES) {
         try {
           results[city] = await getWeatherData(city);
@@ -26,7 +32,6 @@ export default function WeatherVietnam() {
           console.error(`Failed to fetch weather for ${city}:`, error);
         }
       }
-      
       setWeather(results);
       setLoading(false);
     }
@@ -35,54 +40,59 @@ export default function WeatherVietnam() {
 
   if (loading) {
     return (
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        height: '200px',
-        fontFamily: 'system-ui, -apple-system, sans-serif',
-        color: '#666'
-      }}>
+      <div className="flex justify-center items-center h-48 text-muted-foreground font-medium">
         Loading Vietnam weather data...
       </div>
     );
   }
 
   return (
-    <div className="weather-embed-container">
-      <h2 className="weather-embed-header">🇻🇳 Vietnam 10-Day Weather Forecast</h2>
-      <div className="weather-embed-cities">
-        {CITIES.map(city => {
+    <div className="w-full max-w-2xl mx-auto space-y-6">
+      <h2 className="text-center text-2xl font-bold tracking-tight mb-2">🇻🇳 Vietnam 10-Day Weather Forecast</h2>
+      <div className="grid gap-6 md:grid-cols-2">
+        {CITIES.map((city) => {
           const cityWeather = weather[city];
           if (!cityWeather) return null;
-          
           return (
-            <div key={city} className="weather-embed-city">
-              <h3>{city}</h3>
-              <div className="weather-embed-days">
-                {cityWeather.daily.slice(0, 10).map((day: WeatherDay, i: number) => (
-                  <div key={i} className={"weather-embed-day" + (i === 0 ? " weather-embed-today" : "") }>
-                    <span>
-                      {i === 0 ? 'Today' : new Date(day.date).toLocaleDateString('en', { month: 'short', day: 'numeric' })}
-                    </span>
-                    <span style={{ fontSize: 12, opacity: 0.9, textTransform: 'capitalize' }}>{day.condition}</span>
-                    <span style={{ textAlign: 'center', opacity: 0.8, fontSize: 13 }}>{day.tempMin}°</span>
-                    <span style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 15 }}>{day.tempMax}°</span>
-                    <span className="weather-embed-precip">{day.precipitation}mm</span>
-                  </div>
-                ))}
-              </div>
-              <div className="weather-embed-source">{cityWeather.source}</div>
-            </div>
+            <Card key={city} className="bg-background border shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-center text-lg font-semibold">{city}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-20">Day</TableHead>
+                      <TableHead>Condition</TableHead>
+                      <TableHead className="text-center">Min</TableHead>
+                      <TableHead className="text-center">Max</TableHead>
+                      <TableHead className="text-center">Rain</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {cityWeather.daily.slice(0, 10).map((day: WeatherDay, i: number) => (
+                      <TableRow key={i} className={i === 0 ? 'font-bold text-primary' : ''}>
+                        <TableCell>{i === 0 ? 'Today' : new Date(day.date).toLocaleDateString('en', { month: 'short', day: 'numeric' })}</TableCell>
+                        <TableCell className="capitalize text-xs opacity-90">{day.condition}</TableCell>
+                        <TableCell className="text-center text-xs opacity-80">{day.tempMin}°</TableCell>
+                        <TableCell className="text-center font-semibold">{day.tempMax}°</TableCell>
+                        <TableCell className="text-center text-sky-500 dark:text-sky-400 text-xs">{day.precipitation}mm</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+                <div className="mt-2 text-xs text-muted-foreground text-center opacity-80">
+                  {cityWeather.source}
+                </div>
+              </CardContent>
+            </Card>
           );
         })}
       </div>
-      <div className="weather-embed-footer">
-        ⚡ Powered by Google API Key: AIzaSyD7WCApkLtI-PJA7169MnnItGXRRpZ2kRY
+      <div className="text-xs text-muted-foreground text-center bg-muted rounded-md py-2">
+        ⚡ Powered by Google API Key: <span className="font-mono">AIzaSyD7WCApkLtI-PJA7169MnnItGXRRpZ2kRY</span>
         <br />
-        <em style={{ fontSize: 11 }}>
-          Real-time weather data with Google Geocoding API integration
-        </em>
+        <em className="text-xs">Real-time weather data with Google Geocoding API integration</em>
       </div>
     </div>
   );
