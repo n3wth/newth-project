@@ -20,7 +20,6 @@ export default function Home() {
               <Lego size={32} weight="fill" className="text-primary" />
               <div>
                 <h1 className="text-2xl font-bold tracking-tight">Newth.ai Widgets</h1>
-                <p className="text-sm text-muted-foreground">Personal Tools & Utilities</p>
               </div>
             </div>
           </div>
