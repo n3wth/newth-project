@@ -16,4 +16,19 @@ prefer_cloudflare_spa_best_practices = true
 # - Always keep _redirects and _routes.json in sync with Cloudflare SPA best practices
 # - Use Cloudflare's official SPA/static asset guidance for routing
 # - Prefer autonomous, multi-step workflows without repeated confirmation
-# - Think a few steps ahead and avoid unnecessary interruptions 
+# - Think a few steps ahead and avoid unnecessary interruptions
+#
+# Project structure & features:
+# - Component-driven architecture (React + TypeScript)
+# - Custom UI primitives (Card, Table, etc.) in src/components/ui
+# - Responsive, modern design with Tailwind CSS and glassmorphism
+# - Weather widgets for Vietnamese cities, embeddable via iframe
+# - Google Geocoding API integration for city coordinates
+# - Weather data is simulated/mock but can be extended to real APIs
+# - Loading and error states handled with dedicated components
+# - Custom 404/NotFound page with available routes
+# - Utility functions (e.g., cn) for class merging
+# - Vite config with path alias (@ -> src)
+# - TypeScript strictness and path aliasing in tsconfig
+# - Easy to add new widgets/pages via src/pages and App.tsx
+# - All business logic and API calls separated in src/services 
