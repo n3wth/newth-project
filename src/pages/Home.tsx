@@ -9,6 +9,9 @@ import { filterWidgetsByCategory } from '@/utils/widgets';
 export default function Home() {
   const allWidgets = WIDGETS;
   const vietnamWidgets = filterWidgetsByCategory(WIDGETS, WIDGET_CATEGORIES.VIETNAM);
+  const productivityWidgets = filterWidgetsByCategory(WIDGETS, WIDGET_CATEGORIES.PRODUCTIVITY);
+  const utilityWidgets = filterWidgetsByCategory(WIDGETS, WIDGET_CATEGORIES.UTILITIES);
+  const personalWidgets = filterWidgetsByCategory(WIDGETS, WIDGET_CATEGORIES.PERSONAL);
 
   return (
     <div className="min-h-screen bg-background">
@@ -38,7 +41,7 @@ export default function Home() {
               My Personal Widget Collection
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              A collection of useful widgets I've built for documentation, trip planning, and personal projects. 
+              A collection of useful widgets I've built for productivity, utilities, trip planning, and personal projects. 
               Feel free to explore and use them for your own needs.
             </p>
           </div>
@@ -68,17 +71,35 @@ export default function Home() {
           <Tabs defaultValue="all" className="w-full" data-testid="widget-tabs">
             <div className="flex items-center justify-between mb-8">
               <div className="space-y-1">
-                <TabsList data-testid="tabs-list" className="grid w-full grid-cols-2 lg:w-[400px]">
-                  <TabsTrigger value="all" data-testid="tab-all" className="text-sm">
-                    All Widgets
-                    <Badge variant="secondary" className="ml-2 text-xs">
+                <TabsList data-testid="tabs-list" className="grid w-full grid-cols-5 lg:w-[600px]">
+                  <TabsTrigger value="all" data-testid="tab-all" className="text-xs">
+                    All
+                    <Badge variant="secondary" className="ml-1 text-xs">
                       {allWidgets.length}
                     </Badge>
                   </TabsTrigger>
-                  <TabsTrigger value="vietnam" data-testid="tab-vietnam" className="text-sm">
-                    Vietnam Trip
-                    <Badge variant="secondary" className="ml-2 text-xs">
+                  <TabsTrigger value="vietnam" data-testid="tab-vietnam" className="text-xs">
+                    Vietnam
+                    <Badge variant="secondary" className="ml-1 text-xs">
                       {vietnamWidgets.length}
+                    </Badge>
+                  </TabsTrigger>
+                  <TabsTrigger value="productivity" data-testid="tab-productivity" className="text-xs">
+                    Productivity
+                    <Badge variant="secondary" className="ml-1 text-xs">
+                      {productivityWidgets.length}
+                    </Badge>
+                  </TabsTrigger>
+                  <TabsTrigger value="utilities" data-testid="tab-utilities" className="text-xs">
+                    Utilities
+                    <Badge variant="secondary" className="ml-1 text-xs">
+                      {utilityWidgets.length}
+                    </Badge>
+                  </TabsTrigger>
+                  <TabsTrigger value="personal" data-testid="tab-personal" className="text-xs">
+                    Personal
+                    <Badge variant="secondary" className="ml-1 text-xs">
+                      {personalWidgets.length}
                     </Badge>
                   </TabsTrigger>
                 </TabsList>
@@ -94,7 +115,7 @@ export default function Home() {
               <div className="space-y-2">
                 <h3 className="text-lg font-semibold">All Personal Widgets</h3>
                 <p className="text-sm text-muted-foreground">
-                  Everything I've built for various personal projects and documentation
+                  Everything I've built for various personal projects, productivity, and documentation
                 </p>
               </div>
               <WidgetGrid widgets={allWidgets} />
@@ -104,10 +125,40 @@ export default function Home() {
               <div className="space-y-2">
                 <h3 className="text-lg font-semibold">Vietnam Trip Planning</h3>
                 <p className="text-sm text-muted-foreground">
-                  Weather widgets I built to help plan my Vietnam trip - tracking forecasts for key destinations
+                  Widgets I built to help plan my Vietnam trip - weather, flights, maps, and itinerary
                 </p>
               </div>
               <WidgetGrid widgets={vietnamWidgets} />
+            </TabsContent>
+
+            <TabsContent value="productivity" data-testid="tab-content-productivity" className="space-y-6">
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold">Productivity Tools</h3>
+                <p className="text-sm text-muted-foreground">
+                  Focus timers, habit trackers, and note-taking tools to boost productivity
+                </p>
+              </div>
+              <WidgetGrid widgets={productivityWidgets} />
+            </TabsContent>
+
+            <TabsContent value="utilities" data-testid="tab-content-utilities" className="space-y-6">
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold">Utility Widgets</h3>
+                <p className="text-sm text-muted-foreground">
+                  Handy tools for design, time zones, and everyday tasks
+                </p>
+              </div>
+              <WidgetGrid widgets={utilityWidgets} />
+            </TabsContent>
+
+            <TabsContent value="personal" data-testid="tab-content-personal" className="space-y-6">
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold">Personal Widgets</h3>
+                <p className="text-sm text-muted-foreground">
+                  Local weather, reading lists, and personal tracking tools
+                </p>
+              </div>
+              <WidgetGrid widgets={personalWidgets} />
             </TabsContent>
           </Tabs>
         </div>
@@ -124,7 +175,7 @@ export default function Home() {
               <Badge variant="outline" className="text-xs">shadcn/ui</Badge>
             </div>
             <p className="text-xs text-muted-foreground">
-              Personal widget collection for documentation and project planning.
+              Personal widget collection for productivity, utilities, and project planning.
             </p>
           </div>
         </div>

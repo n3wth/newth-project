@@ -19,7 +19,8 @@ const OPENWEATHER_BASE_URL = 'https://api.openweathermap.org/data/2.5';
 const CITY_COORDINATES: Record<string, { lat: number; lon: number }> = {
   'Hanoi': { lat: 21.0285, lon: 105.8542 },
   'Ho Chi Minh City': { lat: 10.8231, lon: 106.6297 },
-  'Ha Long Bay': { lat: 20.9101, lon: 107.1839 }
+  'Ha Long Bay': { lat: 20.9101, lon: 107.1839 },
+  'San Francisco': { lat: 37.7749, lon: -122.4194 }
 };
 
 interface OpenWeatherResponse {
@@ -150,6 +151,11 @@ function generateMockWeatherData(city: string): WeatherData {
       tempBase: 22,
       tempVariation: 7,
       conditions: ['Foggy', 'Partly cloudy', 'Light rain', 'Cloudy', 'Mist']
+    },
+    'San Francisco': {
+      tempBase: 18,
+      tempVariation: 6,
+      conditions: ['Foggy', 'Partly cloudy', 'Clear sky', 'Overcast clouds', 'Light rain']
     }
   };
   

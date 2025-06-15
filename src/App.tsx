@@ -5,6 +5,10 @@ import WeatherVietnam, { HanoiWidget, HoChiMinhWidget, HaLongBayWidget } from '.
 import VietnamFlights from './pages/VietnamFlights';
 import VietnamMap from './pages/VietnamMap';
 import VietnamItinerary from './pages/VietnamItinerary';
+import PomodoroTimer from './pages/PomodoroTimer';
+import WorldClock from './pages/WorldClock';
+import SanFranciscoWeather from './pages/SanFranciscoWeather';
+import ColorPalette from './pages/ColorPalette';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -19,6 +23,10 @@ function App() {
         <Route path="/vietnam/hanoi" element={<HanoiWidget />} />
         <Route path="/vietnam/hochiminh" element={<HoChiMinhWidget />} />
         <Route path="/vietnam/halongbay" element={<HaLongBayWidget />} />
+        <Route path="/productivity/pomodoro" element={<PomodoroTimer />} />
+        <Route path="/utilities/world-clock" element={<WorldClock />} />
+        <Route path="/utilities/colors" element={<ColorPalette />} />
+        <Route path="/personal/sf-weather" element={<SanFranciscoWeather />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>

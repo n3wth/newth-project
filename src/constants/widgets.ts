@@ -3,9 +3,13 @@ import type { Widget } from '@/types/widget';
 export const WIDGET_CATEGORIES = {
   ALL: 'all',
   VIETNAM: 'vietnam',
+  PRODUCTIVITY: 'productivity',
+  UTILITIES: 'utilities',
+  PERSONAL: 'personal',
 } as const;
 
 export const WIDGETS: Widget[] = [
+  // Vietnam Trip Widgets
   {
     id: 'vietnam-weather-overview',
     title: 'Vietnam Trip Weather Overview',
@@ -61,5 +65,83 @@ export const WIDGETS: Widget[] = [
     path: '/vietnam/halongbay',
     category: WIDGET_CATEGORIES.VIETNAM,
     tags: ['weather', 'halongbay', 'vietnam', 'cruise']
+  },
+
+  // Productivity Widgets
+  {
+    id: 'pomodoro-timer',
+    title: 'Pomodoro Timer',
+    description: 'Focus timer with 25-minute work sessions and 5-minute breaks to boost productivity',
+    path: '/productivity/pomodoro',
+    category: WIDGET_CATEGORIES.PRODUCTIVITY,
+    tags: ['timer', 'focus', 'productivity', 'pomodoro']
+  },
+  {
+    id: 'habit-tracker',
+    title: 'Daily Habit Tracker',
+    description: 'Track daily habits and build consistent routines with visual progress indicators',
+    path: '/productivity/habits',
+    category: WIDGET_CATEGORIES.PRODUCTIVITY,
+    tags: ['habits', 'tracking', 'goals', 'routine']
+  },
+  {
+    id: 'quick-notes',
+    title: 'Quick Notes',
+    description: 'Simple note-taking widget for capturing thoughts and ideas on the go',
+    path: '/productivity/notes',
+    category: WIDGET_CATEGORIES.PRODUCTIVITY,
+    tags: ['notes', 'writing', 'ideas', 'capture']
+  },
+
+  // Utility Widgets
+  {
+    id: 'world-clock',
+    title: 'World Clock',
+    description: 'Display current time across multiple time zones for global coordination',
+    path: '/utilities/world-clock',
+    category: WIDGET_CATEGORIES.UTILITIES,
+    tags: ['time', 'timezone', 'clock', 'global']
+  },
+  {
+    id: 'color-palette',
+    title: 'Color Palette Generator',
+    description: 'Generate beautiful color palettes for design projects with hex codes and previews',
+    path: '/utilities/colors',
+    category: WIDGET_CATEGORIES.UTILITIES,
+    tags: ['colors', 'design', 'palette', 'generator']
+  },
+  {
+    id: 'qr-generator',
+    title: 'QR Code Generator',
+    description: 'Generate QR codes for URLs, text, or contact information with customizable options',
+    path: '/utilities/qr-code',
+    category: WIDGET_CATEGORIES.UTILITIES,
+    tags: ['qr', 'generator', 'code', 'sharing']
+  },
+
+  // Personal Widgets
+  {
+    id: 'sf-weather',
+    title: 'San Francisco Weather',
+    description: 'Local weather forecast for San Francisco - my home base weather tracking',
+    path: '/personal/sf-weather',
+    category: WIDGET_CATEGORIES.PERSONAL,
+    tags: ['weather', 'sanfrancisco', 'local', 'forecast']
+  },
+  {
+    id: 'reading-list',
+    title: 'Reading List',
+    description: 'Track books to read, currently reading, and completed with progress and notes',
+    path: '/personal/reading',
+    category: WIDGET_CATEGORIES.PERSONAL,
+    tags: ['books', 'reading', 'tracking', 'progress']
+  },
+  {
+    id: 'workout-log',
+    title: 'Workout Log',
+    description: 'Simple workout tracking with exercises, sets, reps, and progress over time',
+    path: '/personal/workout',
+    category: WIDGET_CATEGORIES.PERSONAL,
+    tags: ['fitness', 'workout', 'exercise', 'tracking']
   }
 ]; 

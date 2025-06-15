@@ -156,7 +156,7 @@ describe('Home Page UX Tests', () => {
       expect(tabList).toBeInTheDocument();
       
       const tabs = screen.getAllByRole('tab');
-      expect(tabs.length).toBe(2);
+      expect(tabs.length).toBe(5);
     });
 
     it('should have accessible links', () => {
