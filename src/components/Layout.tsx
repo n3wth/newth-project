@@ -6,8 +6,8 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="min-h-screen bg-muted py-4">
-      <main className="max-w-3xl mx-auto px-2">
+    <div className="min-h-screen w-full max-w-[1600px] mx-auto bg-muted py-4">
+      <main className="px-2">
         {children}
       </main>
     </div>

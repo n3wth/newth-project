@@ -97,7 +97,7 @@ export default function WeatherVietnam({ fixedHeight }: WeatherVietnamProps) {
             );
           })}
         </div>
-        <div className="text-xs text-muted-foreground text-center bg-muted rounded-md py-2 mt-4">
+        <div className="text-xs text-muted-foreground text-center rounded-md py-2 mt-4">
           ⚡ Powered by Google API Key: <span className="font-mono">AIzaSyD7WCApkLtI-PJA7169MnnItGXRRpZ2kRY</span>
           <br />
           <em className="text-xs">Real-time weather data with Google Geocoding API integration</em>
