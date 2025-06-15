@@ -79,36 +79,45 @@ function LocationCard({ location }: { location: ItineraryLocation }) {
           </Badge>
         </div>
         
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm font-medium">{location.dates}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm text-muted-foreground">
-                {location.nights} night{location.nights !== 1 ? 's' : ''}
-              </span>
+        <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className="flex items-center gap-2">
+            <Calendar className="h-4 w-4 text-muted-foreground" />
+            <div>
+              <p className="text-xs text-muted-foreground">Dates</p>
+              <p className="text-sm font-medium">{location.dates}</p>
             </div>
           </div>
-          
           <div className="flex items-center gap-2">
+            <Clock className="h-4 w-4 text-muted-foreground" />
+            <div>
+              <p className="text-xs text-muted-foreground">Duration</p>
+              <p className="text-sm font-medium">
+                {location.nights} night{location.nights !== 1 ? 's' : ''}
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="bg-green-50 dark:bg-green-950/30 rounded-lg p-3 mb-4">
+          <div className="flex items-center gap-2 mb-2">
             <DollarSign className="h-4 w-4 text-green-600 dark:text-green-400" />
             <span className="text-lg font-bold text-green-600 dark:text-green-400">
               ${location.cost}
             </span>
-            <span className="text-sm text-muted-foreground ml-auto">
-              estimated cost
+            <span className="text-xs text-green-600 dark:text-green-400 ml-auto">
+              total cost
             </span>
+          </div>
+          <div className="text-xs text-green-700 dark:text-green-300 leading-relaxed">
+            {location.description.split('\n')[0]}
           </div>
         </div>
       </CardHeader>
       
       <CardContent className="pt-0">
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          {location.description}
-        </p>
+        <div className="text-sm text-muted-foreground leading-relaxed">
+          <strong>Includes:</strong> {location.description.split('\n')[1]}
+        </div>
       </CardContent>
     </Card>
   );
