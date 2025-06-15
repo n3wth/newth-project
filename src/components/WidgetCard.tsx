@@ -140,7 +140,7 @@ export const WidgetCard = ({ widget, className = '', variant = 'default' }: Widg
             </DialogDescription>
           </DialogHeader>
           
-          <div className="flex-1 overflow-auto space-y-4">
+          <div className="flex-1 space-y-4">
             {/* Embedding Info */}
             <div className="space-y-3 flex-shrink-0 bg-muted/30 p-4 rounded-lg">
               <div className="space-y-2">
@@ -203,7 +203,7 @@ export const WidgetCard = ({ widget, className = '', variant = 'default' }: Widg
             </div>
 
             {/* Widget Content */}
-            <div className="border rounded-lg overflow-hidden bg-background">
+            <div className="border rounded-lg bg-background">
               {WidgetComponent ? (
                 <Suspense 
                   fallback={
