@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/oembed.json", "destination": "/oembed.json" },
+    { "source": "/vite.svg", "destination": "/vite.svg" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+} 
