@@ -109,26 +109,29 @@ function LocationCard({ location }: { location: ItineraryLocation }) {
             </span>
           </div>
           
-          <div className="space-y-2">
-            <div className="text-xs font-medium text-green-700 dark:text-green-300 uppercase tracking-wide">
-              Cost Breakdown
+          <div className="space-y-3">
+            <div>
+              <div className="text-xs font-medium text-green-700 dark:text-green-300 uppercase tracking-wide mb-1">
+                Cost Breakdown
+              </div>
+              <div className="text-sm text-green-700 dark:text-green-300">
+                {location.description.split('\n')[0]}
+              </div>
             </div>
-            <div className="text-sm text-green-700 dark:text-green-300">
-              {location.description.split('\n')[0]}
+            
+            <div>
+              <div className="text-xs font-medium text-green-700 dark:text-green-300 uppercase tracking-wide mb-1">
+                Includes
+              </div>
+              <div className="text-sm text-green-700 dark:text-green-300">
+                {location.description.split('\n')[1]}
+              </div>
             </div>
           </div>
         </div>
       </CardHeader>
       
       <CardContent className="pt-0">
-        <div className="space-y-2">
-          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-            Includes
-          </div>
-          <div className="text-sm text-muted-foreground leading-relaxed">
-            {location.description.split('\n')[1]}
-          </div>
-        </div>
       </CardContent>
     </Card>
   );
