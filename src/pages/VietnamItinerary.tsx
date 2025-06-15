@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { MapPin, Calendar, Clock } from 'lucide-react';
+import { MapPin, Calendar, Clock, DollarSign } from 'lucide-react';
 
 interface ItineraryLocation {
   name: string;
@@ -9,6 +9,7 @@ interface ItineraryLocation {
   nights: number;
   description: string;
   type: 'city' | 'cruise' | 'retreat';
+  cost: number;
 }
 
 const ITINERARY_LOCATIONS: ItineraryLocation[] = [
@@ -17,28 +18,32 @@ const ITINERARY_LOCATIONS: ItineraryLocation[] = [
     dates: 'Jun 28-30 & Jul 5-6',
     nights: 3,
     description: 'Arrival city, Can Gio Mangrove, Cu Chi Tunnels, final departure',
-    type: 'city'
+    type: 'city',
+    cost: 450
   },
   {
     name: 'Hanoi',
     dates: 'Jun 30 - Jul 2',
     nights: 2,
     description: 'Old Quarter, Hoàn Kiếm Lake, Water Puppet Show',
-    type: 'city'
+    type: 'city',
+    cost: 320
   },
   {
     name: 'Ha Long Bay',
     dates: 'Jul 2-4',
     nights: 2,
     description: 'Private cruise, kayaking, cave visits, floating village',
-    type: 'cruise'
+    type: 'cruise',
+    cost: 680
   },
   {
     name: 'Ninh Binh (TOKI Retreat)',
     dates: 'Jul 4-5',
     nights: 1,
     description: 'Vân Long wetlands, sunrise boat safari, spa retreat',
-    type: 'retreat'
+    type: 'retreat',
+    cost: 280
   }
 ];
 
@@ -87,6 +92,12 @@ function LocationCard({ location }: { location: ItineraryLocation }) {
               {location.nights} night{location.nights !== 1 ? 's' : ''}
             </span>
           </div>
+          <div className="flex items-center gap-2 text-sm">
+            <DollarSign className="h-3 w-3 text-muted-foreground" />
+            <span className="font-medium text-green-600 dark:text-green-400">
+              ${location.cost}
+            </span>
+          </div>
         </div>
         
         <Separator />
@@ -100,9 +111,39 @@ function LocationCard({ location }: { location: ItineraryLocation }) {
 }
 
 export default function VietnamItinerary() {
+  const totalCost = ITINERARY_LOCATIONS.reduce((sum, location) => sum + location.cost, 0);
+  
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto p-6">
+        <div className="mb-6">
+          <Card className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-950 dark:to-blue-950 border-green-200 dark:border-green-800">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-lg font-semibold text-green-800 dark:text-green-200">
+                    Vietnam Trip Itinerary
+                  </h2>
+                  <p className="text-sm text-green-600 dark:text-green-400">
+                    8 days across 4 destinations
+                  </p>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-2">
+                    <DollarSign className="h-5 w-5 text-green-600 dark:text-green-400" />
+                    <span className="text-2xl font-bold text-green-700 dark:text-green-300">
+                      ${totalCost}
+                    </span>
+                  </div>
+                  <p className="text-xs text-green-600 dark:text-green-400">
+                    Total estimated cost
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {ITINERARY_LOCATIONS.map((location) => (
             <LocationCard key={location.name} location={location} />
