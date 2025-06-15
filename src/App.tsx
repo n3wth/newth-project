@@ -1,33 +1,27 @@
-import { Routes, Route } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
-import LoadingSpinner from './components/LoadingSpinner';
-
-// Lazy load pages
-const Home = lazy(() => import('./pages/Home'));
-const WeatherVietnam = lazy(() => import('./pages/WeatherVietnam'));
-const NotFound = lazy(() => import('./pages/NotFound'));
-const HanoiWidget = lazy(() => import('./pages/WeatherVietnam').then(m => ({ default: m.HanoiWidget })));
-const HoChiMinhWidget = lazy(() => import('./pages/WeatherVietnam').then(m => ({ default: m.HoChiMinhWidget })));
-const HaLongBayWidget = lazy(() => import('./pages/WeatherVietnam').then(m => ({ default: m.HaLongBayWidget })));
-// Example: const StatsWidget = lazy(() => import('./pages/StatsWidget'));
+import Home from './pages/Home';
+import WeatherVietnam, { HanoiWidget, HoChiMinhWidget, HaLongBayWidget } from './pages/WeatherVietnam';
+import VietnamFlights from './pages/VietnamFlights';
+import VietnamMap from './pages/VietnamMap';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <Layout>
-      <Suspense fallback={<LoadingSpinner />}>
+    <Router>
+      <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* Add new widget routes below */}
           <Route path="/weather-vietnam" element={<WeatherVietnam />} />
+          <Route path="/vietnam/flights" element={<VietnamFlights />} />
+          <Route path="/vietnam/map" element={<VietnamMap />} />
           <Route path="/vietnam/hanoi" element={<HanoiWidget />} />
           <Route path="/vietnam/hochiminh" element={<HoChiMinhWidget />} />
           <Route path="/vietnam/halongbay" element={<HaLongBayWidget />} />
-          {/* Example: <Route path="/stats" element={<StatsWidget />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </Suspense>
-    </Layout>
+      </Layout>
+    </Router>
   );
 }
 
