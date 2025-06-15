@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Sun, Cloud, MapPin } from 'lucide-react';
+import { Sun, MapPin, Cloud } from 'lucide-react';
 
 const widgets = [
   {
