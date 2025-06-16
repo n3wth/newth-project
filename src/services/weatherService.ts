@@ -12,126 +12,23 @@ export interface WeatherDay {
   precipitation: number
 }
 
-const OPENWEATHER_API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY
-const OPENWEATHER_BASE_URL = 'https://api.openweathermap.org/data/2.5'
+// Weather API calls are now handled securely through our backend API
+// No API keys are exposed to the client
 
-// City coordinates for Vietnam locations
-const CITY_COORDINATES: Record<string, { lat: number; lon: number }> = {
-  Hanoi: { lat: 21.0285, lon: 105.8542 },
-  'Ho Chi Minh City': { lat: 10.8231, lon: 106.6297 },
-  'Ha Long Bay': { lat: 20.9101, lon: 107.1839 },
-  'San Francisco': { lat: 37.7749, lon: -122.4194 },
-}
-
-interface OpenWeatherResponse {
-  list: Array<{
-    dt: number
-    main: {
-      temp_min: number
-      temp_max: number
-    }
-    weather: Array<{
-      main: string
-      description: string
-    }>
-    rain?: {
-      '3h': number
-    }
-    snow?: {
-      '3h': number
-    }
-  }>
-}
-
-function kelvinToCelsius(kelvin: number): number {
-  return Math.round(kelvin - 273.15)
-}
-
-function formatCondition(weather: { main: string; description: string }): string {
-  return weather.description.charAt(0).toUpperCase() + weather.description.slice(1)
-}
-
-function getPrecipitation(item: { rain?: { '3h': number }; snow?: { '3h': number } }): number {
-  const rain = item.rain?.['3h'] || 0
-  const snow = item.snow?.['3h'] || 0
-  return Math.round(rain + snow)
-}
+// Helper functions moved to backend API for security
 
 async function fetchWeatherFromAPI(city: string): Promise<WeatherData> {
-  const coordinates = CITY_COORDINATES[city]
-  if (!coordinates) {
-    throw new Error(`Coordinates not found for city: ${city}`)
-  }
-
-  if (!OPENWEATHER_API_KEY) {
-    throw new Error(
-      'OpenWeather API key not configured. Please set VITE_OPENWEATHER_API_KEY in your .env file.'
-    )
-  }
-
-  const url = `${OPENWEATHER_BASE_URL}/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${OPENWEATHER_API_KEY}`
-
   try {
-    const response = await fetch(url)
+    // Call our secure backend API instead of directly calling OpenWeather
+    const response = await fetch(`/api/weather?city=${encodeURIComponent(city)}`)
 
     if (!response.ok) {
-      throw new Error(`OpenWeatherMap API error: ${response.status} ${response.statusText}`)
+      const errorData = await response.json().catch(() => ({}))
+      throw new Error(errorData.error || `API error: ${response.status}`)
     }
 
-    const data: OpenWeatherResponse = await response.json()
-
-    // Group forecasts by day and get daily min/max
-    const dailyData: Record<
-      string,
-      {
-        date: string
-        tempMin: number
-        tempMax: number
-        conditions: string[]
-        precipitation: number
-      }
-    > = {}
-
-    data.list.forEach((item) => {
-      const date = new Date(item.dt * 1000).toISOString().split('T')[0]!
-      const tempMin = kelvinToCelsius(item.main.temp_min)
-      const tempMax = kelvinToCelsius(item.main.temp_max)
-      const condition = formatCondition(item.weather[0]!)
-      const precipitation = getPrecipitation(item)
-
-      if (!dailyData[date]) {
-        dailyData[date] = {
-          date,
-          tempMin,
-          tempMax,
-          conditions: [condition],
-          precipitation,
-        }
-      } else {
-        dailyData[date]!.tempMin = Math.min(dailyData[date]!.tempMin, tempMin)
-        dailyData[date]!.tempMax = Math.max(dailyData[date]!.tempMax, tempMax)
-        if (!dailyData[date]!.conditions.includes(condition)) {
-          dailyData[date]!.conditions.push(condition)
-        }
-        dailyData[date]!.precipitation = Math.max(dailyData[date]!.precipitation, precipitation)
-      }
-    })
-
-    // Convert to array and take first 10 days
-    const daily: WeatherDay[] = Object.values(dailyData)
-      .slice(0, 10)
-      .map((day) => ({
-        date: day.date,
-        tempMin: day.tempMin,
-        tempMax: day.tempMax,
-        condition: day.conditions[0]!, // Use the first/most common condition
-        precipitation: day.precipitation,
-      }))
-
-    return {
-      city,
-      daily,
-    }
+    const data: WeatherData = await response.json()
+    return data
   } catch (error) {
     console.error(`Failed to fetch weather for ${city}:`, error)
     throw new Error(
