@@ -1,14 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { WIDGETS, WIDGET_CATEGORIES } from '@/constants/widgets';
-import { filterWidgetsByCategory } from '@/utils/widgets';
 import WeatherVietnam from './WeatherVietnam';
 import VietnamFlights from './VietnamFlights';
 import VietnamMap from './VietnamMap';
 import VietnamItinerary from './VietnamItinerary';
 
 export default function VietnamDashboard() {
-  // Get all Vietnam widgets for reference (not used directly, but for future extensibility)
-  const vietnamWidgets = filterWidgetsByCategory(WIDGETS, WIDGET_CATEGORIES.VIETNAM);
+  // Vietnam widgets available for future extensibility
+  // const vietnamWidgets = filterWidgetsByCategory(WIDGETS, WIDGET_CATEGORIES.VIETNAM);
 
   return (
     <div className="min-h-screen bg-background p-6">
