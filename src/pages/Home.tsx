@@ -22,11 +22,16 @@ export default function Home() {
   }, []);
 
   // Calculate shrinking values based on scroll
-  const maxScroll = 200; // Maximum scroll distance for full shrink
+  const maxScroll = 100; // Reduced from 200 to make it more responsive
   const scrollProgress = Math.min(scrollY / maxScroll, 1);
-  const logoSize = 32 - (scrollProgress * 8); // Shrink from 32px to 24px
-  const headerPadding = 6 - (scrollProgress * 2); // Shrink from py-6 to py-4
-  const titleSize = 2 - (scrollProgress * 0.25); // Shrink text size slightly
+  
+  // Use easing function for smoother transition
+  const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 4);
+  const easedProgress = easeOutQuart(scrollProgress);
+  
+  const logoSize = 32 - (easedProgress * 8); // Shrink from 32px to 24px
+  const headerPadding = 6 - (easedProgress * 2); // Shrink from py-6 to py-4
+  const titleSize = 2 - (easedProgress * 0.25); // Shrink text size slightly
 
   return (
     <div className="min-h-screen bg-background">
