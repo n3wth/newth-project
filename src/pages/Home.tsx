@@ -137,42 +137,44 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <Tabs defaultValue="all" className="w-full" data-testid="widget-tabs">
             <div className="flex items-center justify-between mb-8">
-              <div className="space-y-1">
-                <TabsList data-testid="tabs-list" className="grid w-full grid-cols-5 lg:w-[600px]">
-                  <TabsTrigger value="all" data-testid="tab-all" className="text-xs">
-                    All
-                    <Badge variant="secondary" className="ml-1 text-xs">
-                      {allWidgets.length}
-                    </Badge>
-                  </TabsTrigger>
-                  <TabsTrigger value="vietnam" data-testid="tab-vietnam" className="text-xs">
-                    Vietnam
-                    <Badge variant="secondary" className="ml-1 text-xs">
-                      {vietnamWidgets.length}
-                    </Badge>
-                  </TabsTrigger>
-                  <TabsTrigger value="productivity" data-testid="tab-productivity" className="text-xs">
-                    Productivity
-                    <Badge variant="secondary" className="ml-1 text-xs">
-                      {productivityWidgets.length}
-                    </Badge>
-                  </TabsTrigger>
-                  <TabsTrigger value="utilities" data-testid="tab-utilities" className="text-xs">
-                    Utilities
-                    <Badge variant="secondary" className="ml-1 text-xs">
-                      {utilityWidgets.length}
-                    </Badge>
-                  </TabsTrigger>
-                  <TabsTrigger value="personal" data-testid="tab-personal" className="text-xs">
-                    Personal
-                    <Badge variant="secondary" className="ml-1 text-xs">
-                      {personalWidgets.length}
-                    </Badge>
-                  </TabsTrigger>
-                </TabsList>
+              <div className="space-y-1 w-full">
+                <div className="overflow-x-auto">
+                  <TabsList data-testid="tabs-list" className="flex w-max min-w-full justify-start">
+                    <TabsTrigger value="all" data-testid="tab-all" className="text-xs whitespace-nowrap">
+                      All
+                      <Badge variant="secondary" className="ml-1 text-xs">
+                        {allWidgets.length}
+                      </Badge>
+                    </TabsTrigger>
+                    <TabsTrigger value="vietnam" data-testid="tab-vietnam" className="text-xs whitespace-nowrap">
+                      Vietnam
+                      <Badge variant="secondary" className="ml-1 text-xs">
+                        {vietnamWidgets.length}
+                      </Badge>
+                    </TabsTrigger>
+                    <TabsTrigger value="productivity" data-testid="tab-productivity" className="text-xs whitespace-nowrap">
+                      Productivity
+                      <Badge variant="secondary" className="ml-1 text-xs">
+                        {productivityWidgets.length}
+                      </Badge>
+                    </TabsTrigger>
+                    <TabsTrigger value="utilities" data-testid="tab-utilities" className="text-xs whitespace-nowrap">
+                      Utilities
+                      <Badge variant="secondary" className="ml-1 text-xs">
+                        {utilityWidgets.length}
+                      </Badge>
+                    </TabsTrigger>
+                    <TabsTrigger value="personal" data-testid="tab-personal" className="text-xs whitespace-nowrap">
+                      Personal
+                      <Badge variant="secondary" className="ml-1 text-xs">
+                        {personalWidgets.length}
+                      </Badge>
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
               </div>
               
-              <div className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground">
+              <div className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground ml-4">
                 <span>Theme:</span>
                 <Badge variant="outline" className="font-mono">Default</Badge>
               </div>
