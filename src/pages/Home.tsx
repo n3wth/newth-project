@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
@@ -7,22 +8,45 @@ import { WIDGETS, WIDGET_CATEGORIES } from '@/constants/widgets';
 import { filterWidgetsByCategory } from '@/utils/widgets';
 
 export default function Home() {
+  const [scrollY, setScrollY] = useState(0);
   const allWidgets = WIDGETS;
   const vietnamWidgets = filterWidgetsByCategory(WIDGETS, WIDGET_CATEGORIES.VIETNAM);
   const productivityWidgets = filterWidgetsByCategory(WIDGETS, WIDGET_CATEGORIES.PRODUCTIVITY);
   const utilityWidgets = filterWidgetsByCategory(WIDGETS, WIDGET_CATEGORIES.UTILITIES);
   const personalWidgets = filterWidgetsByCategory(WIDGETS, WIDGET_CATEGORIES.PERSONAL);
 
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Calculate shrinking values based on scroll
+  const maxScroll = 200; // Maximum scroll distance for full shrink
+  const scrollProgress = Math.min(scrollY / maxScroll, 1);
+  const logoSize = 32 - (scrollProgress * 8); // Shrink from 32px to 24px
+  const headerPadding = 6 - (scrollProgress * 2); // Shrink from py-6 to py-4
+  const titleSize = 2 - (scrollProgress * 0.25); // Shrink text size slightly
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 py-6">
+      <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-200">
+        <div className="container mx-auto px-4" style={{ paddingTop: `${headerPadding * 0.25}rem`, paddingBottom: `${headerPadding * 0.25}rem` }}>
           <div className="flex items-center justify-center gap-3" data-testid="logo">
             <div className="flex items-center gap-2">
-              <Lego size={32} weight="fill" className="text-primary" />
+              <Lego 
+                size={logoSize} 
+                weight="fill" 
+                className="text-primary transition-all duration-200" 
+              />
               <div>
-                <h1 className="text-2xl font-bold tracking-tight">Newth.ai Widgets</h1>
+                <h1 
+                  className="font-bold tracking-tight transition-all duration-200"
+                  style={{ fontSize: `${titleSize}rem` }}
+                >
+                  Newth.ai Widgets
+                </h1>
               </div>
             </div>
           </div>
