@@ -56,14 +56,12 @@ export default function Home() {
                 className="text-primary transition-all duration-200" 
               />
               <div>
-                <AnimatedGradientText
+                <h1
                   className="font-bold tracking-tight transition-all duration-200"
                   style={{ fontSize: `${titleSize}rem` }}
-                  colorFrom="#3b82f6"
-                  colorTo="#8b5cf6"
                 >
                   Newth.ai Widgets
-                </AnimatedGradientText>
+                </h1>
               </div>
             </div>
           </div>
