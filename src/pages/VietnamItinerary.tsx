@@ -24,9 +24,9 @@ const ITINERARY_LOCATIONS: ItineraryLocation[] = [
     name: 'Hanoi',
     dates: 'Jun 30 - Jul 2',
     nights: 2,
-    description: 'Hotel: $120 • Meals: $80 • Activities: $60 • Transport: $60\nOld Quarter, Hoàn Kiếm Lake, Water Puppet Show',
+    description: 'Hotel: Peridot Grand Luxury Boutique Hotel $265.71 • Meals: $80 • Activities: $60 • Transport: $60\nOld Quarter, Hoàn Kiếm Lake, Water Puppet Show',
     type: 'city',
-    cost: 320
+    cost: 465.71
   },
   {
     name: 'Bai Tu Long Bay',
@@ -40,9 +40,9 @@ const ITINERARY_LOCATIONS: ItineraryLocation[] = [
     name: 'Ho Chi Minh City',
     dates: 'Jul 4-6',
     nights: 2,
-    description: 'Airbnb: $100 • Meals: $70 • Activities: $80 • Transport: $350 (includes return flight to Hanoi)\nCan Gio Mangrove, Cu Chi Tunnels, final departure',
+    description: 'Airbnb: $184.87 • Meals: $70 • Activities: $80 • Transport: $350 (includes return flight to Hanoi)\nCan Gio Mangrove, Cu Chi Tunnels, final departure',
     type: 'city',
-    cost: 600
+    cost: 684.87
   }
 ];
 
