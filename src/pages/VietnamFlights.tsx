@@ -67,6 +67,27 @@ const FLIGHT_DATA: FlightDetails[] = [
     aircraft: 'Boeing 787',
     class: 'Economy',
     cost: 300
+  },
+  {
+    direction: 'outbound',
+    airline: 'Vietnam Airlines',
+    flightNumber: 'VN 246',
+    departure: {
+      date: 'Wednesday, July 2, 2025',
+      time: '8:00 AM',
+      airport: 'HAN',
+      city: 'Hanoi'
+    },
+    arrival: {
+      date: 'Wednesday, July 2, 2025',
+      time: '10:10 AM',
+      airport: 'SGN',
+      city: 'Ho Chi Minh City'
+    },
+    duration: '2 hours 10 minutes',
+    aircraft: 'Airbus A321',
+    class: 'Economy',
+    cost: 381.83
   }
 ];
 
