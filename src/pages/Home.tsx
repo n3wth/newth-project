@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
-import { Lego, Sparkle, Code, Palette } from '@phosphor-icons/react';
+import { Lego, Sparkle, Code, Palette, MapPin, Lightning, Wrench, User } from '@phosphor-icons/react';
 import { WidgetGrid } from '@/components/WidgetGrid';
 import { WIDGETS, WIDGET_CATEGORIES } from '@/constants/widgets';
 import { filterWidgetsByCategory } from '@/utils/widgets';
@@ -76,16 +76,20 @@ export default function Home() {
         <Marquee className="[--duration:30s]" pauseOnHover>
           <div className="flex items-center gap-8 mx-4">
             <Badge variant="secondary" className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-              🇻🇳 Vietnam Trip Planning
+              <MapPin className="w-3 h-3 mr-1" weight="fill" />
+              Vietnam Trip Planning
             </Badge>
             <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-              ⚡ Productivity Tools
+              <Lightning className="w-3 h-3 mr-1" weight="fill" />
+              Productivity Tools
             </Badge>
             <Badge variant="secondary" className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-              🛠️ Utility Widgets
+              <Wrench className="w-3 h-3 mr-1" weight="fill" />
+              Utility Widgets
             </Badge>
             <Badge variant="secondary" className="bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200">
-              👤 Personal Projects
+              <User className="w-3 h-3 mr-1" weight="fill" />
+              Personal Projects
             </Badge>
           </div>
         </Marquee>
