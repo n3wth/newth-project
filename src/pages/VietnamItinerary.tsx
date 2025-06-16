@@ -29,7 +29,7 @@ const ITINERARY_LOCATIONS: ItineraryLocation[] = [
     cost: 320
   },
   {
-    name: 'Ha Long Bay',
+    name: 'Bai Tu Long Bay',
     dates: 'Jul 2-4',
     nights: 2,
     description: 'All-inclusive Indochina Junk cruise: $1330\nPrivate cruise, kayaking, cave visits, floating village',
