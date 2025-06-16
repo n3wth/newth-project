@@ -12,7 +12,7 @@ export interface WeatherDay {
   precipitation: number
 }
 
-const OPENWEATHER_API_KEY = '3eb6328a959ba7abef565bbe4be7b982'
+const OPENWEATHER_API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY
 const OPENWEATHER_BASE_URL = 'https://api.openweathermap.org/data/2.5'
 
 // City coordinates for Vietnam locations
@@ -61,6 +61,12 @@ async function fetchWeatherFromAPI(city: string): Promise<WeatherData> {
   const coordinates = CITY_COORDINATES[city]
   if (!coordinates) {
     throw new Error(`Coordinates not found for city: ${city}`)
+  }
+
+  if (!OPENWEATHER_API_KEY) {
+    throw new Error(
+      'OpenWeather API key not configured. Please set VITE_OPENWEATHER_API_KEY in your .env file.'
+    )
   }
 
   const url = `${OPENWEATHER_BASE_URL}/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${OPENWEATHER_API_KEY}`

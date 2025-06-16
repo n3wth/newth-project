@@ -49,6 +49,10 @@ Each widget can be embedded individually:
 # Install dependencies
 npm install
 
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your API keys if needed
+
 # Start development server
 npm run dev
 

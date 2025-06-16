@@ -9,7 +9,12 @@ Thank you for your interest in contributing! This project is designed for a fast
    ```bash
    npm install
    ```
-3. **Start the dev server**:
+3. **Set up environment variables**:
+   ```bash
+   cp .env.example .env
+   # Edit .env with your API keys if needed
+   ```
+4. **Start the dev server**:
    ```bash
    npm run dev
    ```
