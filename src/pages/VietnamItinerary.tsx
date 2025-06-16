@@ -32,9 +32,9 @@ const ITINERARY_LOCATIONS: ItineraryLocation[] = [
     name: 'Ha Long Bay',
     dates: 'Jul 2-4',
     nights: 2,
-    description: 'All-inclusive private cruise: $1400\nPrivate cruise, kayaking, cave visits, floating village',
+    description: 'All-inclusive Indochina Junk cruise: $1330\nPrivate cruise, kayaking, cave visits, floating village',
     type: 'cruise',
-    cost: 1400
+    cost: 1330
   },
   {
     name: 'Ho Chi Minh City',
