@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { getWeatherData } from '../services/weatherService'
 import type { WeatherData, WeatherDay } from '../services/weatherService'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import {
   Table,
   TableBody,
@@ -101,9 +100,6 @@ function CityWeatherTable({ city, maxHeight, showHeader = true }: CityWeatherTab
           <CardTitle className="flex items-center gap-2 text-lg">
             <MapPin className="w-4 h-4 text-muted-foreground" />
             {city}
-            <Badge variant="secondary" className="ml-auto text-xs">
-              10-day forecast
-            </Badge>
           </CardTitle>
         </CardHeader>
       )}
