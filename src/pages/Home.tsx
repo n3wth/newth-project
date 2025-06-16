@@ -8,7 +8,6 @@ import { WIDGETS, WIDGET_CATEGORIES } from '@/constants/widgets';
 import { filterWidgetsByCategory } from '@/utils/widgets';
 import { Marquee } from '@/components/magicui/marquee';
 import { AnimatedGradientText } from '@/components/magicui/animated-gradient-text';
-import { ShimmerButton } from '@/components/magicui/shimmer-button';
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
@@ -131,15 +130,6 @@ export default function Home() {
               <Lego className="w-4 h-4" />
               <span>shadcn/ui</span>
             </div>
-          </div>
-
-          <div className="pt-4">
-            <ShimmerButton
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-              shimmerColor="#ffffff"
-            >
-              Explore Widgets
-            </ShimmerButton>
           </div>
         </div>
       </section>
