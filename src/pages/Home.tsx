@@ -6,6 +6,9 @@ import { Lego, Sparkle, Code, Palette } from '@phosphor-icons/react';
 import { WidgetGrid } from '@/components/WidgetGrid';
 import { WIDGETS, WIDGET_CATEGORIES } from '@/constants/widgets';
 import { filterWidgetsByCategory } from '@/utils/widgets';
+import { Marquee } from '@/components/magicui/marquee';
+import { AnimatedGradientText } from '@/components/magicui/animated-gradient-text';
+import { ShimmerButton } from '@/components/magicui/shimmer-button';
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
@@ -54,17 +57,39 @@ export default function Home() {
                 className="text-primary transition-all duration-200" 
               />
               <div>
-                <h1 
+                <AnimatedGradientText
                   className="font-bold tracking-tight transition-all duration-200"
                   style={{ fontSize: `${titleSize}rem` }}
+                  colorFrom="#3b82f6"
+                  colorTo="#8b5cf6"
                 >
                   Newth.ai Widgets
-                </h1>
+                </AnimatedGradientText>
               </div>
             </div>
           </div>
         </div>
       </header>
+
+      {/* Marquee Section */}
+      <section className="py-4 border-b bg-gradient-to-r from-blue-50/50 to-purple-50/50 dark:from-blue-950/20 dark:to-purple-950/20">
+        <Marquee className="[--duration:30s]" pauseOnHover>
+          <div className="flex items-center gap-8 mx-4">
+            <Badge variant="secondary" className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+              🇻🇳 Vietnam Trip Planning
+            </Badge>
+            <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+              ⚡ Productivity Tools
+            </Badge>
+            <Badge variant="secondary" className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+              🛠️ Utility Widgets
+            </Badge>
+            <Badge variant="secondary" className="bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200">
+              👤 Personal Projects
+            </Badge>
+          </div>
+        </Marquee>
+      </section>
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-12">
@@ -74,9 +99,13 @@ export default function Home() {
               <Sparkle className="w-3 h-3 mr-1" />
               Personal Collection
             </Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+            <AnimatedGradientText
+              className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl block"
+              colorFrom="#f59e0b"
+              colorTo="#ef4444"
+            >
               My Personal Widget Collection
-            </h2>
+            </AnimatedGradientText>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               A collection of useful widgets I've built for productivity, utilities, trip planning, and personal projects. 
               Feel free to explore and use them for your own needs.
@@ -98,6 +127,15 @@ export default function Home() {
               <Lego className="w-4 h-4" />
               <span>shadcn/ui</span>
             </div>
+          </div>
+
+          <div className="pt-4">
+            <ShimmerButton
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              shimmerColor="#ffffff"
+            >
+              Explore Widgets
+            </ShimmerButton>
           </div>
         </div>
       </section>
