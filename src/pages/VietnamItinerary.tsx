@@ -13,12 +13,12 @@ interface ItineraryLocation {
 
 const ITINERARY_LOCATIONS: ItineraryLocation[] = [
   {
-    name: 'Ninh Binh (TOKI Retreat)',
+    name: 'Ninh Binh (ChezCao Rice Field Ecolodge)',
     dates: 'Jun 28-30',
     nights: 2,
-    description: 'Retreat: $400 • Meals: $80 • Activities: $50 • Transport: $30\nVân Long wetlands, sunrise boat safari, spa retreat',
+    description: 'Ecolodge: $128 • Meals: $80 • Activities: $50 • Transport: $30\nVân Long wetlands, sunrise boat safari, King Room with Balcony',
     type: 'retreat',
-    cost: 560
+    cost: 288
   },
   {
     name: 'Hanoi',
