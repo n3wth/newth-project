@@ -145,8 +145,8 @@ describe('Home Page UX Tests', () => {
       const mainHeading = screen.getByRole('heading', { level: 1 });
       expect(mainHeading).toHaveTextContent('Newth.ai Widgets');
       
-      const secondaryHeading = screen.getByRole('heading', { level: 2 });
-      expect(secondaryHeading).toHaveTextContent('My Personal Widget Collection');
+      // Check that the hero title text exists (it's now AnimatedGradientText, not h2)
+      expect(screen.getByText('My Personal Widget Collection')).toBeInTheDocument();
     });
 
     it('should have accessible tab navigation', () => {
