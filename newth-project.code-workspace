@@ -1,0 +1,670 @@
+{
+  "folders": [
+    {
+      "path": ".",
+    },
+  ],
+  "settings": {
+    // TypeScript
+    "typescript.validate.enable": true,
+    "typescript.suggest.autoImports": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "typescript.inlayHints.parameterNames.enabled": "all",
+    "typescript.inlayHints.variableTypes.enabled": true,
+    "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+
+    // ESLint
+    "eslint.validate": ["typescript", "typescriptreact"],
+    "eslint.format.enable": true,
+    "eslint.lintTask.enable": true,
+
+    // Prettier
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      "source.organizeImports": "explicit",
+    },
+
+    // Tailwind CSS
+    "tailwindCSS.includeLanguages": {
+      "typescript": "typescript",
+      "typescriptreact": "typescriptreact",
+    },
+    "tailwindCSS.experimental.classRegex": [
+      ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+      ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    ],
+
+    // Editor
+    "editor.quickSuggestions": {
+      "strings": true,
+    },
+    "editor.suggest.insertMode": "replace",
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+
+    // Files
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/.git": true,
+      "**/.DS_Store": true,
+      "**/coverage": true,
+    },
+    "files.watcherExclude": {
+      "**/node_modules/**": true,
+      "**/dist/**": true,
+      "**/coverage/**": true,
+    },
+
+    // Search
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/coverage": true,
+      "**/*.lock": true,
+    },
+
+    // Emmet
+    "emmet.includeLanguages": {
+      "typescript": "html",
+      "typescriptreact": "html",
+    },
+
+    // Testing
+    "vitest.enable": true,
+    "testing.automaticallyOpenPeekView": "never",
+
+    // Git
+    "git.ignoreLimitWarning": true,
+
+    // Explorer
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+      "*.ts": "${capture}.js",
+      "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+      "*.jsx": "${capture}.js",
+      "*.tsx": "${capture}.ts",
+      "tsconfig.json": "tsconfig.*.json",
+      "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml",
+      "tailwind.config.*": "postcss.config.*",
+      "vite.config.*": "vitest.config.*",
+    },
+
+    // Auto-save and Performance
+    "files.autoSave": "onFocusChange",
+    "files.autoSaveDelay": 1000,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.renderWhitespace": "boundary",
+    "editor.showFoldingControls": "mouseover",
+    "editor.foldingStrategy": "indentation",
+    "editor.minimap.enabled": true,
+    "editor.minimap.scale": 1,
+    "editor.scrollBeyondLastLine": false,
+    "editor.smoothScrolling": true,
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": "on",
+
+    // IntelliSense & Suggestions
+    "editor.parameterHints.enabled": true,
+    "editor.suggestSelection": "first",
+    "editor.suggest.preview": true,
+    "editor.suggest.shareSuggestSelections": true,
+    "editor.wordBasedSuggestions": "matchingDocuments",
+    "editor.hover.delay": 300,
+    "editor.hover.sticky": true,
+
+    // Advanced Git Settings
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.decorations.enabled": true,
+    "git.showInlineOpenFileAction": true,
+    "git.timeline.showAuthor": true,
+    "gitHistory.showDetailsView": true,
+
+    // Terminal
+    "terminal.integrated.fontSize": 13,
+    "terminal.integrated.fontFamily": "MesloLGS NF, Monaco, 'Courier New', monospace",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.rightClickBehavior": "contextMenu",
+
+    // Language Specific
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit",
+      },
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit",
+      },
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[css]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+
+    // Accessibility & UX
+    "workbench.colorTheme": "Monokai Pro",
+    "workbench.iconTheme": "Monokai Pro Icons",
+    "workbench.startupEditor": "welcomePageInEmptyWorkbench",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.limit.enabled": true,
+    "workbench.editor.limit.value": 10,
+    "workbench.tree.indent": 20,
+    "breadcrumbs.enabled": true,
+    "outline.showProperties": true,
+
+    // Security & Trust
+    "security.workspace.trust.untrustedFiles": "open",
+    "extensions.ignoreRecommendations": false,
+
+    // Debug Console
+    "debug.console.fontSize": 13,
+    "debug.console.wordWrap": true,
+    "debug.showBreakpointsInOverviewRuler": true,
+    "debug.showInlineBreakpointCandidates": true,
+
+    // Problem Matchers
+    "problems.decorations.enabled": true,
+    "problems.showCurrentInStatus": true,
+  },
+  "extensions": {
+    "recommendations": [
+      // Core Development
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "bradlc.vscode-tailwindcss",
+      "ms-vscode.vscode-typescript-next",
+      "formulahendry.auto-rename-tag",
+      "christian-kohler.path-intellisense",
+      "ms-vscode.vscode-json",
+
+      // Testing & Quality
+      "vitest.explorer",
+      "ms-playwright.playwright",
+      "ms-vscode.vscode-jest",
+      "streetsidesoftware.code-spell-checker",
+      "usernamehw.errorlens",
+      "ms-vscode.vscode-coverage-gutters",
+
+      // React & Component Development
+      "ms-vscode.vscode-react-native",
+      "ms-vscode.vscode-babel-coloring",
+      "jpoissonnier.vscode-styled-components",
+      "bradlc.vscode-tailwindcss",
+
+      // Git & Collaboration
+      "github.vscode-pull-request-github",
+      "ms-vscode.vscode-github-issue-notebooks",
+      "eamodio.gitlens",
+      "donjayamanne.githistory",
+
+      // Productivity
+      "gruntfuggly.todo-tree",
+      "alefragnani.bookmarks",
+      "ms-vscode.vscode-json",
+      "bradlc.vscode-tailwindcss",
+      "usernamehw.indent-rainbow",
+      "monokai.theme-monokai-pro-vscode",
+
+      // API & Backend
+      "humao.rest-client",
+      "ms-vscode.vscode-http-client",
+
+      // Documentation
+      "yzhang.markdown-all-in-one",
+      "davidanson.vscode-markdownlint",
+
+      // Utilities
+      "ms-vscode.hexeditor",
+      "ms-vsliveshare.vsliveshare",
+      "ms-vscode.vscode-colorize-untitled-files",
+    ],
+    "unwantedRecommendations": [
+      "ms-vscode.vscode-typescript",
+      "hookyqr.beautify",
+      "ms-vscode.vscode-json-languageservice",
+      "bradlc.vscode-tailwindcss",
+      "pkief.material-icon-theme",
+      "ms-vscode.theme-monokai-dimmed",
+    ],
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "dev",
+        "type": "shell",
+        "command": "npm run dev",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+          "showReuseMessage": true,
+          "clear": false,
+        },
+        "problemMatcher": [],
+        "runOptions": {
+          "runOn": "folderOpen",
+        },
+      },
+      {
+        "label": "build",
+        "type": "shell",
+        "command": "npm run build",
+        "group": {
+          "kind": "build",
+          "isDefault": true,
+        },
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": ["$tsc"],
+      },
+      {
+        "label": "test",
+        "type": "shell",
+        "command": "npm run test",
+        "group": {
+          "kind": "test",
+          "isDefault": true,
+        },
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": [],
+      },
+      {
+        "label": "test:coverage",
+        "type": "shell",
+        "command": "npm run test:coverage",
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": [],
+      },
+      {
+        "label": "lint",
+        "type": "shell",
+        "command": "npm run lint",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": ["$eslint-stylish"],
+      },
+      {
+        "label": "lint:fix",
+        "type": "shell",
+        "command": "npm run lint:fix",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": ["$eslint-stylish"],
+      },
+      {
+        "label": "format",
+        "type": "shell",
+        "command": "npm run format",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": [],
+      },
+      {
+        "label": "type-check",
+        "type": "shell",
+        "command": "npm run type-check",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": ["$tsc-watch"],
+      },
+      {
+        "label": "preview",
+        "type": "shell",
+        "command": "npm run preview",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": [],
+      },
+      {
+        "label": "clean",
+        "type": "shell",
+        "command": "rm -rf dist coverage node_modules/.cache",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": [],
+      },
+      {
+        "label": "clean:install",
+        "type": "shell",
+        "command": "rm -rf node_modules package-lock.json && npm install",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": [],
+      },
+      {
+        "label": "deps:check",
+        "type": "shell",
+        "command": "npm outdated",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": [],
+      },
+      {
+        "label": "deps:update",
+        "type": "shell",
+        "command": "npm update",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": [],
+      },
+      {
+        "label": "audit",
+        "type": "shell",
+        "command": "npm audit",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": [],
+      },
+      {
+        "label": "audit:fix",
+        "type": "shell",
+        "command": "npm audit fix",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": [],
+      },
+      {
+        "label": "test:all",
+        "type": "shell",
+        "command": "npm run test:all",
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": ["$tsc", "$eslint-stylish"],
+      },
+      {
+        "label": "bundle:analyze",
+        "type": "shell",
+        "command": "npm run build && npx vite-bundle-analyzer dist/",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+        },
+        "problemMatcher": [],
+      },
+    ],
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Launch Chrome",
+        "request": "launch",
+        "type": "chrome",
+        "url": "http://localhost:5173",
+        "webRoot": "${workspaceFolder}/src",
+        "skipFiles": ["<node_internals>/**"],
+        "sourceMaps": true,
+        "userDataDir": "${workspaceFolder}/.vscode/chrome-debug-user-data",
+        "runtimeArgs": ["--disable-web-security", "--disable-features=VizDisplayCompositor"],
+      },
+      {
+        "name": "Launch Edge",
+        "request": "launch",
+        "type": "msedge",
+        "url": "http://localhost:5173",
+        "webRoot": "${workspaceFolder}/src",
+        "skipFiles": ["<node_internals>/**"],
+        "sourceMaps": true,
+        "userDataDir": "${workspaceFolder}/.vscode/edge-debug-user-data",
+      },
+      {
+        "name": "Attach to Chrome",
+        "port": 9222,
+        "request": "attach",
+        "type": "chrome",
+        "webRoot": "${workspaceFolder}/src",
+        "skipFiles": ["<node_internals>/**"],
+        "sourceMaps": true,
+      },
+      {
+        "name": "Debug Node.js API",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/api/weather.js",
+        "skipFiles": ["<node_internals>/**"],
+        "env": {
+          "DEBUG": "*",
+        },
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+      },
+      {
+        "name": "Debug Tests",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+        "args": ["run"],
+        "skipFiles": ["<node_internals>/**"],
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+      },
+    ],
+  },
+  "compounds": [
+    {
+      "name": "Launch Full Stack",
+      "configurations": ["dev", "Debug Node.js API"],
+      "stopAll": true,
+    },
+  ],
+  "keybindings": [
+    {
+      "key": "ctrl+shift+t",
+      "command": "workbench.action.tasks.runTask",
+      "args": "test",
+    },
+    {
+      "key": "ctrl+shift+b",
+      "command": "workbench.action.tasks.runTask",
+      "args": "build",
+    },
+    {
+      "key": "ctrl+shift+l",
+      "command": "workbench.action.tasks.runTask",
+      "args": "lint:fix",
+    },
+    {
+      "key": "ctrl+shift+f",
+      "command": "workbench.action.tasks.runTask",
+      "args": "format",
+    },
+    {
+      "key": "ctrl+shift+d",
+      "command": "workbench.action.tasks.runTask",
+      "args": "dev",
+    },
+    {
+      "key": "ctrl+shift+p",
+      "command": "workbench.action.tasks.runTask",
+      "args": "preview",
+    },
+  ],
+  "snippets": {
+    "typescript": {
+      "React Functional Component": {
+        "prefix": "rfc",
+        "body": [
+          "import React from 'react';",
+          "",
+          "interface ${1:ComponentName}Props {",
+          "  $2",
+          "}",
+          "",
+          "const $1: React.FC<$1Props> = ({ $3 }) => {",
+          "  return (",
+          "    <div>",
+          "      $4",
+          "    </div>",
+          "  );",
+          "};",
+          "",
+          "export default $1;",
+        ],
+        "description": "Create a React functional component with TypeScript",
+      },
+      "React Hook": {
+        "prefix": "rhook",
+        "body": [
+          "import { useState, useEffect } from 'react';",
+          "",
+          "export const use${1:HookName} = ($2) => {",
+          "  const [${3:state}, set${3/(.*)/${3:/capitalize}/}] = useState($4);",
+          "",
+          "  useEffect(() => {",
+          "    $5",
+          "  }, [$6]);",
+          "",
+          "  return {",
+          "    $3,",
+          "    set${3/(.*)/${3:/capitalize}/}",
+          "  };",
+          "};",
+        ],
+        "description": "Create a custom React hook",
+      },
+      "Tailwind Component": {
+        "prefix": "twc",
+        "body": [
+          "import { cn } from '@/lib/utils';",
+          "",
+          "interface ${1:ComponentName}Props {",
+          "  className?: string;",
+          "  children?: React.ReactNode;",
+          "  $2",
+          "}",
+          "",
+          "const $1: React.FC<$1Props> = ({ className, children, $3 }) => {",
+          "  return (",
+          "    <div className={cn('$4', className)}>",
+          "      {children}",
+          "    </div>",
+          "  );",
+          "};",
+          "",
+          "export default $1;",
+        ],
+        "description": "Create a Tailwind-styled component",
+      },
+      "Vitest Test": {
+        "prefix": "vtest",
+        "body": [
+          "import { describe, it, expect } from 'vitest';",
+          "import { render, screen } from '@testing-library/react';",
+          "import $1 from './$1';",
+          "",
+          "describe('$1', () => {",
+          "  it('$2', () => {",
+          "    render(<$1 $3 />);",
+          "    $4",
+          "    expect($5).toBe($6);",
+          "  });",
+          "});",
+        ],
+        "description": "Create a Vitest test with React Testing Library",
+      },
+    },
+  },
+}
