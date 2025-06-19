@@ -83,11 +83,11 @@ The workflow will automatically create environments, but you can also set them u
 
 ### Deployment Strategy
 
-| Environment    | Branch    | URL                              | Auto-Deploy | Approval Required |
-| -------------- | --------- | -------------------------------- | ----------- | ----------------- |
-| **Preview**    | Any PR    | Auto-generated                   | ✅          | ❌                |
-| **Staging**    | `staging` | newth-project-staging.vercel.app | ✅          | ❌                |
-| **Production** | `main`    | newth-project.vercel.app         | ❌          | ✅                |
+| Environment    | Branch    | URL                         | Auto-Deploy | Approval Required |
+| -------------- | --------- | --------------------------- | ----------- | ----------------- |
+| **Preview**    | Any PR    | Auto-generated              | ✅          | ❌                |
+| **Staging**    | `staging` | template-staging.vercel.app | ✅          | ❌                |
+| **Production** | `main`    | template.vercel.app         | ❌          | ✅                |
 
 ### Development Flow
 

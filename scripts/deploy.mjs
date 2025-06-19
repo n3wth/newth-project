@@ -15,12 +15,12 @@ const environment = process.argv[3] || 'staging'
 const environments = {
   staging: {
     branch: 'staging',
-    url: 'https://newth-project-staging.vercel.app',
+    url: 'https://template-staging.vercel.app',
     description: 'Staging environment for testing',
   },
   production: {
     branch: 'main',
-    url: 'https://newth-project.vercel.app',
+    url: 'https://template.vercel.app',
     description: 'Production environment',
   },
 }

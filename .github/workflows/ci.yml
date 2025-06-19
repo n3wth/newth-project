@@ -106,7 +106,7 @@ jobs:
     if: github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/develop'
     environment:
       name: staging
-      url: https://newth-project-staging.vercel.app
+      url: https://template-staging.vercel.app
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -143,7 +143,7 @@ jobs:
     if: github.ref == 'refs/heads/main' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'production')
     environment:
       name: production
-      url: https://newth-project.vercel.app
+      url: https://template.vercel.app
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
