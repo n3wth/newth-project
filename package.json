@@ -1,8 +1,9 @@
 {
-  "name": "newth-ai-embed",
+  "name": "widget-platform-template",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "description": "A modern React + TypeScript template for building embeddable widget platforms with shadcn/ui",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

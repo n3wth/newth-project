@@ -2,16 +2,7 @@ import { useState, useEffect } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
-import {
-  Lego,
-  Sparkle,
-  Code,
-  Palette,
-  MapPin,
-  Lightning,
-  Wrench,
-  User,
-} from '@phosphor-icons/react'
+import { Lego, Sparkle, Code, Palette, Lightning, Wrench, User } from '@phosphor-icons/react'
 import { WidgetGrid } from '@/components/WidgetGrid'
 import { WIDGETS, WIDGET_CATEGORIES } from '@/constants/widgets'
 import { filterWidgetsByCategory } from '@/utils/widgets'
@@ -21,7 +12,6 @@ import { AnimatedGradientText } from '@/components/magicui/animated-gradient-tex
 export default function Home() {
   const [scrollY, setScrollY] = useState(0)
   const allWidgets = WIDGETS
-  const vietnamWidgets = filterWidgetsByCategory(WIDGETS, WIDGET_CATEGORIES.VIETNAM)
   const productivityWidgets = filterWidgetsByCategory(WIDGETS, WIDGET_CATEGORIES.PRODUCTIVITY)
   const utilityWidgets = filterWidgetsByCategory(WIDGETS, WIDGET_CATEGORIES.UTILITIES)
   const personalWidgets = filterWidgetsByCategory(WIDGETS, WIDGET_CATEGORIES.PERSONAL)
@@ -44,13 +34,12 @@ export default function Home() {
   }, [])
 
   // Calculate shrinking values based on scroll
-  const maxScroll = 50 // Even more responsive - shrink over first 50px
+  const maxScroll = 50
   const scrollProgress = Math.min(scrollY / maxScroll, 1)
 
-  // Direct linear progression for immediate response (no easing)
-  const logoSize = 32 - scrollProgress * 16 // Shrink from 32px to 16px (50% smaller)
-  const headerPadding = 6 - scrollProgress * 3 // More dramatic padding reduction
-  const titleSize = 2 - scrollProgress * 0.75 // More dramatic title shrinking
+  const logoSize = 32 - scrollProgress * 16
+  const headerPadding = 6 - scrollProgress * 3
+  const titleSize = 2 - scrollProgress * 0.75
 
   return (
     <div className="min-h-screen bg-background">
@@ -75,7 +64,7 @@ export default function Home() {
                   className="font-bold tracking-tight transition-all duration-200"
                   style={{ fontSize: `${titleSize}rem` }}
                 >
-                  Newth.ai Widgets
+                  Widget Platform
                 </h1>
               </div>
             </div>
@@ -87,13 +76,6 @@ export default function Home() {
       <section className="py-4 border-b bg-gradient-to-r from-blue-50/50 to-purple-50/50 dark:from-blue-950/20 dark:to-purple-950/20">
         <Marquee className="[--duration:30s]" pauseOnHover>
           <div className="flex items-center gap-8 mx-4">
-            <Badge
-              variant="secondary"
-              className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-            >
-              <MapPin className="w-3 h-3 mr-1" weight="fill" />
-              Vietnam Trip Planning
-            </Badge>
             <Badge
               variant="secondary"
               className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
@@ -115,6 +97,13 @@ export default function Home() {
               <User className="w-3 h-3 mr-1" weight="fill" />
               Personal Projects
             </Badge>
+            <Badge
+              variant="secondary"
+              className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+            >
+              <Code className="w-3 h-3 mr-1" weight="fill" />
+              Modern Stack
+            </Badge>
           </div>
         </Marquee>
       </section>
@@ -125,18 +114,18 @@ export default function Home() {
           <div className="space-y-2">
             <Badge variant="secondary" className="mb-4">
               <Sparkle className="w-3 h-3 mr-1" />
-              Personal Collection
+              Template
             </Badge>
             <AnimatedGradientText
               className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl block"
               colorFrom="#f59e0b"
               colorTo="#ef4444"
             >
-              My Personal Widget Collection
+              Widget Platform Template
             </AnimatedGradientText>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              A collection of useful widgets I've built for productivity, utilities, trip planning,
-              and personal projects. Feel free to explore and use them for your own needs.
+              A modern React + TypeScript template for building embeddable widget platforms. Perfect
+              for creating collections of interactive components that can be embedded anywhere.
             </p>
           </div>
 
@@ -175,16 +164,6 @@ export default function Home() {
                       All
                       <Badge variant="secondary" className="ml-1 text-xs">
                         {allWidgets.length}
-                      </Badge>
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="vietnam"
-                      data-testid="tab-vietnam"
-                      className="text-xs whitespace-nowrap"
-                    >
-                      Vietnam
-                      <Badge variant="secondary" className="ml-1 text-xs">
-                        {vietnamWidgets.length}
                       </Badge>
                     </TabsTrigger>
                     <TabsTrigger
@@ -231,24 +210,13 @@ export default function Home() {
 
             <TabsContent value="all" data-testid="tab-content-all" className="space-y-6">
               <div className="space-y-2">
-                <h3 className="text-lg font-semibold">All Personal Widgets</h3>
+                <h3 className="text-lg font-semibold">All Widgets</h3>
                 <p className="text-sm text-muted-foreground">
-                  Everything I've built for various personal projects, productivity, and
-                  documentation
+                  Browse all available widgets in your platform. Start by adding your first widget
+                  to this collection.
                 </p>
               </div>
               <WidgetGrid widgets={allWidgets} />
-            </TabsContent>
-
-            <TabsContent value="vietnam" data-testid="tab-content-vietnam" className="space-y-6">
-              <div className="space-y-2">
-                <h3 className="text-lg font-semibold">Vietnam Trip Planning</h3>
-                <p className="text-sm text-muted-foreground">
-                  Widgets I built to help plan my Vietnam trip - weather, flights, maps, and
-                  itinerary
-                </p>
-              </div>
-              <WidgetGrid widgets={vietnamWidgets} />
             </TabsContent>
 
             <TabsContent
@@ -283,7 +251,7 @@ export default function Home() {
               <div className="space-y-2">
                 <h3 className="text-lg font-semibold">Personal Widgets</h3>
                 <p className="text-sm text-muted-foreground">
-                  Local weather, reading lists, and personal tracking tools
+                  Personal tracking tools and custom utilities
                 </p>
               </div>
               <WidgetGrid widgets={personalWidgets} />
@@ -309,7 +277,7 @@ export default function Home() {
               </Badge>
             </div>
             <p className="text-xs text-muted-foreground">
-              Personal widget collection for productivity, utilities, and project planning.
+              Widget platform template for building embeddable components.
             </p>
           </div>
         </div>

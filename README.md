@@ -1,59 +1,29 @@
-# Newth.ai Personal Widgets
+# Widget Platform Template
 
-A collection of personal widgets I've built for documentation, trip planning, and various projects. Currently featuring weather widgets for my Vietnam trip planning.
+A modern React + TypeScript template for building embeddable widget platforms. Perfect for creating collections of interactive components that can be embedded anywhere.
 
-🌐 **Live Site**: [widgets.newth.ai](https://widgets.newth.ai)
+🚀 **Features**: Modern tooling, responsive design, accessibility-first, comprehensive testing, and seamless deployment.
 
 ## About
 
-This is my personal collection of useful widgets that I've built for specific needs:
+This template provides a solid foundation for building widget platforms with:
 
-- **Vietnam Trip Planning**: Weather widgets for tracking forecasts in Hanoi, Ho Chi Minh City, and Ha Long Bay
-- **Documentation Tools**: Various utilities for project documentation
-- **Personal Projects**: Custom widgets for specific use cases
+- **Modern Stack**: React 19 + TypeScript + Vite
+- **UI Framework**: shadcn/ui with Tailwind CSS
+- **Testing**: Comprehensive test suite with Vitest
+- **Development**: Hot reload, linting, formatting, and type checking
+- **Deployment**: Optimized for Vercel with PWA support
+- **Embeddable**: Clean widget URLs perfect for iframe embedding
 
-## Current Widgets
-
-### Vietnam Trip Planning
-
-- **Vietnam Weather Overview** - Complete dashboard with all three cities
-- **Hanoi Weather** - Northern Vietnam forecast
-- **Ho Chi Minh City Weather** - Southern Vietnam (Saigon) forecast
-- **Ha Long Bay Weather** - Perfect for planning boat trips
-
-## Embedding Widgets
-
-Each widget can be embedded individually:
-
-```html
-<!-- Vietnam Overview -->
-<iframe src="https://widgets.newth.ai/weather-vietnam" width="100%" height="600"></iframe>
-
-<!-- Individual Cities -->
-<iframe src="https://widgets.newth.ai/vietnam/hanoi" width="100%" height="500"></iframe>
-<iframe src="https://widgets.newth.ai/vietnam/hochiminh" width="100%" height="500"></iframe>
-<iframe src="https://widgets.newth.ai/vietnam/halongbay" width="100%" height="500"></iframe>
-```
-
-## Tech Stack
-
-- **React** + **TypeScript** - Core framework
-- **Vite** - Build tool and dev server
-- **Tailwind CSS** - Styling
-- **shadcn/ui** - UI components
-- **Vercel** - Hosting and deployment
-
-## Development
+## Quick Start
 
 ```bash
-# Install dependencies
+# Clone and install
+git clone <your-repo> my-widget-platform
+cd my-widget-platform
 npm install
 
-# Set up environment variables
-cp .env.example .env
-# Edit .env with your API keys if needed
-
-# Start development server
+# Start development
 npm run dev
 
 # Run tests
@@ -63,6 +33,44 @@ npm run test
 npm run build
 ```
 
+## Creating Your First Widget
+
+1. **Define your widget** in `src/constants/widgets.ts`:
+
+```typescript
+{
+  id: 'my-widget',
+  title: 'My Widget',
+  description: 'Description of what this widget does',
+  path: '/widgets/my-widget',
+  category: WIDGET_CATEGORIES.UTILITIES,
+  tags: ['utility', 'tool'],
+}
+```
+
+2. **Create the component** in `src/pages/MyWidget.tsx`:
+
+```typescript
+export default function MyWidget() {
+  return (
+    <div className="p-4">
+      <h2 className="text-xl font-bold">My Widget</h2>
+      {/* Your widget content */}
+    </div>
+  )
+}
+```
+
+3. **Add the route** in `src/App.tsx`:
+
+```typescript
+import MyWidget from './pages/MyWidget'
+// ...
+<Route path="/widgets/my-widget" element={<MyWidget />} />
+```
+
+4. **Write tests** in `src/pages/__tests__/MyWidget.test.tsx`
+
 ## Project Structure
 
 ```
@@ -71,38 +79,76 @@ src/
 │   ├── ui/             # shadcn/ui components
 │   ├── WidgetCard.tsx  # Widget display component
 │   └── WidgetGrid.tsx  # Grid layout component
-├── pages/              # Page components
-├── constants/          # Widget definitions and data
-├── services/           # API services (weather data)
+├── pages/              # Page components (widgets)
+├── constants/          # Widget definitions and categories
+├── services/           # API services and external integrations
 ├── types/              # TypeScript type definitions
-└── utils/              # Utility functions
+├── utils/              # Utility functions and helpers
+└── test/               # Test configuration
 ```
 
-## Features
+## Widget Categories
 
-- 🎨 **Modern Design** - Built with shadcn/ui design system
-- 📱 **Responsive** - Works on all device sizes
-- ♿ **Accessible** - ARIA attributes and keyboard navigation
-- 🧪 **Well Tested** - Comprehensive test suite with Vitest
-- 🚀 **Fast** - Optimized builds with Vite
-- 🔗 **Embeddable** - Clean widget URLs for embedding
+Organize your widgets using built-in categories:
+
+- **Productivity** - Tools for getting things done
+- **Utilities** - Helpful everyday tools
+- **Personal** - Personal tracking and management
+- **Custom** - Add your own categories
+
+## Embedding Widgets
+
+Each widget can be embedded individually:
+
+```html
+<iframe src="https://your-domain.com/widgets/my-widget" width="100%" height="500"></iframe>
+```
+
+## Tech Stack
+
+- **React 19** + **TypeScript** - Modern React with latest features
+- **Vite** - Lightning fast build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Beautiful, accessible component library
+- **Vitest** - Fast unit testing with great DX
+- **ESLint + Prettier** - Code quality and formatting
+- **Vercel** - Zero-config deployment
+
+## Development Scripts
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+npm run test         # Run tests in watch mode
+npm run test:run     # Run tests once
+npm run test:coverage # Run tests with coverage
+npm run test:all     # Run full test suite (build + lint + test)
+npm run lint         # Lint code
+npm run lint:fix     # Fix linting issues
+npm run format       # Format code with Prettier
+npm run type-check   # TypeScript type checking
+```
+
+## Deployment
+
+This template is optimized for Vercel deployment:
+
+1. Push to GitHub
+2. Connect to Vercel
+3. Deploy automatically on every push
+
+The template includes:
+
+- PWA support with web manifest
+- Static asset optimization
+- SPA routing configuration
+- Favicon generation
 
 ## License
 
-Personal project - feel free to explore and use for inspiration!
+MIT License - feel free to use for any project!
 
-## Development Workflow
+## Contributing
 
-- **Format on Save**: Enabled via VSCode workspace settings and Prettier
-- **Consistent Style**: Enforced with .editorconfig
-- **Linting**: `npm run lint` (auto-fix: `npm run lint:fix`)
-- **Formatting**: `npm run format`
-- **Type Checking**: `npm run type-check`
-- **Tests**: `npm run test`, `npm run test:watch`
-- **Pre-commit Checks**: Automated with Husky and lint-staged
-
-### Recommended Extensions
-
-- Prettier
-- Tailwind CSS IntelliSense
-- TypeScript Next
+This is a template project. Fork it and make it your own!
