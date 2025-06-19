@@ -36,6 +36,43 @@ npm run test
 npm run build
 ```
 
+## 🚀 Advanced Deployment Strategy
+
+This template includes a **multi-environment CI/CD pipeline** that's perfect for team collaboration and LLM-assisted development.
+
+### Quick Setup
+
+1. **Follow the detailed guide**: See [DEPLOYMENT_SETUP.md](./DEPLOYMENT_SETUP.md) for complete instructions
+2. **Add GitHub Secrets**: Your Vercel credentials (provided separately)
+   > 🔒 **Security**: Never commit secrets! See [SECURITY.md](./SECURITY.md) for best practices
+3. **Create branches**: `staging` and `develop` for proper workflow
+
+### Deployment Flow
+
+- **🔄 Preview**: Every PR gets a preview deployment with automated testing
+- **🧪 Staging**: `staging` branch auto-deploys for testing
+- **🌟 Production**: `main` branch requires manual approval before deployment
+
+### For LLMs/AI Assistants
+
+This setup allows AI assistants to:
+
+- Create preview deployments for testing changes
+- Run comprehensive quality checks automatically
+- Provide safe staging environment for experimentation
+- Require human approval before production changes
+
+```bash
+# Check deployment status
+npm run deploy:status
+
+# Create preview deployment
+npm run deploy:preview
+
+# Promote to production (guided)
+npm run deploy:promote
+```
+
 ## 🎯 Icon System - Phosphor Icons
 
 This template uses **Phosphor Icons** as the standard icon library for consistency and quality.

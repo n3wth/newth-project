@@ -26,7 +26,11 @@
     "deps:update": "npm update",
     "dev:api": "node api/weather.js",
     "widget:new": "node scripts/create-widget.mjs",
-    "icons:migrate": "node scripts/migrate-icons.mjs"
+    "icons:migrate": "node scripts/migrate-icons.mjs",
+    "deploy": "node scripts/deploy.mjs",
+    "deploy:status": "node scripts/deploy.mjs status",
+    "deploy:preview": "node scripts/deploy.mjs preview",
+    "deploy:promote": "node scripts/deploy.mjs promote"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
@@ -55,6 +59,7 @@
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.4.1",
     "autoprefixer": "^10.4.21",
+    "chalk": "^5.4.1",
     "clsx": "^2.1.1",
     "eslint": "^9.25.0",
     "eslint-config-prettier": "^9.1.0",
