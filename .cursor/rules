@@ -253,6 +253,36 @@ push_dist = false
 
 #
 
+# 💬 COMMIT MESSAGE GUIDELINES:
+
+# - **MAX LENGTH**: Keep commit messages under 72 characters total
+
+# - **FORMAT**: <emoji> <action> - brief description
+
+# - **EXAMPLES**:
+
+# ✅ "🔧 Fix auth token validation"
+
+# ✅ "✨ Add user profile widget"
+
+# ✅ "🐛 Fix mobile nav overflow"
+
+# ✅ "📝 Update README deployment guide"
+
+# ❌ "🔧 Fix GitHub Actions workflow context access issues - properly quote all Vercel secrets and environment variables for deployment pipeline"
+
+# - **EMOJI GUIDE**:
+
+# 🔧 Fix/Config | ✨ Feature | 🐛 Bug | 📝 Docs | 🎨 Style | ♻️ Refactor
+
+# 🔒 Security | 🚀 Deploy | 🧪 Test | 📦 Dependencies | 🏷️ Release
+
+# - **BE CONCISE**: Focus on WHAT changed, not WHY (use PR descriptions for context)
+
+# - **NO PERIODS**: Commit messages are not sentences
+
+#
+
 # Icon Usage Examples:
 
 # ```tsx
