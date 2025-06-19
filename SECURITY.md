@@ -1,6 +1,6 @@
 # 🔒 Security Guide
 
-This document outlines security best practices for the Widget Platform Template.
+This document outlines security best practices for the Widget Template.
 
 ## 📋 Secret Management
 

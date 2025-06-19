@@ -13,13 +13,13 @@ describe('Home Page UX Tests', () => {
       renderWithRouter(<Home />)
 
       expect(screen.getByTestId('logo')).toBeInTheDocument()
-      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Widget Platform')
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Widget Template')
     })
 
     it('should display the hero section', () => {
       renderWithRouter(<Home />)
 
-      expect(screen.getByText('Build Amazing Widget Platforms')).toBeInTheDocument()
+      expect(screen.getByText('Build Amazing Widget Collections')).toBeInTheDocument()
       expect(screen.getByText(/modern react \+ typescript template/i)).toBeInTheDocument()
     })
 
@@ -96,7 +96,7 @@ describe('Home Page UX Tests', () => {
       renderWithRouter(<Home />)
 
       // Check for main page headings (h1, h2)
-      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Widget Platform')
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Widget Template')
 
       const h2Headings = screen.getAllByRole('heading', { level: 2 })
       expect(h2Headings.length).toBeGreaterThan(0)
@@ -121,7 +121,7 @@ describe('Home Page UX Tests', () => {
 
       // Check for template-specific messaging
       expect(screen.getByText('Open Source Template')).toBeInTheDocument()
-      expect(screen.getAllByText(/embeddable widget platforms/i)[0]).toBeInTheDocument()
+      expect(screen.getAllByText(/embeddable widget collections/i)[0]).toBeInTheDocument()
     })
 
     it('should show example widget', () => {

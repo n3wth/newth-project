@@ -2,7 +2,7 @@
  * Phosphor Icons Utility and Reference
  *
  * This file provides commonly used Phosphor Icons and utilities
- * for consistent icon usage across the widget platform.
+ * for consistent icon usage across the widget template.
  *
  * Browse all icons at: https://phosphoricons.com/
  */

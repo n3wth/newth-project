@@ -1,12 +1,12 @@
-# Widget Platform Template
+# Widget Template
 
-A modern React + TypeScript template for building embeddable widget platforms. Perfect for creating collections of interactive components that can be embedded anywhere.
+A modern React + TypeScript template for building embeddable widget collections. Perfect for creating libraries of interactive components that can be embedded anywhere.
 
 🚀 **Features**: Modern tooling, responsive design, accessibility-first, comprehensive testing, and seamless deployment.
 
 ## About
 
-This template provides a solid foundation for building widget platforms with:
+This template provides a solid foundation for building widget collections with:
 
 - **Modern Stack**: React 19 + TypeScript + Vite
 - **UI Framework**: shadcn/ui with Tailwind CSS + **Phosphor Icons**
@@ -19,8 +19,8 @@ This template provides a solid foundation for building widget platforms with:
 
 ```bash
 # Clone and install
-git clone <your-repo> my-widget-platform
-cd my-widget-platform
+git clone <your-repo> my-widget-template
+cd my-widget-template
 npm install
 
 # Start development

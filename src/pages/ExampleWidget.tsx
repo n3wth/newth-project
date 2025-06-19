@@ -1,7 +1,7 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Lego, Code, Palette, CheckCircle } from '@phosphor-icons/react'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { CheckCircle, Code, Lego, Palette } from '@phosphor-icons/react'
 
 export default function ExampleWidget() {
   return (
@@ -37,7 +37,7 @@ export default function ExampleWidget() {
                 <CheckCircle className="w-5 h-5 text-green-500" />
                 Template Features
               </CardTitle>
-              <CardDescription>What's included in this widget platform template</CardDescription>
+              <CardDescription>What's included in this widget template</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="space-y-2">

@@ -1,7 +1,7 @@
 {
-  "name": "Newth.ai Widgets",
-  "short_name": "Widgets",
-  "description": "AI-Powered Embeddable Components",
+  "name": "Widget Template",
+  "short_name": "Template",
+  "description": "React + TypeScript Widget Framework",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

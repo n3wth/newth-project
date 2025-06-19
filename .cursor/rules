@@ -1,4 +1,4 @@
-# Cursor Rules for Widget Platform Template
+# Cursor Rules for Widget Template
 
 [preferences]
 auto_format = true
@@ -27,7 +27,7 @@ push_dist = false
 
 [notes]
 
-# - Template for building embeddable widget platforms
+# - Template for building embeddable widget collections
 
 # - Auto-deploys on Vercel with every git push
 
@@ -47,7 +47,7 @@ push_dist = false
 
 #
 
-# Project: Widget Platform Template - Modern React + TypeScript Template
+# Project: Widget Template - Modern React + TypeScript Template
 
 # Purpose: Template for building embeddable widget collections
 
@@ -61,7 +61,7 @@ push_dist = false
 
 # - Comprehensive UX testing with Vitest
 
-# - Embeddable widget platform (React + TypeScript + shadcn/ui)
+# - Embeddable widget template (React + TypeScript + shadcn/ui)
 
 # - Individual widgets embeddable without navigation
 

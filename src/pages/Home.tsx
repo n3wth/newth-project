@@ -1,29 +1,29 @@
-import { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
-import {
-  Lego,
-  Sparkle,
-  Code,
-  Palette,
-  Lightning,
-  Wrench,
-  User,
-  Rocket,
-  Shield,
-  DeviceMobile,
-  ArrowRight,
-  CheckCircle,
-  Eye,
-  Download,
-  GitBranch,
-} from '@phosphor-icons/react'
 import { AnimatedGradientText } from '@/components/magicui/animated-gradient-text'
 import { Marquee } from '@/components/magicui/marquee'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 import { WidgetGrid } from '@/components/WidgetGrid'
 import { WIDGETS } from '@/constants/widgets'
+import {
+  ArrowRight,
+  CheckCircle,
+  Code,
+  DeviceMobile,
+  Download,
+  Eye,
+  GitBranch,
+  Lego,
+  Lightning,
+  Palette,
+  Rocket,
+  Shield,
+  Sparkle,
+  User,
+  Wrench,
+} from '@phosphor-icons/react'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0)
@@ -116,7 +116,7 @@ export default function Home() {
                 className="font-bold tracking-tight transition-all duration-200"
                 style={{ fontSize: `${titleSize}rem` }}
               >
-                Widget Platform
+                Widget Template
               </h1>
             </div>
             <nav className="hidden md:flex items-center gap-6">
@@ -153,11 +153,12 @@ export default function Home() {
               colorFrom="#f59e0b"
               colorTo="#ef4444"
             >
-              Build Amazing Widget Platforms
+              Build Amazing Widget Collections
             </AnimatedGradientText>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              A modern React + TypeScript template for creating embeddable widget platforms. Perfect
-              for building collections of interactive components that can be embedded anywhere.
+              A modern React + TypeScript template for creating embeddable widget collections.
+              Perfect for building libraries of interactive components that can be embedded
+              anywhere.
             </p>
           </div>
 
@@ -247,7 +248,7 @@ export default function Home() {
             Everything You Need to Build
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            A complete toolkit for building modern widget platforms with best practices built-in.
+            A complete toolkit for building modern widget collections with best practices built-in.
           </p>
         </div>
 
@@ -409,10 +410,10 @@ export default function Home() {
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <Lego className="w-6 h-6 text-primary" weight="fill" />
-                <span className="font-bold">Widget Platform</span>
+                <span className="font-bold">Widget Template</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Modern template for building embeddable widget platforms.
+                Modern template for building embeddable widget collections.
               </p>
             </div>
 
