@@ -1,0 +1,104 @@
+name: 📝 Update Repository Metadata
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'package.json'
+      - 'README.md'
+      - '.github/workflows/update-repo-metadata.yml'
+  workflow_dispatch:
+
+jobs:
+  update-metadata:
+    name: 🔄 Update Repository Details
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📖 Extract Package Info
+        id: package
+        run: |
+          DESCRIPTION=$(node -p "require('./package.json').description")
+          echo "description=$DESCRIPTION" >> $GITHUB_OUTPUT
+          echo "📝 Description: $DESCRIPTION"
+
+      - name: 🏷️ Update Repository Details
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+
+            // Repository metadata
+            const repoData = {
+              owner,
+              repo,
+              description: "${{ steps.package.outputs.description }}",
+              homepage: "https://template.newth.ai",
+              topics: [
+                "react",
+                "typescript", 
+                "vite",
+                "widget-template",
+                "shadcn-ui",
+                "tailwindcss",
+                "embeddable-widgets",
+                "phosphor-icons",
+                "template",
+                "boilerplate",
+                "starter-kit"
+              ],
+              has_issues: true,
+              has_discussions: true,
+              has_wiki: true,
+              has_projects: true,
+              allow_squash_merge: true,
+              allow_merge_commit: false,
+              allow_rebase_merge: true,
+              delete_branch_on_merge: true,
+              allow_update_branch: true,
+              use_squash_pr_title_as_default: true
+            };
+
+            try {
+              console.log('🔄 Updating repository metadata...');
+              await github.rest.repos.update(repoData);
+              console.log('✅ Repository metadata updated successfully!');
+              
+              console.log('🏷️ Updated details:');
+              console.log(`   Description: ${repoData.description}`);
+              console.log(`   Homepage: ${repoData.homepage}`);
+              console.log(`   Topics: ${repoData.topics.join(', ')}`);
+              
+            } catch (error) {
+              console.error('❌ Failed to update repository metadata:', error);
+              core.setFailed(`Failed to update repository: ${error.message}`);
+            }
+
+      - name: 📊 Summary
+        run: |
+          echo "## 📝 Repository Metadata Update" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Status**: Successfully updated repository details" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔄 Updated Fields:" >> $GITHUB_STEP_SUMMARY
+          echo "- **Description**: ${{ steps.package.outputs.description }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Website**: https://template.newth.ai" >> $GITHUB_STEP_SUMMARY
+          echo "- **Topics**: react, typescript, vite, widget-template, shadcn-ui, tailwindcss, embeddable-widgets, phosphor-icons, template, boilerplate, starter-kit" >> $GITHUB_STEP_SUMMARY
+          echo "- **Repository Settings**: Optimized for template usage" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🎯 Features Enabled:" >> $GITHUB_STEP_SUMMARY
+          echo "- 🐛 Issues (for bug reports)" >> $GITHUB_STEP_SUMMARY
+          echo "- 💬 Discussions (for community Q&A)" >> $GITHUB_STEP_SUMMARY
+          echo "- 📖 Wiki (for documentation)" >> $GITHUB_STEP_SUMMARY
+          echo "- 📋 Projects (for roadmap)" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔀 Smart merge settings" >> $GITHUB_STEP_SUMMARY
