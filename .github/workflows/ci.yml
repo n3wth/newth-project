@@ -81,13 +81,22 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
-      - name: 🔍 Audit Dependencies
+      - name: 🔧 Install Dependencies
+        run: npm ci
+
+      - name: 🔍 Audit Application Dependencies
         run: npm audit --audit-level=high
 
-      - name: 🛡️ Check for Vulnerabilities
+      - name: 🛡️ Check for Outdated Dependencies
         run: |
           npm install -g npm-check-updates
           ncu --doctor --pre 1
+
+      - name: 📊 Dependency Check Report
+        run: |
+          echo "✅ Application dependencies security check passed"
+          echo "📦 Total packages: $(npm list --depth=0 2>/dev/null | grep -c '├\|└' || echo 'N/A')"
+          echo "🔒 Security: $(npm audit --audit-level=info --json 2>/dev/null | jq -r '.metadata.vulnerabilities | to_entries[] | "\(.key): \(.value)"' | tr '\n' ' ' || echo 'No vulnerabilities found')"
 
   # Staging Deployment (Auto)
   deploy-staging:
@@ -115,7 +124,7 @@ jobs:
         run: npm ci
 
       - name: 📦 Install Vercel CLI
-        run: npm install --global vercel@latest
+        run: npm install --global vercel@43.3.0
 
       - name: 🔽 Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
@@ -152,7 +161,7 @@ jobs:
         run: npm ci
 
       - name: 📦 Install Vercel CLI
-        run: npm install --global vercel@latest
+        run: npm install --global vercel@43.3.0
 
       - name: 🔽 Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
@@ -186,7 +195,7 @@ jobs:
         run: npm ci
 
       - name: 📦 Install Vercel CLI
-        run: npm install --global vercel@latest
+        run: npm install --global vercel@43.3.0
 
       - name: 🔽 Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
