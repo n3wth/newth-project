@@ -14,7 +14,7 @@ jobs:
     name: 🔄 Update Repository Details
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     steps:
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
       - name: 🏷️ Update Repository Details
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.NEWTH_GH_TOKEN }}
           script: |
             const { owner, repo } = context.repo;
 
