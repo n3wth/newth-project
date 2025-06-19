@@ -108,8 +108,8 @@ jobs:
       name: staging
       url: https://newth-project-staging.vercel.app
     env:
-      VERCEL_ORG_ID: '${{ secrets.VERCEL_ORG_ID }}'
-      VERCEL_PROJECT_ID: '${{ secrets.VERCEL_PROJECT_ID }}'
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
@@ -145,8 +145,8 @@ jobs:
       name: production
       url: https://newth-project.vercel.app
     env:
-      VERCEL_ORG_ID: '${{ secrets.VERCEL_ORG_ID }}'
-      VERCEL_PROJECT_ID: '${{ secrets.VERCEL_PROJECT_ID }}'
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
@@ -179,8 +179,8 @@ jobs:
     needs: [quality-checks]
     if: github.event_name == 'pull_request'
     env:
-      VERCEL_ORG_ID: '${{ secrets.VERCEL_ORG_ID }}'
-      VERCEL_PROJECT_ID: '${{ secrets.VERCEL_PROJECT_ID }}'
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
