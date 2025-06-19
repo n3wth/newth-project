@@ -15,12 +15,17 @@
     "test:coverage": "vitest run --coverage",
     "test:build": "tsc -b --noEmit",
     "test:all": "npm run test:build && npm run lint && npm run test:run",
-    "tailwind:init": "tailwindcss init -p",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "type-check": "tsc --noEmit",
     "test:watch": "vitest --watch",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "clean": "rm -rf dist coverage node_modules/.cache .vite",
+    "clean:deps": "rm -rf node_modules package-lock.json && npm install",
+    "deps:check": "npm outdated",
+    "deps:update": "npm update",
+    "dev:api": "node api/weather.js",
+    "widget:new": "node scripts/create-widget.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
@@ -31,7 +36,6 @@
     "@radix-ui/react-tabs": "^1.1.12",
     "class-variance-authority": "^0.7.1",
     "motion": "^12.18.1",
-    "mynaui": "^0.0.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.2"
@@ -52,22 +56,22 @@
     "autoprefixer": "^10.4.21",
     "clsx": "^2.1.1",
     "eslint": "^9.25.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "husky": "^9.0.11",
     "jsdom": "^26.1.0",
+    "lint-staged": "^15.2.0",
     "lucide-react": "^0.515.0",
     "postcss": "^8.5.5",
+    "prettier": "^3.2.5",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.10",
     "tw-animate-css": "^1.3.4",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
     "vite": "^6.3.5",
-    "vitest": "^3.2.3",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.0",
-    "prettier": "^3.2.5",
-    "eslint-config-prettier": "^9.1.0"
+    "vitest": "^3.2.3"
   }
 }

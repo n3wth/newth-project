@@ -29,6 +29,23 @@ push_dist = false
 # - Accessibility-first with ARIA attributes and keyboard navigation
 # - PWA support with web manifest and favicons
 #
+# ICON LIBRARY STANDARD: 🎯 PHOSPHOR ICONS ONLY
+# - **PRIMARY ICON LIBRARY**: @phosphor-icons/react (https://phosphoricons.com/)
+# - **IMPORT PATTERN**: import { IconName } from '@phosphor-icons/react'
+# - **WHY PHOSPHOR**: Consistent design system, extensive library (6000+ icons), excellent React support
+# - **ICON WEIGHTS**: regular (default), thin, light, bold, fill, duotone - use 'fill' for primary actions
+# - **EXAMPLES**: 
+#   - import { House, User, Settings, Plus, X } from '@phosphor-icons/react'
+#   - <House size={24} weight="fill" className="text-primary" />
+# - **NEVER USE**: lucide-react, heroicons, or other icon libraries except for existing shadcn/ui components
+# - **REPLACEMENT GUIDE**: 
+#   - ChevronDown → CaretDown
+#   - X → X (same)
+#   - Plus → Plus
+#   - Search → MagnifyingGlass
+#   - Settings → Gear
+#   - Home → House
+#
 # Design Principles:
 # - NO HEADERS IN WIDGETS: Widgets should never include page headers, titles, or descriptions
 #   to maintain clean embedding appearance and avoid redundant information when embedded
@@ -44,6 +61,18 @@ push_dist = false
 # - Content should be self-contained and immediately useful without context
 # - Focus on data presentation rather than page structure
 #
+# Development Workflow:
+# - **WIDGET CREATION**: Use `npm run widget:new <widget-name>` to scaffold new widgets
+# - **QUICK COMMANDS**:
+#   - `npm run dev` - Start development with hot reload
+#   - `npm run test` - Run tests in watch mode
+#   - `npm run lint:fix` - Fix linting issues
+#   - `npm run format` - Format all code
+#   - `npm run clean` - Clean build artifacts
+#   - `npm run deps:check` - Check for outdated dependencies
+# - **WIDGET SCAFFOLD**: Automatically creates component, test, route, and constant entry
+# - **PHOSPHOR ICONS**: Always use Phosphor icons, templates include proper examples
+#
 # Project Structure:
 # - src/components/ - Reusable UI components (WidgetCard, WidgetGrid, Layout)
 # - src/components/ui/ - shadcn/ui components (Button, Tabs, Card, Table, Input, Textarea)
@@ -54,10 +83,11 @@ push_dist = false
 # - src/services/ - API services and external integrations
 # - src/test/ - Test configuration and setup
 # - public/ - Static assets, favicons, and PWA manifest
+# - scripts/ - Development utilities (widget creation, etc.)
 #
 # Widget System:
 # - All widgets defined in src/constants/widgets.ts
-# - Easy to add new widgets via constants + pages + routes
+# - Easy to add new widgets via `npm run widget:new <name>` command
 # - Categories: All, Productivity, Utilities, Personal (extensible)
 # - REQUIREMENT: Every widget MUST have a valid category that appears in Home page tabs
 # - REQUIREMENT: Every widget MUST be fully implemented (component + route + tests)
@@ -76,21 +106,57 @@ push_dist = false
 # - Widget implementation validation: Ensure all widgets are fully implemented
 # - Run with: npm run test, npm run test:run, npm run test:coverage, npm run test:all
 #
-# Development:
-# - Vite config with path alias (@ -> src) and test support
+# Code Quality:
 # - TypeScript strictness with proper type definitions
 # - ESLint configuration for code quality
+# - Prettier for consistent formatting
 # - Auto-formatting and linting on save
 # - Hot module replacement for fast development
 # - NEVER leave widgets partially implemented - always complete the full cycle:
 #   constants → component → route → tests
 # - ALWAYS commit and push changes after completing tasks or major features
 # - Use descriptive commit messages following conventional commits format
-# - Auto-deploy happens via Vercel on every push to main branch 
+# - Auto-deploy happens via Vercel on every push to main branch
+# - ALWAYS use Phosphor Icons with proper imports and consistent styling
+#
+# Icon Usage Examples:
+# ```tsx
+# // ✅ CORRECT - Using Phosphor Icons
+# import { House, Gear, Plus, MagnifyingGlass } from '@phosphor-icons/react'
+# 
+# <House size={24} weight="fill" className="text-primary" />
+# <Gear size={16} className="text-muted-foreground" />
+# <Plus size={20} weight="bold" />
+# 
+# // ❌ INCORRECT - Don't use other icon libraries
+# import { Home, Settings } from 'lucide-react'
+# import { HomeIcon } from '@heroicons/react/24/outline'
+# ```
+#
+# Widget Template Structure:
+# ```tsx
+# import { Cube, Sparkle } from '@phosphor-icons/react'
+# 
+# export default function MyWidget() {
+#   return (
+#     <div className="container mx-auto p-4 max-w-4xl">
+#       <div className="text-center space-y-4">
+#         <div className="flex items-center justify-center gap-2">
+#           <Cube size={32} weight="fill" className="text-primary" />
+#           <h1 className="text-3xl font-bold">Widget Title</h1>
+#         </div>
+#         {/* Widget content */}
+#       </div>
+#     </div>
+#   )
+# }
+# ```
 
 # Template Guidelines:
 # - Keep the example widget as a reference for new implementations
 # - Maintain the clean separation between template infrastructure and user content
 # - Document any new patterns or architectural decisions
 # - Preserve the excellent tooling and development experience
-# - Focus on extensibility and ease of use for developers using this template 
+# - Focus on extensibility and ease of use for developers using this template
+# - Always demonstrate Phosphor Icons usage in examples and documentation
+# - Ensure all new components follow the established icon patterns 

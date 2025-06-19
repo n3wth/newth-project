@@ -9,8 +9,7 @@ const Layout = ({ children }: LayoutProps) => {
   const location = useLocation()
 
   // Hide any wrapper for embedded widget pages
-  const isEmbeddedWidget =
-    location.pathname.startsWith('/vietnam/') || location.pathname === '/weather-vietnam'
+  const isEmbeddedWidget = location.pathname.startsWith('/widgets/')
 
   if (isEmbeddedWidget) {
     return <div className="min-h-screen bg-background">{children}</div>

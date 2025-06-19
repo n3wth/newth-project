@@ -14,7 +14,7 @@ const NotFound = () => {
         <p className="mb-1">Available routes:</p>
         <ul className="list-disc pl-6 text-sm">
           <li>/</li>
-          <li>/weather-vietnam</li>
+          <li>/widgets/example</li>
         </ul>
       </div>
     </div>
