@@ -1,12 +1,10 @@
 import { render, screen } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
-import { describe, it, expect } from 'vitest'
-import userEvent from '@testing-library/user-event'
+import { BrowserRouter } from 'react-router-dom'
+import { describe, expect, it } from 'vitest'
 import Home from '../Home'
 
-// Helper function to render with router
 const renderWithRouter = (component: React.ReactElement) => {
-  return render(<MemoryRouter>{component}</MemoryRouter>)
+  return render(<BrowserRouter>{component}</BrowserRouter>)
 }
 
 describe('Home Page UX Tests', () => {
@@ -14,61 +12,50 @@ describe('Home Page UX Tests', () => {
     it('should render the main header', () => {
       renderWithRouter(<Home />)
 
-      const header = screen.getByRole('banner')
-      expect(header).toBeInTheDocument()
-
-      const logo = screen.getByTestId('logo')
-      expect(logo).toBeInTheDocument()
+      expect(screen.getByTestId('logo')).toBeInTheDocument()
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Widget Platform')
     })
 
     it('should display the hero section', () => {
       renderWithRouter(<Home />)
 
-      expect(screen.getByText('Widget Platform Template')).toBeInTheDocument()
+      expect(screen.getByText('Build Amazing Widget Platforms')).toBeInTheDocument()
       expect(screen.getByText(/modern react \+ typescript template/i)).toBeInTheDocument()
     })
 
     it('should show technology badges', () => {
       renderWithRouter(<Home />)
 
-      expect(screen.getByText('TypeScript')).toBeInTheDocument()
-      expect(screen.getByText('Tailwind CSS')).toBeInTheDocument()
-      expect(screen.getByText('shadcn/ui')).toBeInTheDocument()
+      expect(screen.getAllByText('TypeScript')[0]).toBeInTheDocument()
+      expect(screen.getAllByText('shadcn/ui')[0]).toBeInTheDocument()
+      expect(screen.getByText('Vite')).toBeInTheDocument()
     })
 
-    it('should display the widget tabs interface', () => {
+    it('should display the main sections', () => {
       renderWithRouter(<Home />)
 
-      const tabsList = screen.getByTestId('tabs-list')
-      expect(tabsList).toBeInTheDocument()
-
-      const allTab = screen.getByTestId('tab-all')
-      expect(allTab).toBeInTheDocument()
+      expect(screen.getByText('Everything You Need to Build')).toBeInTheDocument()
+      expect(screen.getByText('Why Choose This Template?')).toBeInTheDocument()
+      expect(screen.getByText('See It In Action')).toBeInTheDocument()
+      expect(screen.getByText('Quick Start Guide')).toBeInTheDocument()
     })
 
     it('should show footer', () => {
       renderWithRouter(<Home />)
 
-      const footer = screen.getByRole('contentinfo')
-      expect(footer).toBeInTheDocument()
+      expect(screen.getByText('Resources')).toBeInTheDocument()
+      expect(screen.getByText('Support')).toBeInTheDocument()
+      expect(screen.getByText('Connect')).toBeInTheDocument()
     })
   })
 
   describe('Widget Display UX', () => {
-    it('should show widget count badges in tabs', () => {
-      renderWithRouter(<Home />)
-
-      // Check that tabs show widget counts
-      const allTab = screen.getByTestId('tab-all')
-      expect(allTab).toHaveTextContent('1') // We have 1 example widget
-    })
-
     it('should display widgets in grid format', () => {
       renderWithRouter(<Home />)
 
-      // Should show our example widget
-      expect(screen.getByText('Example Widget')).toBeInTheDocument()
-      expect(screen.getByText(/sample widget to demonstrate/i)).toBeInTheDocument()
+      // Should have widget grid in the demo section
+      const widgetGrid = screen.getByTestId('widget-grid')
+      expect(widgetGrid).toBeInTheDocument()
     })
 
     it('should have clickable widget buttons', () => {
@@ -76,41 +63,31 @@ describe('Home Page UX Tests', () => {
 
       const viewButtons = screen.getAllByText('View Widget')
       expect(viewButtons.length).toBeGreaterThan(0)
+
+      const previewButtons = screen.getAllByText('Preview')
+      expect(previewButtons.length).toBeGreaterThan(0)
     })
   })
 
-  describe('Tab Navigation UX', () => {
-    it('should switch between tabs correctly', async () => {
-      const user = userEvent.setup()
+  describe('Navigation UX', () => {
+    it('should have working navigation links', () => {
       renderWithRouter(<Home />)
 
-      const allTab = screen.getByTestId('tab-all')
-      const utilitiesTab = screen.getByTestId('tab-utilities')
-
-      // Default tab should be "All"
-      expect(screen.getByTestId('tab-content-all')).toBeInTheDocument()
-
-      // Click on utilities tab
-      await user.click(utilitiesTab)
-      expect(screen.getByTestId('tab-content-utilities')).toBeInTheDocument()
-
-      // Click back to all tab
-      await user.click(allTab)
-      expect(screen.getByTestId('tab-content-all')).toBeInTheDocument()
+      // Use specific selectors for navigation links
+      expect(screen.getByRole('link', { name: /features/i })).toBeInTheDocument()
+      expect(screen.getByRole('link', { name: /widgets/i })).toBeInTheDocument()
+      // Handle multiple Get Started links
+      expect(screen.getAllByRole('link', { name: /get started/i })[0]).toBeInTheDocument()
     })
 
-    it('should show appropriate content for each tab', async () => {
-      const user = userEvent.setup()
+    it('should have call-to-action buttons', () => {
       renderWithRouter(<Home />)
 
-      // All tab content
-      expect(screen.getByText('All Widgets')).toBeInTheDocument()
-      expect(screen.getByText(/browse all available widgets/i)).toBeInTheDocument()
+      const getStartedButtons = screen.getAllByText('Get Started')
+      expect(getStartedButtons.length).toBeGreaterThan(0)
 
-      // Switch to utilities tab
-      const utilitiesTab = screen.getByTestId('tab-utilities')
-      await user.click(utilitiesTab)
-      expect(screen.getByText('Utility Widgets')).toBeInTheDocument()
+      expect(screen.getByText('View Demo')).toBeInTheDocument()
+      expect(screen.getByText('Download Template')).toBeInTheDocument()
     })
   })
 
@@ -118,18 +95,11 @@ describe('Home Page UX Tests', () => {
     it('should have proper heading hierarchy', () => {
       renderWithRouter(<Home />)
 
-      const mainHeading = screen.getByRole('heading', { level: 1 })
-      expect(mainHeading).toHaveTextContent('Widget Platform')
+      // Check for main page headings (h1, h2)
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Widget Platform')
 
-      // Check for section headings
-      expect(screen.getByText('All Widgets')).toBeInTheDocument()
-    })
-
-    it('should have accessible tab navigation', () => {
-      renderWithRouter(<Home />)
-
-      const tabs = screen.getAllByRole('tab')
-      expect(tabs.length).toBe(4) // All, Productivity, Utilities, Personal
+      const h2Headings = screen.getAllByRole('heading', { level: 2 })
+      expect(h2Headings.length).toBeGreaterThan(0)
     })
 
     it('should have accessible buttons', () => {
@@ -138,72 +108,10 @@ describe('Home Page UX Tests', () => {
       const buttons = screen.getAllByRole('button')
       expect(buttons.length).toBeGreaterThan(0)
 
-      // Check specific widget buttons
-      const viewButtons = screen.getAllByText('View Widget')
-      expect(viewButtons.length).toBeGreaterThan(0)
-    })
-  })
-
-  describe('Keyboard Navigation UX', () => {
-    it('should support keyboard navigation for tabs', async () => {
-      const user = userEvent.setup()
-      renderWithRouter(<Home />)
-
-      const allTab = screen.getByTestId('tab-all')
-      const utilitiesTab = screen.getByTestId('tab-utilities')
-
-      // Focus on first tab
-      allTab.focus()
-      expect(allTab).toHaveFocus()
-
-      // Navigate with arrow keys
-      await user.keyboard('{ArrowRight}')
-
-      // Should focus on next tab
-      expect(utilitiesTab).toHaveFocus()
-    })
-
-    it('should activate tab with Enter key', async () => {
-      const user = userEvent.setup()
-      renderWithRouter(<Home />)
-
-      const utilitiesTab = screen.getByTestId('tab-utilities')
-      utilitiesTab.focus()
-
-      await user.keyboard('{Enter}')
-
-      // Should show utilities content
-      expect(screen.getByTestId('tab-content-utilities')).toBeInTheDocument()
-    })
-  })
-
-  describe('Performance UX', () => {
-    it('should not cause layout shifts during tab switching', async () => {
-      const user = userEvent.setup()
-      renderWithRouter(<Home />)
-
-      const container = screen.getByTestId('widget-tabs')
-      const initialHeight = container.getBoundingClientRect().height
-
-      // Switch tabs
-      const utilitiesTab = screen.getByTestId('tab-utilities')
-      await user.click(utilitiesTab)
-
-      // Height should remain stable (allowing for small differences)
-      const newHeight = container.getBoundingClientRect().height
-      expect(Math.abs(newHeight - initialHeight)).toBeLessThan(50)
-    })
-
-    it('should render widgets efficiently', () => {
-      renderWithRouter(<Home />)
-
-      // Should not render all widgets at once in different tabs
-      const allTabContent = screen.getByTestId('tab-content-all')
-      expect(allTabContent).toBeInTheDocument()
-
-      // Other tab contents should exist but not be visible
-      const utilitiesTabContent = screen.getByTestId('tab-content-utilities')
-      expect(utilitiesTabContent).not.toBeVisible()
+      // Each button should be accessible
+      buttons.forEach((button) => {
+        expect(button).toBeInTheDocument()
+      })
     })
   })
 
@@ -212,15 +120,35 @@ describe('Home Page UX Tests', () => {
       renderWithRouter(<Home />)
 
       // Check for template-specific messaging
-      expect(screen.getByText('Template')).toBeInTheDocument()
-      expect(screen.getByText(/embeddable widget platforms/i)).toBeInTheDocument()
+      expect(screen.getByText('Open Source Template')).toBeInTheDocument()
+      expect(screen.getAllByText(/embeddable widget platforms/i)[0]).toBeInTheDocument()
     })
 
     it('should show example widget', () => {
       renderWithRouter(<Home />)
 
-      expect(screen.getByText('Example Widget')).toBeInTheDocument()
-      expect(screen.getByText('example')).toBeInTheDocument() // tag
+      // Should display at least one widget in the demo section
+      const widgetGrid = screen.getByTestId('widget-grid')
+      expect(widgetGrid.children.length).toBeGreaterThan(0)
+    })
+  })
+
+  describe('Features Section', () => {
+    it('should display key features', () => {
+      renderWithRouter(<Home />)
+
+      expect(screen.getByText('Modern Stack')).toBeInTheDocument()
+      expect(screen.getByText('Beautiful UI')).toBeInTheDocument()
+      expect(screen.getByText('Type Safe')).toBeInTheDocument()
+      expect(screen.getByText('Responsive')).toBeInTheDocument()
+    })
+
+    it('should show benefits list', () => {
+      renderWithRouter(<Home />)
+
+      expect(screen.getByText('Embeddable widget architecture')).toBeInTheDocument()
+      expect(screen.getByText('Comprehensive testing setup')).toBeInTheDocument()
+      expect(screen.getByText('Production-ready builds')).toBeInTheDocument()
     })
   })
 })

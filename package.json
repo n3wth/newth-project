@@ -25,7 +25,8 @@
     "deps:check": "npm outdated",
     "deps:update": "npm update",
     "dev:api": "node api/weather.js",
-    "widget:new": "node scripts/create-widget.mjs"
+    "widget:new": "node scripts/create-widget.mjs",
+    "icons:migrate": "node scripts/migrate-icons.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

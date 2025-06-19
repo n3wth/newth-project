@@ -1,8 +1,8 @@
+import type { Widget } from '@/types/widget'
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { WidgetGrid } from '../WidgetGrid'
-import type { Widget } from '@/types/widget'
 
 const renderWithRouter = (component: React.ReactElement) => {
   return render(<MemoryRouter>{component}</MemoryRouter>)
@@ -38,9 +38,10 @@ describe('WidgetGrid', () => {
   it('should render empty state when no widgets provided', () => {
     renderWithRouter(<WidgetGrid widgets={[]} />)
 
-    const grid = screen.getByTestId('widget-grid')
-    expect(grid).toBeInTheDocument()
-    expect(grid.children).toHaveLength(0)
+    const emptyGrid = screen.getByTestId('empty-widget-grid')
+    expect(emptyGrid).toBeInTheDocument()
+    expect(screen.getByText('No widgets found')).toBeInTheDocument()
+    expect(screen.getByText('No widgets match the current filter criteria.')).toBeInTheDocument()
   })
 
   it('should have correct grid layout classes', () => {
